@@ -1,0 +1,133 @@
+month,channel,spend_usd,attributed_pipeline,attributed_deals,notes
+2024-01,Paid Search,34644,55665,7,
+2024-01,Paid Social,22960,32675,7,
+2024-01,Content/SEO,21866,38668,3,
+2024-01,Events,15111,25114,2,
+2024-01,Events (Split),5848,8769,0,"Budget split: brand awareness push"
+2024-01,Partnerships,14184,23102,4,
+2024-01,Partnerships (Split),4671,5637,1,"Budget split: regional expansion"
+2024-01,Outbound,24036,31505,5,
+2024-01,Organic,0,0,8,"Includes partner referral traffic"
+2024-02,Paid Search,41167,55493,6,
+2024-02,Paid Social,33705,58558,8,
+2024-02,Paid Social (Split),9792,13218,0,"Budget split: brand awareness push"
+2024-02,Content/SEO,20264,30635,3,
+2024-02,Events,28824,40042,5,
+2024-02,Events (Split),8614,12506,0,"Budget split: brand awareness push"
+2024-02,Partnerships,13767,24036,2,
+2024-02,Partnerships (Split),4035,6568,1,"Budget split: seasonal promo"
+2024-02,Outbound,19781,26538,5,
+2024-02,Organic,0,0,2,"Partner traffic contributing ~30% of organic leads"
+2024-03,Paid Search,30246,40042,5,
+2024-03,Paid Search (Split),10918,16775,1,"Budget split: regional expansion"
+2024-03,Paid Social,24255,34184,4,
+2024-03,Paid Social (Split),5112,7504,3,"Budget split: seasonal promo"
+2024-03,Content/SEO,19480,23844,3,
+2024-03,Events,17591,27405,3,
+2024-03,Partnerships,16083,27213,3,
+2024-03,Outbound,23150,28262,4,
+2024-03,Organic,0,0,5,"Organic includes branded search from partner campaigns"
+2024-04,Paid Search,29737,47985,6,
+2024-04,Paid Search (Split),8189,10987,0,"Budget split: seasonal promo"
+2024-04,Paid Social,29967,37854,5,
+2024-04,Content/SEO,24898,41034,5,
+2024-04,Events,0,20821,5,"No event spend this month. Pipeline attributed from prior quarter events."
+2024-04,Partnerships,16891,24984,5,
+2024-04,Outbound,17603,21880,5,
+2024-04,Organic,0,0,3,
+2024-05,Paid Search,41479,74505,8,
+2024-05,Paid Social,24472,31440,8,
+2024-05,Content/SEO,26175,43246,7,
+2024-05,Events,24040,41988,8,
+2024-05,Partnerships,15334,21863,3,
+2024-05,Outbound,19959,32982,6,
+2024-05,Organic,0,0,2,
+2024-06,Paid Search,28438,43789,9,
+2024-06,Paid Search (Split),5413,8294,3,"Budget split: seasonal promo"
+2024-06,Paid Social,32458,47876,6,
+2024-06,Paid Social (Split),12657,19018,2,"Budget split: retargeting campaign"
+2024-06,Content/SEO,22713,39318,6,
+2024-06,Events,26983,41286,4,
+2024-06,Events (Split),4429,7286,2,"Budget split: brand awareness push"
+2024-06,Partnerships,15642,26913,5,
+2024-06,Partnerships (Split),4818,7230,1,"Budget split: regional expansion"
+2024-06,Outbound,16891,23687,3,
+2024-06,Organic,0,0,5,"Strong organic month — possible partner spillover"
+2024-07,Paid Search,38818,67130,7,
+2024-07,Paid Search (Split),7378,9062,0,"Budget split: incremental campaign test"
+2024-07,Paid Social,25116,34080,5,
+2024-07,Content/SEO,26567,42643,4,
+2024-07,Events,22354,33244,4,
+2024-07,Events (Split),5897,8695,3,"Budget split: brand awareness push"
+2024-07,Partnerships,13916,20697,3,
+2024-07,Partnerships (Split),4822,6711,0,"Budget split: regional expansion"
+2024-07,Outbound,18598,32582,6,
+2024-07,Organic,0,0,5,
+2024-08,Paid Search,36637,59518,7,
+2024-08,Paid Social,29567,41986,4,
+2024-08,Content/SEO,18083,25091,5,
+2024-08,Events,19958,27439,3,
+2024-08,Events (Split),4587,7654,1,"Budget split: retargeting campaign"
+2024-08,Partnerships,11633,17790,2,
+2024-08,Partnerships (Split),2603,3187,0,"Budget split: seasonal promo"
+2024-08,Outbound,16416,26605,5,
+2024-08,Organic,0,0,4,"Organic uplift correlates with partnership events"
+2024-09,Paid Search,32240,54940,8,
+2024-09,Paid Search (Split),10288,15484,3,"Budget split: seasonal promo"
+2024-09,Paid Social,22400,30617,7,
+2024-09,Content/SEO,25637,43543,7,
+2024-09,Events,19667,33848,4,
+2024-09,Events (Split),4866,6699,0,"Budget split: retargeting campaign"
+2024-09,Partnerships,16859,23156,5,
+2024-09,Partnerships (Split),5779,7979,2,"Budget split: regional expansion"
+2024-09,Outbound,15282,19685,3,
+2024-09,Organic,0,0,8,
+2024-10,Paid Search,42152,70593,11,
+2024-10,Paid Search (Split),11300,14427,3,"Budget split: retargeting campaign"
+2024-10,Paid Social,30397,42621,5,
+2024-10,Content/SEO,22484,39203,3,
+2024-10,Events,22351,28763,4,
+2024-10,Events (Split),4162,6036,2,"Budget split: seasonal promo"
+2024-10,Partnerships,19376,33556,3,
+2024-10,Partnerships (Split),5886,8650,0,"Budget split: seasonal promo"
+2024-10,Outbound,14692,25648,3,
+2024-10,Organic,0,0,7,
+2024-11,Paid Search,30051,50710,6,
+2024-11,Paid Social,28059,34867,5,
+2024-11,Content/SEO,20201,25101,6,
+2024-11,Events,22037,35622,6,
+2024-11,Partnerships,12732,22703,2,
+2024-11,Partnerships (Split),3194,4089,1,"Budget split: brand awareness push"
+2024-11,Outbound,18671,28169,4,
+2024-11,Organic,0,0,2,
+2024-12,Paid Search,32985,49580,6,
+2024-12,Paid Social,32878,47039,5,
+2024-12,Content/SEO,21848,39132,4,
+2024-12,Events,20036,25107,3,
+2024-12,Partnerships,19581,32953,4,
+2024-12,Outbound,22995,30517,6,
+2024-12,Organic,0,0,5,"Partner co-marketing contributing to organic pipeline"
+2025-01,Paid Search,34805,58948,6,
+2025-01,Paid Social,30762,52038,7,
+2025-01,Content/SEO,17916,28690,3,
+2025-01,Events,8308,13614,1,
+2025-01,Partnerships,16753,21229,3,
+2025-01,Partnerships (Split),5631,9380,2,"Budget split: retargeting campaign"
+2025-01,Outbound,19704,34923,5,
+2025-01,Organic,0,0,6,
+2025-02,Paid Search,37140,48719,9,
+2025-02,Paid Search (Split),8912,12427,3,"Budget split: retargeting campaign"
+2025-02,Paid Social,24259,37962,6,
+2025-02,Content/SEO,23720,42352,4,
+2025-02,Events,27412,34260,8,
+2025-02,Partnerships,14643,19378,3,
+2025-02,Outbound,16008,27735,4,
+2025-02,Organic,0,0,8,
+2025-03,Paid Search,29939,47671,8,
+2025-03,Paid Social,24748,33433,4,
+2025-03,Content/SEO,21941,27847,4,
+2025-03,Events,16907,21608,3,
+2025-03,Partnerships,10834,17697,2,
+2025-03,Partnerships (Split),3969,5668,1,"Budget split: seasonal promo"
+2025-03,Outbound,16153,22245,5,
+2025-03,Organic,0,0,3,

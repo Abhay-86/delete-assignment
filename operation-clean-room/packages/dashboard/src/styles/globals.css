@@ -1,0 +1,169 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-bg-primary: #020617;
+  --color-bg-secondary: #0f172a;
+  --color-bg-card: #1e293b;
+  --color-bg-card-hover: #334155;
+  --color-border: #334155;
+  --color-border-subtle: #1e293b;
+  --color-text-primary: #f1f5f9;
+  --color-text-secondary: #94a3b8;
+  --color-text-muted: #64748b;
+  --color-electric: #3b82f6;
+  --color-electric-dim: rgba(59, 130, 246, 0.15);
+  --color-amber: #f59e0b;
+  --color-amber-dim: rgba(245, 158, 11, 0.15);
+  --color-danger: #ef4444;
+  --color-danger-dim: rgba(239, 68, 68, 0.15);
+  --color-success: #22c55e;
+  --color-success-dim: rgba(34, 197, 94, 0.15);
+}
+
+@layer base {
+  html {
+    @apply bg-slate-950 text-slate-100;
+    font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    @apply min-h-screen bg-slate-950 font-sans text-sm text-slate-100;
+  }
+
+  /* Monospace for data-heavy elements */
+  [data-mono],
+  .font-mono {
+    font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco,
+      Consolas, monospace;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply rounded-full bg-slate-700;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-slate-600;
+  }
+
+  /* Firefox scrollbar */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: #334155 transparent;
+  }
+}
+
+@layer components {
+  /* Card with subtle glow */
+  .card {
+    @apply rounded-lg border border-slate-700/50 bg-slate-800/80 backdrop-blur-sm;
+    box-shadow:
+      0 0 0 1px rgba(51, 65, 85, 0.3),
+      0 4px 24px rgba(0, 0, 0, 0.2);
+  }
+
+  .card:hover {
+    @apply border-slate-600/50;
+    box-shadow:
+      0 0 0 1px rgba(51, 65, 85, 0.5),
+      0 4px 32px rgba(0, 0, 0, 0.3);
+  }
+
+  /* Metric value styling */
+  .metric-value {
+    @apply font-mono text-2xl font-semibold tracking-tight text-slate-100;
+  }
+
+  .metric-label {
+    @apply text-xs font-medium uppercase tracking-wider text-slate-400;
+  }
+
+  /* Table styles */
+  .table-header {
+    @apply sticky top-0 z-10 border-b border-slate-700/50 bg-slate-800/95 backdrop-blur-sm;
+  }
+
+  .table-row {
+    @apply border-b border-slate-800/50 transition-colors hover:bg-slate-800/30;
+  }
+
+  .table-row:nth-child(even) {
+    @apply bg-slate-850/30;
+  }
+
+  /* Navigation link */
+  .nav-link {
+    @apply flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium text-slate-400 transition-all duration-150;
+  }
+
+  .nav-link:hover {
+    @apply bg-slate-800/50 text-slate-200;
+  }
+
+  .nav-link.active {
+    @apply bg-electric/10 text-electric;
+    box-shadow: inset 3px 0 0 var(--color-electric);
+  }
+
+  /* Status indicators */
+  .status-dot {
+    @apply inline-block h-2 w-2 rounded-full;
+  }
+
+  .status-dot--ok {
+    @apply bg-green-400;
+    box-shadow: 0 0 6px rgba(74, 222, 128, 0.4);
+  }
+
+  .status-dot--warning {
+    @apply bg-amber-400;
+    box-shadow: 0 0 6px rgba(251, 191, 36, 0.4);
+  }
+
+  .status-dot--critical {
+    @apply bg-red-400;
+    box-shadow: 0 0 6px rgba(248, 113, 113, 0.4);
+  }
+
+  /* Glow borders for emphasis */
+  .glow-border-blue {
+    box-shadow:
+      0 0 0 1px rgba(59, 130, 246, 0.3),
+      0 0 15px rgba(59, 130, 246, 0.1);
+  }
+
+  .glow-border-amber {
+    box-shadow:
+      0 0 0 1px rgba(245, 158, 11, 0.3),
+      0 0 15px rgba(245, 158, 11, 0.1);
+  }
+
+  .glow-border-red {
+    box-shadow:
+      0 0 0 1px rgba(239, 68, 68, 0.3),
+      0 0 15px rgba(239, 68, 68, 0.1);
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .gradient-text {
+    @apply bg-gradient-to-r from-electric-400 to-electric-200 bg-clip-text text-transparent;
+  }
+}

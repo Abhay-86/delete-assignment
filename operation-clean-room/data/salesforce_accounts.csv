@@ -1,0 +1,601 @@
+account_id,account_name,parent_account_id,industry,employee_count,region,website,created_date,account_owner,account_status,subscription_type,annual_contract_value
+ACC-00001,Quantum Dynamics Inc.,,Technology,450,North America,quantumdynamics.com,2022-11-10,Sarah Chen,Active,hybrid,7188
+ACC-00002,Meridian Health,,Healthcare,1200,North America,meridianhealthsystems.com,2022-08-03,James Park,Active,flat-rate,1020000
+ACC-00003,Atlas Logistics,,Logistics,340,Europe,atlaslogisticsgroup.com,2023-01-20,Sarah Chen,Active,seat-based,2148
+ACC-00004,Novatech,,Technology,280,Europe,novatechgmbh.com,2023-05-09,Mike Rodriguez,Active,flat-rate,8388
+ACC-00005,Lumin Digital,,Technology,190,Europe,lumindigitalag.com,2023-06-05,James Park,Active,seat-based,9937
+ACC-00006,Clearview Analytics Inc.,,Technology,520,North America,clearviewanalytics.com,2022-09-08,David Kim,Active,seat-based,62400
+ACC-00007,Prism Software Solutions,,Technology,85,North America,prismsoftware.com,2023-05-03,Emma Thompson,Active,flat-rate,1788
+ACC-00008,Summit Financial Group,,Financial Services,890,North America,summitfinancial.com,2022-10-16,Sarah Chen,Active,usage-based,144000
+ACC-00009,Horizon Media Partners,,Media,310,North America,horizonmedia.com,2023-01-28,Lisa Wang,Active,flat-rate,5988
+ACC-00010,Vertex Engineering Ltd.,,Manufacturing,670,Europe,vertexengineering.com,2022-08-14,Mike Rodriguez,Active,hybrid,90000
+ACC-00011,Stratos Cloud Services,,Technology,150,North America,stratoscloud.com,2023-02-28,Mike Rodriguez,Active,flat-rate,2148
+ACC-00012,Pinnacle Retail Group,,Retail,420,North America,pinnacleretail.com,2022-12-29,Lisa Wang,Active,seat-based,7188
+ACC-00013,Catalyst Innovation Labs,,Technology,95,APAC,catalystinnovation.com,2023-06-19,James Park,Active,flat-rate,2227
+ACC-00014,Redwood Mfg Corp,,Manufacturing,780,North America,redwoodmanufacturing.com,2022-06-02,Sarah Chen,Active,flat-rate,1104000
+ACC-00023,Nebula Systems Inc.,,Technology,324,North America,nebulasystems.com,2024-07-15,David Kim,Active,flat-rate,7596
+ACC-00024,Ironclad Sec,,Technology,29,North America,ironcladsecurity.com,2023-01-24,James Park,Active,flat-rate,744
+ACC-00025,ByteForge Inc.,,Technology,2573,North America,byteforge.com,2023-02-19,Emma Thompson,Churned,flat-rate,160896
+ACC-00026,Datastream,,Technology,253,North America,datastreamai.com,2022-12-16,David Kim,Active,seat-based,7188
+ACC-00027,CloudPeak,,Technology,405,North America,cloudpeaksoftware.com,2022-05-27,James Park,Active,flat-rate,71160
+ACC-00028,Silverline Technology,,Technology,125,North America,silverlinetech.com,2023-11-05,Emma Thompson,Active,flat-rate,6060
+ACC-00029,Nextera,,Technology,7,North America,nexteradigital.com,2022-12-11,Lisa Wang,Active,hybrid,780
+ACC-00030,CoreStack,,Technology,34,North America,corestacksolutions.com,2022-12-04,Mike Rodriguez,Churned,usage-based,2292
+ACC-00031,Pulse Analytics Inc.,,Technology,168,North America,pulseanalytics.com,2023-03-31,Emma Thompson,Active,flat-rate,1511
+ACC-00032,Arcus Tech,,Technology,7,North America,arcustechnologies.com,2023-12-01,Sarah Chen,Active,seat-based,73
+ACC-00033,TerraForm,,Technology,34,North America,terraformlabs.com,2022-11-27,Emma Thompson,Active,usage-based,6600
+ACC-00034,Vanta,,Technology,530,North America,vantasoftware.com,2023-08-29,David Kim,Active,seat-based,6480
+ACC-00035,Codex,,Technology,18,Europe,codexdigital.com,2022-08-01,Mike Rodriguez,Churned,seat-based,744
+ACC-00036,Synthetix,,Technology,447,Europe,synthetixgmbh.com,2024-08-27,Emma Thompson,Active,hybrid,6192
+ACC-00037,PixelWave Studios,,Technology,2383,Europe,pixelwave.com,2024-10-08,Lisa Wang,Active,usage-based,26568
+ACC-00038,Alpine Data,,Technology,5,Europe,alpinedataag.com,2023-06-03,Lisa Wang,Active,flat-rate,708
+ACC-00039,Orbis Technology,,Technology,550,Europe,orbistech.com,2022-07-09,David Kim,Active,seat-based,772
+ACC-00040,NightOwl,,Technology,1680,Europe,nightowlsoftware.com,2024-02-19,Emma Thompson,Active,flat-rate,4710
+ACC-00041,Kinetic Sys,,Technology,170,APAC,kineticsystems.com,2022-08-01,Lisa Wang,Active,flat-rate,2388
+ACC-00042,Zenith AI Corp,,Technology,186,APAC,zenithai.com,2023-08-06,James Park,Active,flat-rate,2136
+ACC-00043,DragonCloud,,Technology,131,APAC,dragoncloud.com,2023-04-13,Lisa Wang,Active,hybrid,2232
+ACC-00044,SilkRoute,,Technology,25,APAC,silkroutetech.com,2024-07-05,Lisa Wang,Active,flat-rate,756
+ACC-00045,Aurora Technology,,Technology,4495,APAC,auroratech.com,2023-07-29,Emma Thompson,Active,flat-rate,106320
+ACC-00046,Nuvola,,Technology,9,LATAM,nuvolasrl.com,2024-02-17,Sarah Chen,Active,usage-based,660
+ACC-00047,DigitalBridge,,Technology,553,LATAM,digitalbridgesa.com,2022-07-10,David Kim,Active,flat-rate,7128
+ACC-00048,Cloud Vista Inc.,,Technology,165,LATAM,cloudvista.com,2024-12-07,Emma Thompson,Active,seat-based,64080
+ACC-00049,Verdant Sys,,Technology,450,North America,verdantsystems.com,2022-12-04,James Park,Active,seat-based,6972
+ACC-00050,Helix,,Technology,35,North America,helixsoftware.com,2023-03-10,David Kim,Active,seat-based,636
+ACC-00051,Cirrus Logic,,Technology,544,North America,cirruslogicsystems.com,2023-04-16,Lisa Wang,Active,seat-based,7896
+ACC-00052,DeepField,,Technology,52,Europe,deepfieldai.com,2024-08-01,James Park,Active,hybrid,2004
+ACC-00053,Lightspeed,,Technology,38,North America,lightspeedinnovations.com,2023-12-10,Sarah Chen,Active,flat-rate,804
+ACC-00054,OmniCore,,Technology,1361,APAC,omnicorelabs.com,2023-11-30,Emma Thompson,Active,flat-rate,97260
+ACC-00055,Flux Technology,,Technology,7,Europe,fluxtech.com,2024-04-05,David Kim,Active,usage-based,756
+ACC-00056,Sapient,,Technology,17,North America,sapientdigital.com,2023-04-27,Lisa Wang,Active,flat-rate,588
+ACC-00057,Wavelength,,Technology,50,North America,wavelengthai.com,2023-11-07,James Park,Active,flat-rate,594
+ACC-00058,EdgePoint,,Technology,12,APAC,edgepointsystems.com,2023-10-14,James Park,Active,flat-rate,660
+ACC-00059,Cortex Auto,,Technology,104,North America,cortexautomation.com,2023-05-12,James Park,Active,flat-rate,220
+ACC-00060,MedVantage Health,,Healthcare,87,North America,medvantage.com,2024-09-27,Lisa Wang,Active,flat-rate,1980
+ACC-00061,CarePath,,Healthcare,134,North America,carepathsystems.com,2023-11-11,Emma Thompson,Active,seat-based,2148
+ACC-00062,Vitality Health,,Healthcare,19,North America,vitalityhealthgroup.com,2023-03-14,Sarah Chen,Active,flat-rate,1832
+ACC-00063,BioSync,,Healthcare,210,North America,biosyncmedical.com,2022-10-04,Emma Thompson,Active,flat-rate,7656
+ACC-00064,HealthGrid Inc.,,Healthcare,51,North America,healthgrid.com,2023-02-15,David Kim,Active,flat-rate,1812
+ACC-00065,Aether Med,,Healthcare,65,Europe,aethermedical.com,2023-08-07,Sarah Chen,Active,flat-rate,2016
+ACC-00066,NovaCare,,Healthcare,557,Europe,novacarediagnostics.com,2024-08-02,David Kim,Active,seat-based,7044
+ACC-00067,Centric Health Solutions,,Healthcare,44,Europe,centrichealth.com,2023-10-13,Mike Rodriguez,Active,flat-rate,792
+ACC-00068,Pacific Health,,Healthcare,2470,APAC,pacifichealthsystems.com,2022-11-06,Emma Thompson,Active,hybrid,118236
+ACC-00069,MedBridge,,Healthcare,204,APAC,medbridgeanalytics.com,2023-04-30,Emma Thompson,Active,flat-rate,7296
+ACC-00070,Salud,,Healthcare,2663,LATAM,saluddigital.com,2024-08-13,Mike Rodriguez,Active,flat-rate,154596
+ACC-00071,TrueHealth,,Healthcare,126,North America,truehealthcorp.com,2022-08-29,Lisa Wang,Active,flat-rate,63960
+ACC-00072,WellCore,,Healthcare,145,North America,wellcoresystems.com,2024-04-18,Mike Rodriguez,Active,flat-rate,1420
+ACC-00073,Genome,,Healthcare,416,Europe,genomeinsights.com,2024-08-27,Sarah Chen,Active,usage-based,8040
+ACC-00074,PulsePoint,,Healthcare,90,North America,pulsepointhealth.com,2023-06-14,Emma Thompson,Active,seat-based,3150
+ACC-00075,Apex Capital Group,,Financial Services,274,North America,apexcapital.com,2024-11-02,David Kim,Active,flat-rate,7488
+ACC-00076,Fidelity Bridge Inc.,,Financial Services,174,North America,fidelitybridge.com,2022-10-24,Mike Rodriguez,Active,flat-rate,2004
+ACC-00077,Sterling Wealth Management,,Financial Services,8,North America,sterlingwealth.com,2024-01-03,Lisa Wang,Active,hybrid,768
+ACC-00078,BankTech,,Financial Services,4446,North America,banktechsolutions.com,2023-09-08,David Kim,Active,flat-rate,192905
+ACC-00079,Moneta,,Financial Services,17,Europe,monetafinancial.com,2022-08-13,Emma Thompson,Active,hybrid,600
+ACC-00080,Fortis Capital,,Financial Services,25,Europe,fortiscapitalag.com,2023-11-11,Lisa Wang,Active,flat-rate,768
+ACC-00081,Pacific Wealth Partners,,Financial Services,493,APAC,pacificwealth.com,2022-10-29,Mike Rodriguez,Active,flat-rate,7584
+ACC-00082,Finova,,Financial Services,105,APAC,finovagroup.com,2023-06-26,James Park,Active,seat-based,20640
+ACC-00083,LatAm Financial Services,,Financial Services,86,LATAM,latamfinserv.com,2023-03-23,Emma Thompson,Active,flat-rate,1872
+ACC-00084,TrustBank,,Financial Services,75,North America,trustbankdigital.com,2023-10-26,Sarah Chen,Active,flat-rate,2112
+ACC-00085,Forge Ind.,,Manufacturing,319,North America,forgeindustries.com,2022-08-08,David Kim,Active,flat-rate,4020
+ACC-00086,Titan Mfg,,Manufacturing,48,North America,titanmanufacturing.com,2022-08-02,Emma Thompson,Active,seat-based,804
+ACC-00087,Precision Dynamics Corp,,Manufacturing,115,North America,precisiondynamics.com,2022-09-24,Sarah Chen,Active,flat-rate,228
+ACC-00088,Steelbridge,,Manufacturing,22,North America,steelbridgecorp.com,2022-12-11,Sarah Chen,Active,flat-rate,756
+ACC-00089,EuroForge,,Manufacturing,46,Europe,euroforgegmbh.com,2024-11-02,Lisa Wang,Active,hybrid,224
+ACC-00090,Rhine Ind.,,Manufacturing,498,Europe,rhineindustrial.com,2023-11-11,David Kim,Active,seat-based,7920
+ACC-00091,Kanto Mfg,,Manufacturing,60,APAC,kantomanufacturing.com,2022-07-18,James Park,Active,hybrid,1836
+ACC-00092,Pacifica Ind,,Manufacturing,17,APAC,pacificaindustrial.com,2024-02-03,Lisa Wang,Active,flat-rate,756
+ACC-00093,Andean Mfg,,Manufacturing,197,LATAM,andeanmanufacturing.com,2022-07-14,Emma Thompson,Active,flat-rate,2028
+ACC-00094,Ironworks,,Manufacturing,78,North America,ironworkssolutions.com,2024-06-28,David Kim,Active,hybrid,2112
+ACC-00095,Urban Mart Inc.,,Retail,48,North America,urbanmart.com,2024-10-10,Sarah Chen,Churned,flat-rate,648
+ACC-00096,ShopStream Inc.,,Retail,177,North America,shopstream.com,2024-09-30,James Park,Churned,flat-rate,21960
+ACC-00097,Retail Edge Corp,,Retail,168,North America,retailedge.com,2023-03-07,Emma Thompson,Churned,flat-rate,2088
+ACC-00098,FreshMarket,,Retail,375,North America,freshmarketdigital.com,2024-03-14,James Park,Churned,seat-based,7320
+ACC-00099,Europa Retail,,Retail,195,Europe,europaretailgroup.com,2025-01-10,Emma Thompson,Churned,seat-based,2256
+ACC-00100,Nordic Shops AB,,Retail,137,Europe,nordicshops.com,2024-03-08,Sarah Chen,Churned,hybrid,2316
+ACC-00101,Pacific Mart,,Retail,180,APAC,pacificmart.com,2023-02-04,Emma Thompson,Churned,seat-based,6827
+ACC-00102,Bazaar Tech,,Retail,88,APAC,bazaartech.com,2023-11-15,David Kim,Churned,flat-rate,2292
+ACC-00103,Mercado,,Retail,534,LATAM,mercadoonline.com,2024-03-07,David Kim,Churned,seat-based,6348
+ACC-00104,Beacon Retail Group,,Retail,49,North America,beaconretail.com,2023-09-18,Mike Rodriguez,Churned,flat-rate,648
+ACC-00105,EduPath Learning,,Education,486,North America,edupath.com,2024-04-09,David Kim,Churned,hybrid,7704
+ACC-00106,Bright Minds,,Education,43,North America,brightmindsacademy.com,2024-09-27,James Park,Trial,hybrid,720
+ACC-00107,LearnSphere Inc.,,Education,42,Europe,learnsphere.com,2023-08-27,David Kim,Trial,flat-rate,2328
+ACC-00108,AcademiQ Solutions,,Education,310,APAC,academiq.com,2023-06-08,David Kim,Trial,flat-rate,7464
+ACC-00109,EduNova Group,,Education,359,LATAM,edunova.com,2022-08-06,Mike Rodriguez,Trial,flat-rate,6384
+ACC-00110,Amplify,,Media,10,North America,amplifymedia.com,2023-06-10,Emma Thompson,Trial,flat-rate,792
+ACC-00111,Spectrum,,Media,442,North America,spectrumstudios.com,2022-08-23,David Kim,Trial,flat-rate,6060
+ACC-00112,Lumina,,Media,37,Europe,luminabroadcasting.com,2023-02-05,Lisa Wang,Trial,flat-rate,792
+ACC-00113,Rising Sun,,Media,555,APAC,risingsunmedia.com,2024-07-31,Emma Thompson,Trial,hybrid,6816
+ACC-00114,Solaris,,Energy,33,North America,solarisenergy.com,2023-01-17,James Park,Trial,flat-rate,708
+ACC-00115,GreenVolt Power,,Energy,16,Europe,greenvolt.com,2024-02-20,James Park,Trial,flat-rate,708
+ACC-00116,Renewable Dyn.,,Energy,131,LATAM,renewabledynamics.com,2022-08-21,David Kim,Active,flat-rate,1510
+ACC-00117,Stratton,,Professional Services,560,North America,strattonconsulting.com,2022-10-06,James Park,Active,flat-rate,6120
+ACC-00118,Vanguard,,Professional Services,20,Europe,vanguardadvisory.com,2022-12-12,James Park,Active,flat-rate,636
+ACC-00121,QD Labs Division,ACC-00001,Technology,1440,North America,qdlabsdivision.com,2021-06-07,Mike Rodriguez,Active,flat-rate,96000
+ACC-00122,QD Analytics Unit,ACC-00001,Technology,274,North America,qdanalyticsunit.com,2020-09-13,Sarah Chen,Active,flat-rate,51000
+ACC-00123,QD Cloud Services,ACC-00001,Technology,46,North America,qdcloudservices.com,2023-11-26,James Park,Active,flat-rate,89000
+ACC-00124,Meridian Research Unit,ACC-00002,Healthcare,1280,North America,meridianresearchunit.com,2023-08-24,Emma Thompson,Active,usage-based,14000
+ACC-00125,Meridian Pharmacy Services,ACC-00002,Healthcare,217,North America,meridianpharmacyservices.com,2021-10-21,James Park,Active,seat-based,570000
+ACC-00126,Meridian Clinical,ACC-00002,Healthcare,1194,North America,meridianclinical.com,2022-04-20,James Park,Active,flat-rate,78000
+ACC-00127,Atlas North America,ACC-00003,Logistics,865,Europe,atlasnorthamerica.com,2024-05-28,Sarah Chen,Active,flat-rate,83000
+ACC-00128,Atlas Asia Pacific,ACC-00003,Logistics,282,Europe,atlasasiapacific.com,2024-04-13,James Park,Active,hybrid,25000
+ACC-00129,Atlas EMEA Operations,ACC-00003,Logistics,1002,Europe,atlasemeaoperations.com,2024-05-31,James Park,Active,seat-based,49000
+ACC-00130,Summit Advisory,ACC-00008,Financial Services,1173,North America,summitadvisory.com,2021-05-30,David Kim,Active,flat-rate,52000
+ACC-00131,Summit Capital Markets,ACC-00008,Financial Services,1124,North America,summitcapitalmarkets.com,2020-08-22,James Park,Active,flat-rate,60196
+ACC-00132,Summit Insurance Div,ACC-00008,Financial Services,1036,North America,summitinsurancediv.com,2022-08-30,David Kim,Active,usage-based,51054
+ACC-00133,ZenithAI Research,ACC-00042,Technology,868,APAC,zenithairesearch.com,2023-01-25,Mike Rodriguez,Active,flat-rate,39000
+ACC-00134,ZenithAI Federal,ACC-00042,Technology,23,APAC,zenithaifederal.com,2023-01-01,James Park,Active,seat-based,68000
+ACC-00135,ZenithAI Healthcare,ACC-00042,Technology,1431,APAC,zenithaihealthcare.com,2022-07-16,Mike Rodriguez,Active,flat-rate,6800
+ACC-00136,BioSync Diagnostics,ACC-00063,Healthcare,293,North America,biosyncdiagnostics.com,2023-07-11,James Park,Active,hybrid,1600
+ACC-00137,BioSync Pharma,ACC-00063,Healthcare,560,North America,biosyncpharma.com,2024-05-29,Mike Rodriguez,Active,seat-based,45000
+ACC-00138,BioSync Research,ACC-00063,Healthcare,320,North America,biosyncresearch.com,2023-05-28,David Kim,Active,flat-rate,78000
+ACC-00139,Apex Venture Capital,ACC-00075,Financial Services,1848,North America,apexventurecapital.com,2022-05-26,James Park,Active,seat-based,40000
+ACC-00140,Apex Wealth Advisory,ACC-00075,Financial Services,260,North America,apexwealthadvisory.com,2021-09-17,Emma Thompson,Active,seat-based,63000
+ACC-00141,Apex Insurance Holdings,ACC-00075,Financial Services,1361,North America,apexinsuranceholdings.com,2020-05-03,Mike Rodriguez,Active,flat-rate,18000
+ACC-00142,TrustBank Consumer,ACC-00084,Financial Services,1299,North America,trustbankconsumer.com,2023-01-09,Mike Rodriguez,Active,hybrid,41876
+ACC-00143,TrustBank Commercial,ACC-00084,Financial Services,795,North America,trustbankcommercial.com,2023-07-15,Lisa Wang,Active,hybrid,53859
+ACC-00144,TrustBank Mortgage,ACC-00084,Financial Services,1722,North America,trustbankmortgage.com,2022-11-20,David Kim,Active,flat-rate,270000
+ACC-00145,RetailEdge Online,ACC-00097,Retail,1458,North America,retailedgeonline.com,2022-09-19,Lisa Wang,Active,seat-based,90000
+ACC-00146,RetailEdge International,ACC-00097,Retail,442,North America,retailedgeinternational.com,2021-04-03,Mike Rodriguez,Active,flat-rate,93000
+ACC-00147,RetailEdge Wholesale,ACC-00097,Retail,1404,North America,retailedgewholesale.com,2020-10-15,Sarah Chen,Active,flat-rate,36000
+ACC-00148,Redwood Composites Div,ACC-00014,Manufacturing,768,North America,redwoodcompositesdiv.com,2020-03-06,Sarah Chen,Active,flat-rate,41000
+ACC-00149,Redwood Precision Parts,ACC-00014,Manufacturing,345,North America,redwoodprecisionparts.com,2022-11-15,Mike Rodriguez,Active,hybrid,49000
+ACC-00150,Redwood Automation Systems,ACC-00014,Manufacturing,1366,North America,redwoodautomationsystems.com,2022-08-12,David Kim,Active,flat-rate,32000
+ACC-00201,Acorn Tech Inc,,Education,8249,APAC,acorntech.com,2020-01-27,Lisa Wang,Trial,seat-based,126000
+ACC-00202,Birch Tech Inc,,Energy,3804,APAC,birchtech.com,2022-06-01,Mike Rodriguez,Active,hybrid,241533
+ACC-00203,Canyon Tech Inc,,Energy,6993,North America,canyontech.com,2021-06-02,James Park,Churned,flat-rate,65815
+ACC-00204,Dusk Tech Inc,,Financial Services,203,APAC,dusktech.com,2022-03-30,Sarah Chen,Prospect,,0
+ACC-00205,Elm Tech Inc,,Manufacturing,117,North America,elmtech.com,2022-11-09,Mike Rodriguez,Prospect,,0
+ACC-00206,Fern Tech Inc,,Healthcare,4185,APAC,ferntech.com,2020-12-19,James Park,Active,flat-rate,26000
+ACC-00207,Grove Tech Inc,,Education,7498,APAC,grovetech.com,2022-06-01,Lisa Wang,Active,flat-rate,121000
+ACC-00208,Haven Tech Inc,,Technology,4611,Europe,haventech.com,2024-07-12,Mike Rodriguez,Active,flat-rate,172000
+ACC-00209,Ivy Tech Inc,,Energy,5799,APAC,ivytech.com,2023-12-10,Emma Thompson,Churned,flat-rate,135000
+ACC-00210,Jade Tech Inc,,Education,3917,LATAM,jadetech.com,2022-05-03,Mike Rodriguez,Churned,hybrid,104000
+ACC-00211,Kestrel Tech Inc,,Technology,7774,North America,kestreltech.com,2022-03-23,James Park,Churned,flat-rate,51000
+ACC-00212,Lark Tech Inc,,Healthcare,4589,APAC,larktech.com,2023-11-18,James Park,Active,hybrid,55666
+ACC-00213,Mesa Tech Inc,,Education,4881,Europe,mesatech.com,2024-08-21,Sarah Chen,Active,flat-rate,156000
+ACC-00214,Nest Tech Inc,,Energy,332,Europe,nesttech.com,2021-12-26,David Kim,Prospect,,0
+ACC-00215,Oak Tech Inc,,Technology,7878,Europe,oaktech.com,2022-06-11,Lisa Wang,Trial,hybrid,15000
+ACC-00216,Pine Tech Inc,,Logistics,353,LATAM,pinetech.com,2021-11-28,James Park,Prospect,,0
+ACC-00217,Quail Tech Inc,,Financial Services,3349,APAC,quailtech.com,2024-04-18,David Kim,Active,flat-rate,52000
+ACC-00218,Ridge Tech Inc,,Manufacturing,9720,LATAM,ridgetech.com,2022-01-21,Lisa Wang,Active,flat-rate,106000
+ACC-00219,Sage Tech Inc,,Education,9718,APAC,sagetech.com,2024-09-19,James Park,Active,flat-rate,158000
+ACC-00220,Thorn Tech Inc,,Energy,6146,Europe,thorntech.com,2023-02-09,Sarah Chen,Active,flat-rate,89000
+ACC-00221,Umber Tech Inc,,Logistics,2580,APAC,umbertech.com,2020-11-15,David Kim,Active,flat-rate,15599
+ACC-00222,Vale Tech Inc,,Professional Services,6537,Europe,valetech.com,2020-04-03,Sarah Chen,Active,flat-rate,11600
+ACC-00223,Willow Tech Inc,,Retail,4068,APAC,willowtech.com,2024-02-26,James Park,Active,flat-rate,57000
+ACC-00224,Yarrow Tech Inc,,Manufacturing,1703,Europe,yarrowtech.com,2024-02-24,Mike Rodriguez,Active,hybrid,7800
+ACC-00225,Agate Tech Inc,,Retail,2612,Europe,agatetech.com,2022-04-19,Mike Rodriguez,Trial,flat-rate,68000
+ACC-00226,Brook Tech Inc,,Healthcare,7165,APAC,brooktech.com,2021-12-05,David Kim,Active,flat-rate,61000
+ACC-00227,Cove Tech Inc,,Manufacturing,5328,LATAM,covetech.com,2023-02-04,Mike Rodriguez,Active,flat-rate,190000
+ACC-00228,Dawn Tech Inc,,Retail,6734,North America,dawntech.com,2021-10-08,James Park,Active,flat-rate,189000
+ACC-00229,Echo Tech Inc,,Technology,4360,Europe,echotech.com,2024-11-13,James Park,Active,usage-based,47981
+ACC-00230,Fjord Tech Inc,,Professional Services,288,North America,fjordtech.com,2024-01-01,David Kim,Prospect,,0
+ACC-00231,Glen Tech Inc,,Technology,2881,Europe,glentech.com,2023-05-10,Emma Thompson,Active,seat-based,127000
+ACC-00232,Haze Tech Inc,,Financial Services,463,APAC,hazetech.com,2021-11-23,Emma Thompson,Prospect,,0
+ACC-00233,Isle Tech Inc,,Technology,2724,LATAM,isletech.com,2020-12-25,Emma Thompson,Active,seat-based,97000
+ACC-00234,Jet Tech Inc,,Energy,2675,LATAM,jettech.com,2023-11-30,James Park,Active,usage-based,42000
+ACC-00235,Knoll Tech Inc,,Technology,6420,LATAM,knolltech.com,2020-01-13,Lisa Wang,Active,seat-based,24016
+ACC-00236,Leaf Tech Inc,,Professional Services,9231,APAC,leaftech.com,2025-01-05,James Park,Active,seat-based,44000
+ACC-00237,Marsh Tech Inc,,Logistics,6644,APAC,marshtech.com,2023-11-30,Emma Thompson,Active,hybrid,119000
+ACC-00238,North Tech Inc,,Healthcare,8488,Europe,northtech.com,2023-07-31,Mike Rodriguez,Churned,flat-rate,73000
+ACC-00239,Oasis Tech Inc,,Manufacturing,1962,North America,oasistech.com,2022-05-05,James Park,Active,seat-based,150000
+ACC-00240,Peak Tech Inc,,Retail,8434,Europe,peaktech.com,2024-10-19,James Park,Active,flat-rate,350000
+ACC-00241,Quay Tech Inc,,Energy,4878,LATAM,quaytech.com,2020-04-30,Lisa Wang,Active,flat-rate,23000
+ACC-00242,Reef Tech Inc,,Technology,1789,Europe,reeftech.com,2020-11-05,David Kim,Churned,flat-rate,110000
+ACC-00243,Stone Tech Inc,,Logistics,4254,Europe,stonetech.com,2021-09-14,David Kim,Active,seat-based,219812
+ACC-00244,Terra Tech Inc,,Financial Services,6493,LATAM,terratech.com,2020-04-26,Lisa Wang,Active,flat-rate,152362
+ACC-00245,Ursa Tech Inc,,Manufacturing,267,LATAM,ursatech.com,2020-09-03,Sarah Chen,Prospect,,0
+ACC-00246,Vista Tech Inc,,Technology,6453,LATAM,vistatech.com,2021-12-05,Sarah Chen,Active,flat-rate,34000
+ACC-00247,Wave Tech Inc,,Financial Services,9447,APAC,wavetech.com,2023-12-30,Mike Rodriguez,Active,seat-based,200000
+ACC-00248,Xeric Tech Inc,,Technology,2828,North America,xerictech.com,2023-01-12,Mike Rodriguez,Active,flat-rate,103000
+ACC-00249,Alto Tech Inc,,Healthcare,125,Europe,altotech.com,2025-01-31,James Park,Prospect,,0
+ACC-00250,Bay Tech Inc,,Manufacturing,1341,Europe,baytech.com,2023-07-15,Mike Rodriguez,Churned,flat-rate,188000
+ACC-00251,Cliff Tech Inc,,Media,7663,North America,clifftech.com,2022-02-20,David Kim,Active,seat-based,186000
+ACC-00252,Delta Tech Inc,,Financial Services,6820,LATAM,deltatech.com,2024-06-09,Mike Rodriguez,Active,hybrid,127000
+ACC-00253,Ether Tech Inc,,Professional Services,2856,APAC,ethertech.com,2024-10-04,Mike Rodriguez,Churned,seat-based,6600
+ACC-00254,Flame Tech Inc,,Logistics,7000,North America,flametech.com,2024-11-27,Sarah Chen,Active,hybrid,58651
+ACC-00255,Gale Tech Inc,,Education,3350,North America,galetech.com,2022-04-19,Emma Thompson,Active,seat-based,94085
+ACC-00256,Horn Tech Inc,,Technology,7310,LATAM,horntech.com,2022-05-25,Lisa Wang,Active,flat-rate,61000
+ACC-00257,Iron Tech Inc,,Retail,454,APAC,irontech.com,2020-06-13,David Kim,Prospect,,0
+ACC-00258,Jewel Tech Inc,,Energy,3030,North America,jeweltech.com,2024-03-23,David Kim,Churned,flat-rate,103000
+ACC-00259,Key Tech Inc,,Manufacturing,4039,North America,keytech.com,2021-10-28,Lisa Wang,Active,seat-based,93000
+ACC-00260,Lake Tech Inc,,Healthcare,126,Europe,laketech.com,2023-12-01,David Kim,Active,seat-based,93000
+ACC-00261,Mist Tech Inc,,Manufacturing,97,Europe,misttech.com,2020-01-21,Sarah Chen,Prospect,,0
+ACC-00262,Nova Tech Inc,,Manufacturing,9209,Europe,novatech.com,2024-02-28,Emma Thompson,Active,flat-rate,125000
+ACC-00263,Ore Tech Inc,,Retail,5524,LATAM,oretech.com,2023-12-06,Emma Thompson,Active,flat-rate,149000
+ACC-00264,Plume Tech Inc,,Logistics,1771,North America,plumetech.com,2022-11-18,David Kim,Active,seat-based,11200
+ACC-00265,Rapid Tech Inc,,Education,9172,APAC,rapidtech.com,2020-11-03,Mike Rodriguez,Active,flat-rate,155000
+ACC-00266,Sable Tech Inc,,Healthcare,2526,APAC,sabletech.com,2021-02-11,Lisa Wang,Active,flat-rate,141000
+ACC-00267,Tide Tech Inc,,Manufacturing,9338,North America,tidetech.com,2021-03-09,Lisa Wang,Active,flat-rate,97000
+ACC-00268,Ural Tech Inc,,Professional Services,3800,Europe,uraltech.com,2021-02-13,Lisa Wang,Active,hybrid,149000
+ACC-00269,Vine Tech Inc,,Healthcare,8227,Europe,vinetech.com,2022-06-13,David Kim,Active,flat-rate,1470000
+ACC-00270,Wind Tech Inc,,Manufacturing,48,Europe,windtech.com,2023-07-19,Emma Thompson,Prospect,,0
+ACC-00271,Axis Tech Inc,,Technology,4190,LATAM,axistech.com,2020-06-29,Lisa Wang,Active,seat-based,160000
+ACC-00272,Bloom Tech Inc,,Financial Services,6634,North America,bloomtech.com,2023-01-23,Sarah Chen,Active,hybrid,103000
+ACC-00273,Core Tech Inc,,Healthcare,5,APAC,coretech.com,2022-07-07,Lisa Wang,Prospect,,0
+ACC-00274,Drift Tech Inc,,Healthcare,9091,LATAM,drifttech.com,2020-02-20,Mike Rodriguez,Churned,flat-rate,103000
+ACC-00275,Edge Tech Inc,,Media,9473,APAC,edgetech.com,2021-08-24,Mike Rodriguez,Active,seat-based,138000
+ACC-00276,Fort Tech Inc,,Manufacturing,7318,LATAM,forttech.com,2021-05-14,Emma Thompson,Active,hybrid,35855
+ACC-00277,Gear Tech Inc,,Healthcare,9761,Europe,geartech.com,2022-11-30,Sarah Chen,Active,flat-rate,72000
+ACC-00278,Helm Tech Inc,,Professional Services,2575,APAC,helmtech.com,2023-12-09,Emma Thompson,Active,flat-rate,152000
+ACC-00279,Icon Tech Inc,,Energy,3492,Europe,icontech.com,2023-02-08,David Kim,Active,flat-rate,120000
+ACC-00280,Joint Tech Inc,,Technology,1899,Europe,jointtech.com,2024-02-10,Mike Rodriguez,Active,seat-based,76623
+ACC-00281,Keel Tech Inc,,Healthcare,3788,LATAM,keeltech.com,2020-04-21,Lisa Wang,Trial,flat-rate,165000
+ACC-00282,Link Tech Inc,,Retail,62,APAC,linktech.com,2025-01-29,Mike Rodriguez,Prospect,,0
+ACC-00283,Mold Tech Inc,,Education,8001,Europe,moldtech.com,2023-10-25,Mike Rodriguez,Active,flat-rate,171072
+ACC-00284,Neon Tech Inc,,Healthcare,1985,North America,neontech.com,2020-07-21,Mike Rodriguez,Active,flat-rate,108000
+ACC-00285,Orbit Tech Inc,,Retail,2969,LATAM,orbittech.com,2021-02-23,James Park,Active,flat-rate,176616
+ACC-00286,Pixel Tech Inc,,Healthcare,751,Europe,pixeltech.com,2024-05-07,Mike Rodriguez,Active,usage-based,154000
+ACC-00287,Query Tech Inc,,Education,30,Europe,querytech.com,2023-05-05,Emma Thompson,Prospect,,0
+ACC-00288,Rune Tech Inc,,Retail,9186,Europe,runetech.com,2020-11-16,James Park,Active,seat-based,53000
+ACC-00289,Scope Tech Inc,,Logistics,7307,North America,scopetech.com,2022-07-29,James Park,Active,flat-rate,106000
+ACC-00290,Trace Tech Inc,,Healthcare,442,LATAM,tracetech.com,2021-09-09,Emma Thompson,Prospect,,0
+ACC-00291,Unit Tech Inc,,Technology,1965,APAC,unittech.com,2024-12-19,David Kim,Active,usage-based,80712
+ACC-00292,Volt Tech Inc,,Financial Services,5063,North America,volttech.com,2023-02-16,James Park,Active,hybrid,119000
+ACC-00293,Weld Tech Inc,,Energy,9061,APAC,weldtech.com,2022-05-06,David Kim,Active,hybrid,165000
+ACC-00294,Xenon Tech Inc,,Financial Services,2343,Europe,xenontech.com,2020-07-19,James Park,Active,flat-rate,59000
+ACC-00295,Yoke Tech Inc,,Manufacturing,3715,LATAM,yoketech.com,2022-08-31,David Kim,Active,seat-based,155000
+ACC-00296,Zone Tech Inc,,Manufacturing,4355,Europe,zonetech.com,2023-11-03,Mike Rodriguez,Churned,hybrid,87000
+ACC-00297,Arc Tech Inc,,Manufacturing,4543,North America,arctech.com,2024-03-12,David Kim,Churned,flat-rate,33000
+ACC-00298,Base Tech Inc,,Logistics,7630,APAC,basetech.com,2021-02-19,Sarah Chen,Active,flat-rate,71445
+ACC-00299,Cast Tech Inc,,Media,7207,APAC,casttech.com,2021-04-25,David Kim,Active,seat-based,31000
+ACC-00300,Data Tech Inc,,Logistics,3628,LATAM,datatech.com,2020-11-11,Lisa Wang,Active,flat-rate,49347
+ACC-00301,Flux Tech Inc,,Technology,5567,LATAM,fluxtech.com,2020-09-10,James Park,Churned,hybrid,45000
+ACC-00302,Grid Tech Inc,,Financial Services,2739,Europe,gridtech.com,2020-08-02,David Kim,Active,flat-rate,92000
+ACC-00303,Hub Tech Inc,,Media,4654,Europe,hubtech.com,2020-05-20,Sarah Chen,Trial,usage-based,152000
+ACC-00304,Idea Tech Inc,,Education,4676,LATAM,ideatech.com,2023-01-03,David Kim,Active,seat-based,45579
+ACC-00305,Jet Tech Inc,,Technology,7036,North America,jettech.com,2024-08-03,Emma Thompson,Active,flat-rate,34000
+ACC-00306,Knot Tech Inc,,Professional Services,81,LATAM,knottech.com,2020-01-14,Sarah Chen,Prospect,,0
+ACC-00307,Loop Tech Inc,,Energy,445,LATAM,looptech.com,2020-11-06,David Kim,Prospect,,0
+ACC-00308,Mode Tech Inc,,Manufacturing,5421,Europe,modetech.com,2022-03-23,David Kim,Active,flat-rate,50000
+ACC-00309,Node Tech Inc,,Retail,7333,North America,nodetech.com,2024-05-07,Emma Thompson,Churned,seat-based,67000
+ACC-00310,Open Tech Inc,,Healthcare,9073,Europe,opentech.com,2024-11-18,Mike Rodriguez,Active,flat-rate,79272
+ACC-00311,Port Tech Inc,,Technology,1494,APAC,porttech.com,2020-09-14,Emma Thompson,Churned,flat-rate,134000
+ACC-00312,Quad Tech Inc,,Technology,9492,Europe,quadtech.com,2021-02-15,Emma Thompson,Active,usage-based,260000
+ACC-00313,Ring Tech Inc,,Energy,8265,Europe,ringtech.com,2021-01-15,David Kim,Churned,flat-rate,90000
+ACC-00314,Spin Tech Inc,,Technology,8059,APAC,spintech.com,2021-06-24,James Park,Active,seat-based,87000
+ACC-00315,Turn Tech Inc,,Professional Services,268,Europe,turntech.com,2024-05-12,Lisa Wang,Churned,flat-rate,156000
+ACC-00316,Up Tech Inc,,Professional Services,8326,APAC,uptech.com,2024-12-21,James Park,Active,seat-based,55000
+ACC-00317,View Tech Inc,,Energy,47,LATAM,viewtech.com,2021-12-04,Lisa Wang,Prospect,,0
+ACC-00318,Warp Tech Inc,,Energy,1552,LATAM,warptech.com,2025-02-10,Mike Rodriguez,Active,hybrid,64425
+ACC-00319,Xray Tech Inc,,Logistics,5289,APAC,xraytech.com,2022-05-09,James Park,Trial,flat-rate,22000
+ACC-00320,Yew Tech Inc,,Education,1240,Europe,yewtech.com,2022-08-24,James Park,Active,flat-rate,1540000
+ACC-00321,Zen Tech Inc,,Financial Services,1433,Europe,zentech.com,2021-05-11,Mike Rodriguez,Active,flat-rate,86000
+ACC-00322,Bolt Tech Inc,,Healthcare,7288,Europe,bolttech.com,2020-11-09,Emma Thompson,Active,flat-rate,68000
+ACC-00323,Chip Tech Inc,,Financial Services,237,LATAM,chiptech.com,2024-10-03,Sarah Chen,Prospect,,0
+ACC-00324,Dash Tech Inc,,Logistics,360,North America,dashtech.com,2022-08-05,James Park,Prospect,,0
+ACC-00325,Pulse Tech Inc,,Education,7225,APAC,pulsetech.com,2020-04-10,Sarah Chen,Active,seat-based,152000
+ACC-00326,Flow Tech Inc,,Education,3504,Europe,flowtech.com,2021-07-19,Emma Thompson,Active,seat-based,67656
+ACC-00327,Glow Tech Inc,,Logistics,420,APAC,glowtech.com,2020-12-31,Sarah Chen,Churned,flat-rate,20783
+ACC-00328,Hive Tech Inc,,Technology,142,LATAM,hivetech.com,2023-06-09,James Park,Prospect,,0
+ACC-00329,Acorn Solutions Inc,,Energy,8169,LATAM,acornsolutions.com,2020-11-08,Mike Rodriguez,Active,flat-rate,80622
+ACC-00330,Birch Solutions Inc,,Professional Services,1657,Europe,birchsolutions.com,2023-07-30,David Kim,Active,flat-rate,111000
+ACC-00331,Canyon Solutions Inc,,Technology,7234,APAC,canyonsolutions.com,2021-11-20,James Park,Trial,flat-rate,139933
+ACC-00332,Dusk Solutions Inc,,Energy,6267,APAC,dusksolutions.com,2022-09-09,Mike Rodriguez,Active,usage-based,160000
+ACC-00333,Elm Solutions Inc,,Energy,21,APAC,elmsolutions.com,2020-12-10,Mike Rodriguez,Active,flat-rate,144000
+ACC-00334,Fern Solutions Inc,,Manufacturing,1860,LATAM,fernsolutions.com,2021-07-16,David Kim,Churned,flat-rate,14500
+ACC-00335,Grove Solutions Inc,,Technology,1086,Europe,grovesolutions.com,2022-01-08,David Kim,Active,flat-rate,67000
+ACC-00336,Haven Solutions Inc,,Professional Services,3378,North America,havensolutions.com,2020-11-30,Emma Thompson,Active,seat-based,135000
+ACC-00337,Ivy Solutions Inc,,Healthcare,7784,LATAM,ivysolutions.com,2024-07-29,Emma Thompson,Churned,flat-rate,117000
+ACC-00338,Jade Solutions Inc,,Media,7907,LATAM,jadesolutions.com,2023-03-21,Emma Thompson,Active,flat-rate,86000
+ACC-00339,Kestrel Solutions Inc,,Technology,2590,North America,kestrelsolutions.com,2023-10-01,Lisa Wang,Active,seat-based,95000
+ACC-00340,Lark Solutions Inc,,Energy,7607,Europe,larksolutions.com,2021-02-09,David Kim,Active,flat-rate,10000
+ACC-00341,Mesa Solutions Inc,,Healthcare,3539,North America,mesasolutions.com,2023-05-23,Lisa Wang,Active,flat-rate,159000
+ACC-00342,Nest Solutions Inc,,Media,4826,Europe,nestsolutions.com,2020-01-07,Lisa Wang,Active,seat-based,186000
+ACC-00343,Oak Solutions Inc,,Retail,5441,Europe,oaksolutions.com,2021-01-15,Lisa Wang,Active,hybrid,42000
+ACC-00344,Pine Solutions Inc,,Healthcare,1572,Europe,pinesolutions.com,2022-05-18,Sarah Chen,Active,seat-based,141000
+ACC-00345,Quail Solutions Inc,,Professional Services,969,LATAM,quailsolutions.com,2022-02-06,Mike Rodriguez,Trial,hybrid,179000
+ACC-00346,Ridge Solutions Inc,,Retail,2681,Europe,ridgesolutions.com,2020-02-07,Sarah Chen,Trial,flat-rate,186000
+ACC-00347,Sage Solutions Inc,,Retail,2420,APAC,sagesolutions.com,2021-11-05,Mike Rodriguez,Active,flat-rate,184000
+ACC-00348,Thorn Solutions Inc,,Education,6046,Europe,thornsolutions.com,2021-08-23,Lisa Wang,Active,usage-based,148312
+ACC-00349,Umber Solutions Inc,,Healthcare,2838,North America,umbersolutions.com,2020-08-27,James Park,Active,flat-rate,88000
+ACC-00350,Vale Solutions Inc,,Healthcare,9917,North America,valesolutions.com,2020-04-17,Sarah Chen,Churned,seat-based,114000
+ACC-00351,Willow Solutions Inc,,Media,5331,Europe,willowsolutions.com,2022-01-18,David Kim,Active,flat-rate,1100000
+ACC-00352,Yarrow Solutions Inc,,Media,5409,LATAM,yarrowsolutions.com,2024-09-09,Lisa Wang,Active,seat-based,32000
+ACC-00353,Agate Solutions Inc,,Manufacturing,279,LATAM,agatesolutions.com,2023-06-21,Sarah Chen,Prospect,,0
+ACC-00354,Brook Solutions Inc,,Healthcare,7209,APAC,brooksolutions.com,2024-02-09,Sarah Chen,Active,flat-rate,151000
+ACC-00355,Cove Solutions Inc,,Manufacturing,880,LATAM,covesolutions.com,2024-08-05,David Kim,Churned,hybrid,141000
+ACC-00356,Dawn Solutions Inc,,Healthcare,2733,Europe,dawnsolutions.com,2023-04-03,Lisa Wang,Active,flat-rate,162000
+ACC-00357,Echo Solutions Inc,,Logistics,4302,Europe,echosolutions.com,2024-09-22,David Kim,Active,seat-based,57000
+ACC-00358,Fjord Solutions Inc,,Media,3728,Europe,fjordsolutions.com,2022-11-19,Mike Rodriguez,Active,seat-based,5400
+ACC-00359,Glen Solutions Inc,,Manufacturing,5981,APAC,glensolutions.com,2022-02-27,Emma Thompson,Active,flat-rate,187000
+ACC-00360,Haze Solutions Inc,,Retail,2266,APAC,hazesolutions.com,2024-10-16,Sarah Chen,Active,usage-based,200000
+ACC-00361,Isle Solutions Inc,,Retail,3255,Europe,islesolutions.com,2023-09-12,Lisa Wang,Active,hybrid,20000
+ACC-00362,Jet Solutions Inc,,Manufacturing,8548,Europe,jetsolutions.com,2024-06-11,David Kim,Trial,seat-based,145000
+ACC-00363,Knoll Solutions Inc,,Technology,9291,LATAM,knollsolutions.com,2023-03-07,Lisa Wang,Active,flat-rate,175000
+ACC-00364,Leaf Solutions Inc,,Energy,3032,North America,leafsolutions.com,2023-02-19,David Kim,Active,flat-rate,207837
+ACC-00365,Marsh Solutions Inc,,Healthcare,6222,APAC,marshsolutions.com,2023-08-30,Mike Rodriguez,Active,flat-rate,41000
+ACC-00366,North Solutions Inc,,Professional Services,8919,APAC,northsolutions.com,2024-01-12,Mike Rodriguez,Active,flat-rate,112000
+ACC-00367,Oasis Solutions Inc,,Healthcare,2315,APAC,oasissolutions.com,2024-01-13,Sarah Chen,Churned,flat-rate,298147
+ACC-00368,Peak Solutions Inc,,Retail,1945,North America,peaksolutions.com,2022-07-24,Mike Rodriguez,Churned,flat-rate,59000
+ACC-00369,Quay Solutions Inc,,Media,5919,LATAM,quaysolutions.com,2025-01-30,Sarah Chen,Churned,usage-based,102000
+ACC-00370,Reef Solutions Inc,,Education,3752,Europe,reefsolutions.com,2022-02-25,Emma Thompson,Active,flat-rate,17000
+ACC-00371,Stone Solutions Inc,,Financial Services,3277,Europe,stonesolutions.com,2022-03-25,Emma Thompson,Active,flat-rate,31000
+ACC-00372,Terra Solutions Inc,,Retail,2881,LATAM,terrasolutions.com,2020-02-18,Sarah Chen,Churned,seat-based,116000
+ACC-00373,Ursa Solutions Inc,,Financial Services,7430,North America,ursasolutions.com,2021-03-31,Lisa Wang,Churned,flat-rate,11100
+ACC-00374,Vista Solutions Inc,,Retail,3028,North America,vistasolutions.com,2022-11-19,David Kim,Active,seat-based,200000
+ACC-00375,Wave Solutions Inc,,Manufacturing,230,North America,wavesolutions.com,2020-12-16,Sarah Chen,Active,seat-based,78000
+ACC-00376,Xeric Solutions Inc,,Retail,9207,APAC,xericsolutions.com,2022-01-19,James Park,Active,flat-rate,180000
+ACC-00377,Alto Solutions Inc,,Logistics,3435,North America,altosolutions.com,2023-12-11,James Park,Trial,seat-based,35650
+ACC-00378,Bay Solutions Inc,,Media,1011,LATAM,baysolutions.com,2020-01-24,Lisa Wang,Active,hybrid,2500
+ACC-00379,Cliff Solutions Inc,,Manufacturing,188,LATAM,cliffsolutions.com,2021-02-17,Lisa Wang,Prospect,,0
+ACC-00380,Delta Solutions Inc,,Manufacturing,9530,LATAM,deltasolutions.com,2024-09-11,James Park,Active,hybrid,186000
+ACC-00381,Ether Solutions Inc,,Education,4197,LATAM,ethersolutions.com,2024-10-29,Emma Thompson,Active,flat-rate,154000
+ACC-00382,Flame Solutions Inc,,Technology,1156,LATAM,flamesolutions.com,2020-07-24,James Park,Active,flat-rate,162000
+ACC-00383,Gale Solutions Inc,,Professional Services,2995,Europe,galesolutions.com,2020-02-28,James Park,Active,flat-rate,46297
+ACC-00384,Horn Solutions Inc,,Healthcare,199,APAC,hornsolutions.com,2020-01-23,James Park,Prospect,,0
+ACC-00385,Iron Solutions Inc,,Education,9011,LATAM,ironsolutions.com,2024-03-19,Emma Thompson,Churned,seat-based,121000
+ACC-00386,Jewel Solutions Inc,,Education,69,LATAM,jewelsolutions.com,2022-12-04,Sarah Chen,Prospect,,0
+ACC-00387,Key Solutions Inc,,Healthcare,502,North America,keysolutions.com,2021-04-29,Mike Rodriguez,Active,flat-rate,133000
+ACC-00388,Lake Solutions Inc,,Technology,4791,LATAM,lakesolutions.com,2023-07-26,Emma Thompson,Active,seat-based,194000
+ACC-00389,Mist Solutions Inc,,Logistics,4275,North America,mistsolutions.com,2020-07-04,Emma Thompson,Active,flat-rate,170000
+ACC-00390,Nova Solutions Inc,,Manufacturing,2794,APAC,novasolutions.com,2023-10-30,James Park,Active,hybrid,88000
+ACC-00391,Ore Solutions Inc,,Financial Services,240,Europe,oresolutions.com,2022-05-28,James Park,Prospect,,0
+ACC-00392,Plume Solutions Inc,,Media,6507,Europe,plumesolutions.com,2024-09-11,Mike Rodriguez,Churned,hybrid,1430000
+ACC-00393,Rapid Solutions Inc,,Energy,7013,North America,rapidsolutions.com,2022-07-27,David Kim,Active,flat-rate,77000
+ACC-00394,Sable Solutions Inc,,Financial Services,2245,Europe,sablesolutions.com,2024-01-26,Mike Rodriguez,Active,flat-rate,68000
+ACC-00395,Tide Solutions Inc,,Education,4899,North America,tidesolutions.com,2023-09-07,Sarah Chen,Churned,seat-based,129000
+ACC-00396,Ural Solutions Inc,,Energy,9966,North America,uralsolutions.com,2021-06-18,Emma Thompson,Trial,seat-based,61000
+ACC-00397,Vine Solutions Inc,,Logistics,5568,LATAM,vinesolutions.com,2021-12-16,David Kim,Active,flat-rate,187000
+ACC-00398,Wind Solutions Inc,,Media,5043,North America,windsolutions.com,2023-03-02,David Kim,Churned,seat-based,160000
+ACC-00399,Axis Solutions Inc,,Healthcare,1974,LATAM,axissolutions.com,2022-10-07,Emma Thompson,Active,flat-rate,15000
+ACC-00400,Bloom Solutions Inc,,Logistics,2202,APAC,bloomsolutions.com,2024-01-26,Sarah Chen,Trial,hybrid,910000
+ACC-00401,Core Solutions Inc,,Financial Services,7002,Europe,coresolutions.com,2023-07-11,Sarah Chen,Active,flat-rate,136000
+ACC-00402,Drift Solutions Inc,,Manufacturing,261,North America,driftsolutions.com,2021-03-03,Lisa Wang,Churned,seat-based,14000
+ACC-00403,Edge Solutions Inc,,Retail,803,LATAM,edgesolutions.com,2022-12-10,Sarah Chen,Active,flat-rate,121000
+ACC-00404,Fort Solutions Inc,,Manufacturing,9551,Europe,fortsolutions.com,2021-04-27,James Park,Active,seat-based,192000
+ACC-00405,Gear Solutions Inc,,Logistics,9803,Europe,gearsolutions.com,2022-11-14,Lisa Wang,Active,hybrid,131000
+ACC-00406,Helm Solutions Inc,,Manufacturing,3148,APAC,helmsolutions.com,2024-07-11,Emma Thompson,Active,usage-based,1980000
+ACC-00407,Icon Solutions Inc,,Logistics,6700,APAC,iconsolutions.com,2024-09-01,David Kim,Active,flat-rate,17000
+ACC-00408,Joint Solutions Inc,,Retail,6863,Europe,jointsolutions.com,2023-10-16,Sarah Chen,Trial,flat-rate,33000
+ACC-00409,Keel Solutions Inc,,Media,9079,APAC,keelsolutions.com,2023-10-24,David Kim,Churned,hybrid,157000
+ACC-00410,Link Solutions Inc,,Technology,5653,APAC,linksolutions.com,2021-11-20,Mike Rodriguez,Active,usage-based,65000
+ACC-00411,Mold Solutions Inc,,Energy,1040,LATAM,moldsolutions.com,2024-09-23,Sarah Chen,Churned,flat-rate,50000
+ACC-00412,Neon Solutions Inc,,Healthcare,1516,Europe,neonsolutions.com,2023-03-03,Lisa Wang,Active,flat-rate,20000
+ACC-00413,Orbit Solutions Inc,,Energy,7650,LATAM,orbitsolutions.com,2023-10-20,Emma Thompson,Active,usage-based,105000
+ACC-00414,Pixel Solutions Inc,,Manufacturing,9089,North America,pixelsolutions.com,2021-01-17,Mike Rodriguez,Churned,flat-rate,79000
+ACC-00415,Query Solutions Inc,,Manufacturing,4560,LATAM,querysolutions.com,2022-10-19,James Park,Active,hybrid,52000
+ACC-00416,Rune Solutions Inc,,Media,9776,Europe,runesolutions.com,2023-12-08,Sarah Chen,Active,seat-based,35000
+ACC-00417,Scope Solutions Inc,,Logistics,9821,North America,scopesolutions.com,2024-05-26,Mike Rodriguez,Churned,flat-rate,200000
+ACC-00418,Trace Solutions Inc,,Professional Services,1410,North America,tracesolutions.com,2020-03-25,Lisa Wang,Active,usage-based,27000
+ACC-00419,Unit Solutions Inc,,Financial Services,419,Europe,unitsolutions.com,2020-08-20,Mike Rodriguez,Prospect,,0
+ACC-00420,Volt Solutions Inc,,Retail,651,LATAM,voltsolutions.com,2022-11-20,Emma Thompson,Active,flat-rate,114000
+ACC-00421,Weld Solutions Inc,,Media,4030,Europe,weldsolutions.com,2024-11-03,David Kim,Active,flat-rate,41000
+ACC-00422,Xenon Solutions Inc,,Education,494,LATAM,xenonsolutions.com,2021-08-21,Lisa Wang,Active,seat-based,145000
+ACC-00423,Yoke Solutions Inc,,Retail,4648,Europe,yokesolutions.com,2024-01-23,Emma Thompson,Active,seat-based,97000
+ACC-00424,Zone Solutions Inc,,Professional Services,2302,LATAM,zonesolutions.com,2024-01-01,James Park,Active,hybrid,76000
+ACC-00425,Arc Solutions Inc,,Financial Services,7404,Europe,arcsolutions.com,2022-07-30,Lisa Wang,Active,hybrid,131000
+ACC-00426,Base Solutions Inc,,Retail,7774,Europe,basesolutions.com,2024-09-13,Lisa Wang,Churned,flat-rate,118000
+ACC-00427,Cast Solutions Inc,,Logistics,4285,LATAM,castsolutions.com,2021-04-16,David Kim,Active,seat-based,77000
+ACC-00428,Data Solutions Inc,,Healthcare,2867,APAC,datasolutions.com,2020-04-11,Mike Rodriguez,Active,seat-based,65712
+ACC-00429,Flux Solutions Inc,,Education,8640,LATAM,fluxsolutions.com,2022-12-08,Mike Rodriguez,Trial,flat-rate,171000
+ACC-00430,Grid Solutions Inc,,Energy,193,Europe,gridsolutions.com,2023-07-03,David Kim,Trial,flat-rate,107875
+ACC-00431,Hub Solutions Inc,,Technology,5688,North America,hubsolutions.com,2024-04-14,Emma Thompson,Active,seat-based,21000
+ACC-00432,Idea Solutions Inc,,Energy,370,APAC,ideasolutions.com,2024-06-18,David Kim,Prospect,,0
+ACC-00433,Jet Solutions Inc,,Professional Services,8422,APAC,jetsolutions.com,2021-09-28,Mike Rodriguez,Churned,usage-based,127000
+ACC-00434,Knot Solutions Inc,,Professional Services,3890,APAC,knotsolutions.com,2023-10-15,Sarah Chen,Churned,flat-rate,115000
+ACC-00435,Loop Solutions Inc,,Retail,2819,APAC,loopsolutions.com,2022-10-15,David Kim,Active,flat-rate,17300
+ACC-00436,Mode Solutions Inc,,Energy,8898,North America,modesolutions.com,2023-01-16,James Park,Churned,seat-based,250941
+ACC-00437,Node Solutions Inc,,Financial Services,6712,Europe,nodesolutions.com,2022-01-10,David Kim,Trial,hybrid,166000
+ACC-00438,Open Solutions Inc,,Technology,7326,North America,opensolutions.com,2023-02-17,David Kim,Active,flat-rate,16000
+ACC-00439,Port Solutions Inc,,Professional Services,119,North America,portsolutions.com,2022-09-14,James Park,Active,flat-rate,940000
+ACC-00440,Quad Solutions Inc,,Technology,7235,APAC,quadsolutions.com,2024-12-29,Sarah Chen,Active,hybrid,107000
+ACC-00441,Ring Solutions Inc,,Logistics,584,LATAM,ringsolutions.com,2024-12-15,David Kim,Active,usage-based,47000
+ACC-00442,Spin Solutions Inc,,Media,110,APAC,spinsolutions.com,2023-12-10,Mike Rodriguez,Churned,hybrid,135000
+ACC-00443,Turn Solutions Inc,,Logistics,6725,North America,turnsolutions.com,2020-09-30,David Kim,Churned,flat-rate,260879
+ACC-00444,Up Solutions Inc,,Technology,267,LATAM,upsolutions.com,2021-02-16,David Kim,Active,hybrid,131417
+ACC-00445,View Solutions Inc,,Financial Services,3580,LATAM,viewsolutions.com,2020-02-02,Mike Rodriguez,Active,hybrid,34875
+ACC-00446,Warp Solutions Inc,,Professional Services,8063,North America,warpsolutions.com,2020-12-21,Mike Rodriguez,Active,hybrid,65000
+ACC-00447,Xray Solutions Inc,,Media,6398,North America,xraysolutions.com,2023-07-28,Sarah Chen,Active,flat-rate,39890
+ACC-00448,Yew Solutions Inc,,Retail,6140,North America,yewsolutions.com,2020-04-24,James Park,Active,flat-rate,57000
+ACC-00449,Zen Solutions Inc,,Retail,7806,APAC,zensolutions.com,2023-01-03,Lisa Wang,Active,flat-rate,24000
+ACC-00450,Bolt Solutions Inc,,Manufacturing,130,LATAM,boltsolutions.com,2021-09-27,Lisa Wang,Active,seat-based,59000
+ACC-00451,Chip Solutions Inc,,Retail,8313,Europe,chipsolutions.com,2023-02-24,Emma Thompson,Trial,seat-based,91095
+ACC-00452,Dash Solutions Inc,,Education,219,APAC,dashsolutions.com,2020-10-10,Sarah Chen,Prospect,,0
+ACC-00453,Pulse Solutions Inc,,Logistics,6444,LATAM,pulsesolutions.com,2023-01-08,Emma Thompson,Active,flat-rate,36000
+ACC-00454,Flow Solutions Inc,,Financial Services,3626,APAC,flowsolutions.com,2022-10-21,Mike Rodriguez,Active,flat-rate,15500
+ACC-00455,Glow Solutions Inc,,Technology,8774,North America,glowsolutions.com,2020-12-03,Emma Thompson,Active,flat-rate,69000
+ACC-00456,Hive Solutions Inc,,Energy,2520,APAC,hivesolutions.com,2021-01-07,Emma Thompson,Active,hybrid,103000
+ACC-00457,Acorn Systems Inc,,Financial Services,4811,APAC,acornsystems.com,2024-01-22,James Park,Active,hybrid,12000
+ACC-00458,Birch Systems Inc,,Education,310,LATAM,birchsystems.com,2021-11-25,David Kim,Active,seat-based,100000
+ACC-00459,Canyon Systems Inc,,Financial Services,304,Europe,canyonsystems.com,2021-12-05,Mike Rodriguez,Active,seat-based,76000
+ACC-00460,Dusk Systems Inc,,Professional Services,3792,APAC,dusksystems.com,2020-06-17,Emma Thompson,Trial,seat-based,89000
+ACC-00461,Elm Systems Inc,,Logistics,8551,North America,elmsystems.com,2023-10-21,Emma Thompson,Active,seat-based,123000
+ACC-00462,Fern Systems Inc,,Media,3624,Europe,fernsystems.com,2024-05-18,Lisa Wang,Active,seat-based,124000
+ACC-00463,Grove Systems Inc,,Media,135,LATAM,grovesystems.com,2021-10-07,Mike Rodriguez,Churned,seat-based,47000
+ACC-00464,Haven Systems Inc,,Manufacturing,5634,North America,havensystems.com,2022-12-06,James Park,Active,flat-rate,13400
+ACC-00465,Ivy Systems Inc,,Energy,1306,APAC,ivysystems.com,2023-09-27,Lisa Wang,Active,hybrid,158000
+ACC-00466,Jade Systems Inc,,Manufacturing,6882,North America,jadesystems.com,2024-09-20,Mike Rodriguez,Churned,flat-rate,15000
+ACC-00467,Kestrel Systems Inc,,Healthcare,3933,North America,kestrelsystems.com,2020-07-27,Lisa Wang,Active,seat-based,95958
+ACC-00468,Lark Systems Inc,,Manufacturing,4446,LATAM,larksystems.com,2023-10-17,James Park,Active,hybrid,130000
+ACC-00469,Mesa Systems Inc,,Education,179,APAC,mesasystems.com,2023-09-24,James Park,Trial,flat-rate,101000
+ACC-00470,Nest Systems Inc,,Financial Services,6437,North America,nestsystems.com,2022-02-11,James Park,Active,seat-based,155000
+ACC-00471,Oak Systems Inc,,Healthcare,325,Europe,oaksystems.com,2024-12-25,Lisa Wang,Active,flat-rate,151000
+ACC-00472,Pine Systems Inc,,Retail,7133,Europe,pinesystems.com,2023-03-26,Mike Rodriguez,Trial,flat-rate,46000
+ACC-00473,Quail Systems Inc,,Financial Services,2617,LATAM,quailsystems.com,2023-10-19,David Kim,Churned,hybrid,158000
+ACC-00474,Ridge Systems Inc,,Professional Services,3233,North America,ridgesystems.com,2022-05-04,Mike Rodriguez,Active,seat-based,120000
+ACC-00475,Sage Systems Inc,,Technology,8167,North America,sagesystems.com,2021-06-26,Mike Rodriguez,Active,flat-rate,192000
+ACC-00476,Thorn Systems Inc,,Retail,1592,LATAM,thornsystems.com,2021-01-14,Sarah Chen,Trial,flat-rate,127000
+ACC-00477,Umber Systems Inc,,Education,8766,Europe,umbersystems.com,2022-12-01,Emma Thompson,Active,hybrid,55433
+ACC-00478,Vale Systems Inc,,Logistics,3840,Europe,valesystems.com,2023-03-01,Mike Rodriguez,Active,flat-rate,45000
+ACC-00479,Willow Systems Inc,,Retail,397,APAC,willowsystems.com,2023-01-08,Mike Rodriguez,Prospect,,0
+ACC-00480,Yarrow Systems Inc,,Energy,7623,North America,yarrowsystems.com,2023-02-12,David Kim,Active,usage-based,94000
+ACC-00481,Agate Systems Inc,,Retail,58,APAC,agatesystems.com,2023-09-06,Emma Thompson,Prospect,,0
+ACC-00482,Brook Systems Inc,,Logistics,8364,APAC,brooksystems.com,2021-08-26,David Kim,Active,flat-rate,80632
+ACC-00483,Cove Systems Inc,,Healthcare,1160,North America,covesystems.com,2020-07-28,Lisa Wang,Active,flat-rate,1390000
+ACC-00484,Dawn Systems Inc,,Technology,2063,APAC,dawnsystems.com,2023-01-24,David Kim,Churned,flat-rate,149000
+ACC-00485,Echo Systems Inc,,Healthcare,81,LATAM,echosystems.com,2021-04-12,Lisa Wang,Prospect,,0
+ACC-00486,Fjord Systems Inc,,Technology,5388,LATAM,fjordsystems.com,2021-01-13,David Kim,Active,seat-based,3600
+ACC-00487,Glen Systems Inc,,Retail,2035,APAC,glensystems.com,2023-08-14,Mike Rodriguez,Churned,hybrid,20000
+ACC-00488,Haze Systems Inc,,Manufacturing,4338,Europe,hazesystems.com,2023-07-19,James Park,Active,flat-rate,20000
+ACC-00489,Isle Systems Inc,,Media,2123,APAC,islesystems.com,2023-01-27,Lisa Wang,Churned,flat-rate,18000
+ACC-00490,Jet Systems Inc,,Manufacturing,5437,Europe,jetsystems.com,2020-12-11,Sarah Chen,Churned,flat-rate,42000
+ACC-00491,Knoll Systems Inc,,Technology,9360,Europe,knollsystems.com,2020-09-28,Sarah Chen,Active,seat-based,140000
+ACC-00492,Leaf Systems Inc,,Retail,3841,Europe,leafsystems.com,2021-11-25,Mike Rodriguez,Active,seat-based,64000
+ACC-00493,Marsh Systems Inc,,Education,1119,APAC,marshsystems.com,2020-01-11,David Kim,Trial,seat-based,148000
+ACC-00494,North Systems Inc,,Logistics,5415,LATAM,northsystems.com,2023-11-03,Lisa Wang,Active,flat-rate,420000
+ACC-00495,Oasis Systems Inc,,Energy,4930,APAC,oasissystems.com,2022-09-06,Emma Thompson,Active,flat-rate,14900
+ACC-00496,Peak Systems Inc,,Technology,6404,North America,peaksystems.com,2025-01-18,Sarah Chen,Active,flat-rate,191000
+ACC-00497,Quay Systems Inc,,Financial Services,4657,North America,quaysystems.com,2021-09-09,Lisa Wang,Churned,flat-rate,6200
+ACC-00498,Reef Systems Inc,,Education,497,North America,reefsystems.com,2021-01-09,Lisa Wang,Prospect,,0
+ACC-00499,Stone Systems Inc,,Education,609,LATAM,stonesystems.com,2022-12-22,David Kim,Trial,seat-based,63000
+ACC-00500,Terra Systems Inc,,Professional Services,6035,LATAM,terrasystems.com,2024-04-23,David Kim,Active,hybrid,54000
+ACC-00501,Ursa Systems Inc,,Technology,6155,APAC,ursasystems.com,2020-08-19,Lisa Wang,Active,flat-rate,159000
+ACC-00502,Vista Systems Inc,,Professional Services,6104,North America,vistasystems.com,2025-02-27,David Kim,Active,usage-based,112000
+ACC-00503,Wave Systems Inc,,Manufacturing,916,North America,wavesystems.com,2024-03-01,Sarah Chen,Churned,hybrid,167000
+ACC-00504,Xeric Systems Inc,,Retail,4520,North America,xericsystems.com,2021-07-02,Mike Rodriguez,Active,flat-rate,185000
+ACC-00505,Alto Systems Inc,,Healthcare,76,APAC,altosystems.com,2020-05-04,David Kim,Prospect,,0
+ACC-00506,Bay Systems Inc,,Manufacturing,8517,LATAM,baysystems.com,2021-10-06,Emma Thompson,Active,flat-rate,185000
+ACC-00507,Cliff Systems Inc,,Retail,7285,North America,cliffsystems.com,2023-10-07,Emma Thompson,Active,flat-rate,37000
+ACC-00508,Delta Systems Inc,,Media,7086,North America,deltasystems.com,2020-10-07,David Kim,Active,usage-based,122073
+ACC-00509,Ether Systems Inc,,Financial Services,1795,North America,ethersystems.com,2023-08-31,Mike Rodriguez,Active,flat-rate,33000
+ACC-00510,Flame Systems Inc,,Professional Services,7401,APAC,flamesystems.com,2021-07-30,James Park,Active,seat-based,16000
+ACC-00511,Gale Systems Inc,,Financial Services,9188,APAC,galesystems.com,2023-10-06,David Kim,Active,usage-based,122000
+ACC-00512,Horn Systems Inc,,Education,5952,LATAM,hornsystems.com,2024-06-28,Sarah Chen,Churned,flat-rate,130000
+ACC-00513,Iron Systems Inc,,Professional Services,1089,Europe,ironsystems.com,2021-04-06,James Park,Churned,flat-rate,198000
+ACC-00514,Jewel Systems Inc,,Financial Services,2149,Europe,jewelsystems.com,2020-11-05,Emma Thompson,Active,usage-based,106000
+ACC-00515,Key Systems Inc,,Financial Services,707,North America,keysystems.com,2022-02-16,Mike Rodriguez,Active,seat-based,158000
+ACC-00516,Lake Systems Inc,,Media,6361,Europe,lakesystems.com,2023-05-10,Lisa Wang,Trial,flat-rate,1500000
+ACC-00517,Mist Systems Inc,,Media,287,North America,mistsystems.com,2023-09-20,Emma Thompson,Prospect,,0
+ACC-00518,Nova Systems Inc,,Energy,5377,Europe,novasystems.com,2020-02-29,Emma Thompson,Churned,seat-based,171715
+ACC-00519,Ore Systems Inc,,Healthcare,8964,North America,oresystems.com,2021-01-21,Sarah Chen,Trial,flat-rate,7300
+ACC-00520,Plume Systems Inc,,Professional Services,660,Europe,plumesystems.com,2024-06-04,James Park,Active,seat-based,174749
+ACC-00521,Rapid Systems Inc,,Healthcare,3303,Europe,rapidsystems.com,2020-07-14,Lisa Wang,Active,hybrid,16000
+ACC-00522,Sable Systems Inc,,Professional Services,293,Europe,sablesystems.com,2023-08-13,Mike Rodriguez,Prospect,,0
+ACC-00523,Tide Systems Inc,,Media,9279,Europe,tidesystems.com,2022-08-19,Emma Thompson,Active,seat-based,186000
+ACC-00524,Ural Systems Inc,,Education,8057,Europe,uralsystems.com,2023-03-08,Sarah Chen,Churned,flat-rate,66000
+ACC-00525,Vine Systems Inc,,Logistics,2070,APAC,vinesystems.com,2021-05-02,James Park,Active,flat-rate,60000
+ACC-00526,Wind Systems Inc,,Energy,71,LATAM,windsystems.com,2021-01-22,Sarah Chen,Prospect,,0
+ACC-00527,Axis Systems Inc,,Financial Services,279,APAC,axissystems.com,2022-06-16,Emma Thompson,Prospect,,0
+ACC-00528,Bloom Systems Inc,,Healthcare,5583,Europe,bloomsystems.com,2020-02-24,Lisa Wang,Trial,seat-based,102000
+ACC-00529,Core Systems Inc,,Professional Services,7656,APAC,coresystems.com,2021-11-02,David Kim,Active,flat-rate,89000
+ACC-00530,Drift Systems Inc,,Technology,5937,North America,driftsystems.com,2022-09-03,Emma Thompson,Trial,flat-rate,110000
+ACC-00531,Edge Systems Inc,,Financial Services,8860,Europe,edgesystems.com,2023-07-17,David Kim,Active,flat-rate,128000
+ACC-00532,Fort Systems Inc,,Healthcare,3614,LATAM,fortsystems.com,2024-11-01,Sarah Chen,Active,flat-rate,54468
+ACC-00533,Gear Systems Inc,,Media,2678,Europe,gearsystems.com,2024-06-14,Emma Thompson,Active,seat-based,173000
+ACC-00534,Helm Systems Inc,,Technology,7096,Europe,helmsystems.com,2022-08-30,James Park,Active,flat-rate,113000
+ACC-00535,Icon Systems Inc,,Logistics,4014,APAC,iconsystems.com,2021-07-22,Emma Thompson,Churned,flat-rate,149000
+ACC-00536,Joint Systems Inc,,Education,9102,APAC,jointsystems.com,2024-05-02,Lisa Wang,Active,hybrid,82000
+ACC-00537,Keel Systems Inc,,Professional Services,7866,North America,keelsystems.com,2021-04-29,David Kim,Trial,usage-based,165000
+ACC-00538,Link Systems Inc,,Financial Services,9643,LATAM,linksystems.com,2023-06-15,Sarah Chen,Churned,flat-rate,106000
+ACC-00539,Mold Systems Inc,,Healthcare,7880,North America,moldsystems.com,2023-04-14,David Kim,Churned,flat-rate,118000
+ACC-00540,Neon Systems Inc,,Logistics,5358,Europe,neonsystems.com,2022-09-12,Lisa Wang,Active,flat-rate,56000
+ACC-00541,Orbit Systems Inc,,Media,2235,North America,orbitsystems.com,2023-10-17,Mike Rodriguez,Active,flat-rate,70000
+ACC-00542,Pixel Systems Inc,,Technology,8464,LATAM,pixelsystems.com,2021-12-21,Lisa Wang,Churned,flat-rate,189000
+ACC-00543,Query Systems Inc,,Professional Services,3403,APAC,querysystems.com,2023-11-30,David Kim,Churned,flat-rate,13000
+ACC-00544,Rune Systems Inc,,Energy,4874,Europe,runesystems.com,2020-08-13,Lisa Wang,Churned,usage-based,87015
+ACC-00545,Scope Systems Inc,,Technology,2607,APAC,scopesystems.com,2022-04-18,James Park,Churned,hybrid,14100
+ACC-00546,Trace Systems Inc,,Retail,1325,LATAM,tracesystems.com,2022-02-09,David Kim,Churned,flat-rate,8200
+ACC-00547,Unit Systems Inc,,Professional Services,5522,Europe,unitsystems.com,2020-12-17,James Park,Trial,seat-based,175000
+ACC-00548,Volt Systems Inc,,Healthcare,6189,LATAM,voltsystems.com,2022-11-24,Emma Thompson,Active,flat-rate,120000
+ACC-00549,Weld Systems Inc,,Education,6829,North America,weldsystems.com,2020-12-07,Sarah Chen,Active,seat-based,172000
+ACC-00550,Xenon Systems Inc,,Education,5799,Europe,xenonsystems.com,2023-03-11,James Park,Trial,flat-rate,46701
+ACC-00551,Yoke Systems Inc,,Logistics,6882,LATAM,yokesystems.com,2022-01-14,Mike Rodriguez,Active,seat-based,169000
+ACC-00552,Zone Systems Inc,,Media,5447,LATAM,zonesystems.com,2020-04-06,Emma Thompson,Active,hybrid,17100
+ACC-00553,Arc Systems Inc,,Logistics,8976,LATAM,arcsystems.com,2024-02-18,James Park,Active,usage-based,134000
+ACC-00554,Base Systems Inc,,Retail,9754,Europe,basesystems.com,2022-04-06,Lisa Wang,Active,seat-based,166000
+ACC-00555,Cast Systems Inc,,Financial Services,5662,APAC,castsystems.com,2025-02-05,Lisa Wang,Active,flat-rate,113306
+ACC-00556,Data Systems Inc,,Energy,357,North America,datasystems.com,2022-07-14,Sarah Chen,Churned,hybrid,31713
+ACC-00557,Flux Systems Inc,,Professional Services,9297,LATAM,fluxsystems.com,2023-12-13,Emma Thompson,Active,usage-based,161215
+ACC-00558,Grid Systems Inc,,Energy,68,North America,gridsystems.com,2023-04-17,Emma Thompson,Prospect,,0
+ACC-00559,Hub Systems Inc,,Healthcare,2204,APAC,hubsystems.com,2023-03-17,Lisa Wang,Active,hybrid,27000
+ACC-00560,Idea Systems Inc,,Financial Services,997,LATAM,ideasystems.com,2023-03-24,David Kim,Active,flat-rate,103000
+ACC-00561,Jet Systems Inc,,Healthcare,3938,APAC,jetsystems.com,2023-10-14,James Park,Trial,hybrid,114000
+ACC-00562,Knot Systems Inc,,Energy,9105,North America,knotsystems.com,2022-09-28,Mike Rodriguez,Active,hybrid,141000
+ACC-00563,Loop Systems Inc,,Financial Services,7186,LATAM,loopsystems.com,2020-04-05,Lisa Wang,Churned,flat-rate,184000
+ACC-00564,Mode Systems Inc,,Professional Services,8619,Europe,modesystems.com,2021-11-26,Sarah Chen,Trial,hybrid,58267
+ACC-00565,Node Systems Inc,,Media,6965,North America,nodesystems.com,2024-11-04,Emma Thompson,Trial,hybrid,121000
+ACC-00566,Open Systems Inc,,Education,350,LATAM,opensystems.com,2023-07-26,Sarah Chen,Prospect,,0
+ACC-00567,Port Systems Inc,,Manufacturing,6464,APAC,portsystems.com,2022-01-03,David Kim,Active,flat-rate,166000
+ACC-00568,Quad Systems Inc,,Manufacturing,5089,LATAM,quadsystems.com,2021-11-22,Sarah Chen,Active,flat-rate,61000
+ACC-00569,Ring Systems Inc,,Healthcare,9128,North America,ringsystems.com,2023-02-12,Sarah Chen,Churned,hybrid,129000
+ACC-00570,Spin Systems Inc,,Manufacturing,7749,APAC,spinsystems.com,2020-04-21,James Park,Active,flat-rate,178000
+ACC-00571,Turn Systems Inc,,Technology,2468,North America,turnsystems.com,2020-02-29,Emma Thompson,Churned,usage-based,1100
+ACC-00572,Up Systems Inc,,Healthcare,1906,LATAM,upsystems.com,2020-05-06,Lisa Wang,Active,seat-based,125000
+ACC-00573,View Systems Inc,,Healthcare,2111,North America,viewsystems.com,2024-06-03,Mike Rodriguez,Churned,seat-based,65482
+ACC-00574,Warp Systems Inc,,Financial Services,9762,LATAM,warpsystems.com,2023-01-04,Lisa Wang,Active,flat-rate,26000
+ACC-00575,Xray Systems Inc,,Healthcare,5951,APAC,xraysystems.com,2023-07-28,Mike Rodriguez,Active,flat-rate,176000
+ACC-00576,Yew Systems Inc,,Retail,3174,LATAM,yewsystems.com,2023-11-08,Lisa Wang,Active,seat-based,260000
+ACC-00577,Zen Systems Inc,,Energy,2610,North America,zensystems.com,2021-03-22,James Park,Active,flat-rate,253047
+ACC-00578,Bolt Systems Inc,,Retail,455,Europe,boltsystems.com,2023-02-24,David Kim,Active,flat-rate,68583
+ACC-00579,Chip Systems Inc,,Professional Services,8771,LATAM,chipsystems.com,2024-09-15,Sarah Chen,Churned,flat-rate,172000
+ACC-00580,Dash Systems Inc,,Technology,9742,LATAM,dashsystems.com,2022-07-02,Sarah Chen,Active,flat-rate,39000
+ACC-00581,Pulse Systems Inc,,Logistics,2793,Europe,pulsesystems.com,2023-04-18,Sarah Chen,Churned,flat-rate,24686
+ACC-00582,Flow Systems Inc,,Retail,7943,APAC,flowsystems.com,2020-04-29,David Kim,Active,flat-rate,140000
+ACC-00583,Glow Systems Inc,,Professional Services,5156,Europe,glowsystems.com,2023-01-29,Emma Thompson,Active,hybrid,19000
+ACC-00584,Hive Systems Inc,,Financial Services,6812,APAC,hivesystems.com,2024-12-18,Lisa Wang,Churned,flat-rate,139000
+ACC-00585,Acorn Group Inc,,Energy,469,LATAM,acorngroup.com,2021-06-26,Lisa Wang,Prospect,,0
+ACC-00586,Birch Group Inc,,Media,3282,LATAM,birchgroup.com,2024-02-23,Lisa Wang,Active,flat-rate,1410000
+ACC-00587,Canyon Group Inc,,Technology,170,Europe,canyongroup.com,2023-06-01,James Park,Active,flat-rate,70000
+ACC-00588,Dusk Group Inc,,Energy,3535,Europe,duskgroup.com,2020-10-04,James Park,Active,flat-rate,76599
+ACC-00589,Elm Group Inc,,Education,7296,Europe,elmgroup.com,2022-11-07,Sarah Chen,Active,seat-based,110000
+ACC-00590,Fern Group Inc,,Healthcare,7490,APAC,ferngroup.com,2021-05-05,James Park,Active,seat-based,69000
+ACC-00591,Grove Group Inc,,Healthcare,9042,LATAM,grovegroup.com,2023-02-11,Sarah Chen,Active,flat-rate,186000
+ACC-00592,Haven Group Inc,,Healthcare,9570,APAC,havengroup.com,2023-05-07,James Park,Active,flat-rate,140451
+ACC-00593,Ivy Group Inc,,Professional Services,634,Europe,ivygroup.com,2020-11-06,Emma Thompson,Trial,hybrid,16300
+ACC-00594,Jade Group Inc,,Professional Services,143,LATAM,jadegroup.com,2023-03-28,Emma Thompson,Prospect,,0
+ACC-00595,Kestrel Group Inc,,Technology,135,Europe,kestrelgroup.com,2024-10-25,Emma Thompson,Active,seat-based,74681
+ACC-00596,Lark Group Inc,,Healthcare,3616,Europe,larkgroup.com,2021-08-15,David Kim,Churned,flat-rate,52000
+ACC-00597,Mesa Group Inc,,Professional Services,1760,Europe,mesagroup.com,2024-12-17,Mike Rodriguez,Active,flat-rate,15000
+ACC-00598,Nest Group Inc,,Retail,4719,LATAM,nestgroup.com,2024-05-06,Emma Thompson,Active,seat-based,98530
+ACC-00599,Oak Group Inc,,Technology,1068,LATAM,oakgroup.com,2020-06-12,David Kim,Active,seat-based,98034
+ACC-00600,Pine Group Inc,,Manufacturing,7404,Europe,pinegroup.com,2024-08-07,Sarah Chen,Active,hybrid,165000
+ACC-00601,Quail Group Inc,,Media,160,APAC,quailgroup.com,2021-10-28,Mike Rodriguez,Churned,hybrid,14500
+ACC-00602,Ridge Group Inc,,Financial Services,8855,North America,ridgegroup.com,2023-10-20,Lisa Wang,Trial,flat-rate,18000
+ACC-00603,Sage Group Inc,,Manufacturing,8387,APAC,sagegroup.com,2024-06-13,David Kim,Active,usage-based,104000
+ACC-00604,Thorn Group Inc,,Healthcare,8030,APAC,thorngroup.com,2024-01-08,David Kim,Trial,flat-rate,1410000
+ACC-00605,Umber Group Inc,,Financial Services,2418,Europe,umbergroup.com,2022-06-24,Lisa Wang,Churned,seat-based,175000
+ACC-00606,Vale Group Inc,,Logistics,3969,LATAM,valegroup.com,2022-01-20,David Kim,Active,seat-based,89000
+ACC-00607,Willow Group Inc,,Financial Services,5743,North America,willowgroup.com,2021-06-05,James Park,Active,hybrid,99000
+ACC-00608,Yarrow Group Inc,,Logistics,1623,Europe,yarrowgroup.com,2022-03-08,David Kim,Churned,flat-rate,11000
+ACC-00609,Agate Group Inc,,Financial Services,5734,North America,agategroup.com,2023-09-19,Sarah Chen,Churned,seat-based,177000
+ACC-00610,Brook Group Inc,,Financial Services,9805,Europe,brookgroup.com,2021-08-04,David Kim,Active,flat-rate,1110000
+ACC-00611,Cove Group Inc,,Media,1665,Europe,covegroup.com,2023-04-11,Mike Rodriguez,Trial,seat-based,56000
+ACC-00612,Dawn Group Inc,,Financial Services,5089,North America,dawngroup.com,2023-08-05,Mike Rodriguez,Active,flat-rate,1160000
+ACC-00613,Echo Group Inc,,Professional Services,70,Europe,echogroup.com,2025-01-01,Emma Thompson,Prospect,,0
+ACC-00614,Fjord Group Inc,,Technology,8544,APAC,fjordgroup.com,2022-03-28,Sarah Chen,Active,flat-rate,92000
+ACC-00615,Glen Group Inc,,Technology,2845,Europe,glengroup.com,2021-09-05,Mike Rodriguez,Active,hybrid,96233
+ACC-00616,Haze Group Inc,,Professional Services,3798,LATAM,hazegroup.com,2021-09-02,Emma Thompson,Active,hybrid,63000
+ACC-00617,Isle Group Inc,,Manufacturing,480,Europe,islegroup.com,2023-12-13,Lisa Wang,Prospect,,0
+ACC-00618,Jet Group Inc,,Healthcare,2690,LATAM,jetgroup.com,2022-02-02,Emma Thompson,Active,seat-based,189000
+ACC-00619,Knoll Group Inc,,Healthcare,3883,Europe,knollgroup.com,2020-04-12,Sarah Chen,Active,flat-rate,15000
+ACC-00620,Leaf Group Inc,,Logistics,3829,LATAM,leafgroup.com,2021-02-14,Lisa Wang,Churned,flat-rate,10003
+ACC-00621,Marsh Group Inc,,Energy,6002,North America,marshgroup.com,2024-03-08,Sarah Chen,Trial,flat-rate,169000
+ACC-00622,North Group Inc,,Manufacturing,9022,Europe,northgroup.com,2021-09-05,James Park,Churned,flat-rate,56000
+ACC-00623,Oasis Group Inc,,Retail,8299,Europe,oasisgroup.com,2021-09-23,James Park,Active,seat-based,125000
+ACC-00624,Peak Group Inc,,Education,415,LATAM,peakgroup.com,2023-10-21,James Park,Prospect,,0
+ACC-00625,Quay Group Inc,,Media,3509,LATAM,quaygroup.com,2022-03-11,Sarah Chen,Active,seat-based,104000
+ACC-00626,Reef Group Inc,,Technology,7946,APAC,reefgroup.com,2020-07-23,David Kim,Churned,seat-based,95269
+ACC-00627,Stone Group Inc,,Logistics,8592,Europe,stonegroup.com,2021-05-26,Emma Thompson,Churned,flat-rate,56368
+ACC-00628,Terra Group Inc,,Retail,1815,North America,terragroup.com,2022-06-08,Emma Thompson,Active,flat-rate,35000
+ACC-00629,Ursa Group Inc,,Logistics,3690,Europe,ursagroup.com,2022-10-24,Lisa Wang,Active,hybrid,184000
+ACC-00630,Vista Group Inc,,Media,5805,Europe,vistagroup.com,2023-07-06,Mike Rodriguez,Active,usage-based,87000
+ACC-00631,Wave Group Inc,,Retail,5054,APAC,wavegroup.com,2021-05-08,Lisa Wang,Trial,flat-rate,24000
+ACC-00632,Xeric Group Inc,,Financial Services,297,Europe,xericgroup.com,2023-03-18,David Kim,Prospect,,0
+ACC-00633,Alto Group Inc,,Healthcare,5919,Europe,altogroup.com,2021-09-29,Mike Rodriguez,Active,seat-based,1700000
+ACC-00634,Bay Group Inc,,Healthcare,6703,Europe,baygroup.com,2023-04-18,Mike Rodriguez,Churned,usage-based,19000
+ACC-00635,Cliff Group Inc,,Logistics,94,LATAM,cliffgroup.com,2022-12-16,Mike Rodriguez,Prospect,,0
+ACC-00636,Delta Group Inc,,Media,4612,North America,deltagroup.com,2024-09-05,James Park,Active,usage-based,175000
+ACC-00637,Ether Group Inc,,Retail,1503,Europe,ethergroup.com,2022-09-25,Lisa Wang,Active,flat-rate,1090000
+ACC-00638,Flame Group Inc,,Technology,366,LATAM,flamegroup.com,2021-05-30,James Park,Prospect,,0
+ACC-00639,Gale Group Inc,,Energy,3657,North America,galegroup.com,2024-01-14,Lisa Wang,Active,flat-rate,20000
+ACC-00640,Horn Group Inc,,Manufacturing,5919,Europe,horngroup.com,2024-03-10,James Park,Active,seat-based,163000
+ACC-00641,Iron Group Inc,,Financial Services,355,LATAM,irongroup.com,2025-01-10,David Kim,Active,hybrid,143612
+ACC-00642,Jewel Group Inc,,Healthcare,1042,Europe,jewelgroup.com,2021-10-29,Mike Rodriguez,Active,seat-based,15500
+ACC-00643,Key Group Inc,,Financial Services,2342,APAC,keygroup.com,2022-09-20,David Kim,Active,flat-rate,59000
+ACC-00644,Lake Group Inc,,Media,3534,Europe,lakegroup.com,2020-04-02,James Park,Churned,flat-rate,46693
+ACC-00645,Mist Group Inc,,Financial Services,5467,APAC,mistgroup.com,2020-04-18,Mike Rodriguez,Active,seat-based,14000
+ACC-00646,Nova Group Inc,,Energy,6597,APAC,novagroup.com,2024-07-20,Sarah Chen,Churned,flat-rate,69000
+ACC-00647,Ore Group Inc,,Retail,6073,LATAM,oregroup.com,2022-09-06,Mike Rodriguez,Active,flat-rate,81710
+ACC-00648,Plume Group Inc,,Healthcare,3680,North America,plumegroup.com,2020-01-31,David Kim,Churned,flat-rate,53000
+ACC-00649,Rapid Group Inc,,Technology,8462,LATAM,rapidgroup.com,2024-05-05,Lisa Wang,Active,flat-rate,190000
+ACC-00650,Sable Group Inc,,Financial Services,4171,APAC,sablegroup.com,2022-05-17,Mike Rodriguez,Active,flat-rate,132000
+ACC-00651,Tide Group Inc,,Financial Services,1580,LATAM,tidegroup.com,2021-01-22,Mike Rodriguez,Churned,usage-based,109000
+ACC-00652,Ural Group Inc,,Manufacturing,2884,APAC,uralgroup.com,2020-12-08,Mike Rodriguez,Active,hybrid,107000
+ACC-00653,Vine Group Inc,,Healthcare,9666,APAC,vinegroup.com,2024-09-09,David Kim,Active,hybrid,107000
+ACC-00654,Wind Group Inc,,Education,316,North America,windgroup.com,2024-04-21,Mike Rodriguez,Prospect,,0
+ACC-00655,Axis Group Inc,,Energy,176,North America,axisgroup.com,2021-07-20,Sarah Chen,Prospect,,0
+ACC-00656,Bloom Group Inc,,Education,5903,North America,bloomgroup.com,2023-01-09,Sarah Chen,Active,seat-based,194000
+ACC-00657,Core Group Inc,,Healthcare,2133,LATAM,coregroup.com,2024-02-27,Lisa Wang,Active,usage-based,46000
+ACC-00658,Drift Group Inc,,Healthcare,2300,LATAM,driftgroup.com,2022-10-04,Emma Thompson,Active,seat-based,24000
+ACC-00659,Edge Group Inc,,Media,7539,North America,edgegroup.com,2022-04-15,David Kim,Churned,seat-based,179000
+ACC-00660,Fort Group Inc,,Logistics,2231,North America,fortgroup.com,2022-04-17,David Kim,Active,hybrid,29000

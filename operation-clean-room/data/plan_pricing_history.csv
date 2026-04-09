@@ -1,0 +1,34 @@
+plan_id,plan_name,price_usd_monthly,price_usd_annual,effective_date,end_date,notes,billing_model
+plan_basic_v1,Basic,29,290,2023-07-01,2023-09-30,"Discontinued. Absorbed into Starter plan.",flat-rate
+plan_starter_v1,Starter,49,529,2023-07-01,2024-02-28,"Initial Starter pricing. 10% annual discount.",flat-rate
+plan_growth_v1,Growth,149,1520,2023-07-01,2023-12-31,"Initial Growth pricing. Per-seat. 15% annual discount.",per-seat
+plan_scale_v1,Scale,499,5090,2023-07-01,2024-02-28,"Initial Scale pricing. Per-seat. 15% annual discount.",per-seat
+plan_enterprise_v1,Enterprise,1500,custom,2023-07-01,2024-06-30,"Enterprise base. Custom pricing per contract. Negotiated annual.",hybrid
+plan_basic_promo,Basic,19,190,2023-07-01,2023-07-31,"Launch promo. $19/mo for first month only.",flat-rate
+plan_growth_v1_annual,Growth (Annual),127,1520,2023-07-01,2023-12-31,"Growth annual billing effective monthly rate.",per-seat
+plan_scale_v1_annual,Scale (Annual),424,5090,2023-07-01,2024-02-28,"Scale annual billing effective monthly rate.",per-seat
+plan_enterprise_v1_base,Enterprise (Base),1500,15300,2023-07-01,2024-06-30,"Enterprise minimum commitment. 15% annual discount.",hybrid
+plan_enterprise_v1_premium,Enterprise (Premium),5000,custom,2023-07-01,2024-06-30,"Enterprise Premium tier. Includes dedicated support.",hybrid
+plan_growth_v1_promo,Growth,129,1314,2023-07-15,2023-08-15,"Summer launch promo $20 off Growth.",per-seat
+plan_starter_v1_promo,Starter,39,420,2023-10-01,2023-10-31,"Fall promo. $10 off Starter for new signups in October.",flat-rate
+plan_basic_eol,Basic (EOL),0,0,2023-10-01,2023-10-01,"Basic plan end-of-life. All Basic users migrated to Starter.",n/a
+plan_growth_v2,Growth,179,1826,2024-01-01,2024-02-28,"Growth plan renamed to Scale effective 2024-03-01. Existing subscriptions keep 'Growth' label until renewal.",per-seat
+plan_growth_v2_gf,Growth (Grandfathered),149,1520,2024-01-01,2024-06-30,"Grandfathered Growth users keep $149/mo until renewal.",per-seat
+plan_starter_v2,Starter,59,637,2024-03-01,2024-09-30,"Price increase. Grandfathered users keep $49 until renewal.",flat-rate
+plan_scale_v2,Scale,599,6110,2024-03-01,2024-09-30,"Scale v2 pricing. Grandfathered customers keep $499 until renewal.",per-seat
+plan_starter_v2_gf,Starter (Grandfathered),49,529,2024-03-01,2024-09-30,"Grandfathered Starter users from v1 keep $49/mo pricing.",flat-rate
+plan_scale_v2_gf,Scale (Grandfathered),499,5090,2024-03-01,2024-09-30,"Grandfathered Scale v1 users keep $499/mo until contract renewal.",per-seat
+plan_scale_v2_annual,Scale (Annual),509,6110,2024-03-01,2024-09-30,"Scale v2 annual billing effective monthly rate.",per-seat
+plan_starter_v2_annual,Starter (Annual),53,637,2024-03-01,2024-09-30,"Starter v2 annual billing effective monthly rate. 10% annual discount.",flat-rate
+plan_growth_rename_notice,Growth -> Scale,0,0,2024-03-01,2024-03-01,"Growth plan renamed to Scale effective 2024-03-01. Existing subscriptions keep 'Growth' label until renewal.",n/a
+plan_enterprise_v2,Enterprise,2500,custom,2024-07-01,,"Enterprise v2 base. Custom pricing per contract. Negotiated annual.",hybrid
+plan_enterprise_v2_base,Enterprise (Base),2500,25500,2024-07-01,,"Enterprise v2 minimum commitment. Negotiated annual.",hybrid
+plan_enterprise_v2_premium,Enterprise (Premium),8000,custom,2024-07-01,,"Enterprise v2 Premium. Includes dedicated CSM.",hybrid
+plan_enterprise_v2_gf,Enterprise (Grandfathered),1500,15300,2024-07-01,,"Grandfathered Enterprise v1 customers keep $1500/mo base through contract term.",hybrid
+plan_starter_v3,Starter,69,745,2024-10-01,,"Current Starter pricing. 10% annual discount.",flat-rate
+plan_scale_v3,Scale,699,7130,2024-10-01,,"Current Scale pricing. Per-seat. 15% annual discount.",per-seat
+plan_starter_v3_gf,Starter (Grandfathered),49,529,2024-10-01,,"Grandfathered Starter users from v1 keep $49/mo pricing through end of contract.",flat-rate
+plan_scale_v3_annual,Scale (Annual),594,7130,2024-10-01,,"Current Scale annual billing effective monthly rate.",per-seat
+plan_scale_v3_gf_v1,Scale (Grandfathered v1),499,5090,2024-10-01,,"Grandfathered Scale v1 users still on $499/mo.",per-seat
+plan_scale_v3_gf_v2,Scale (Grandfathered v2),599,6110,2024-10-01,,"Grandfathered Scale v2 users keep $599/mo.",per-seat
+plan_starter_v3_annual,Starter (Annual),62,745,2024-10-01,,"Current Starter annual billing effective monthly rate. 10% annual discount.",flat-rate

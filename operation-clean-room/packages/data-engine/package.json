@@ -1,0 +1,32 @@
+{
+  "name": "@clean-room/data-engine",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "tsx watch src/index.ts",
+    "build": "tsc",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "lint": "eslint src/",
+    "clean": "rm -rf dist"
+  },
+  "dependencies": {
+    "express": "^4.19.0",
+    "cors": "^2.8.5",
+    "csv-parse": "^5.5.0",
+    "fast-xml-parser": "^4.3.0",
+    "zod": "^3.22.0",
+    "fuse.js": "^7.0.0",
+    "date-fns": "^3.6.0",
+    "uuid": "^9.0.0"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.21",
+    "@types/cors": "^2.8.17",
+    "@types/uuid": "^9.0.8",
+    "tsx": "^4.7.0",
+    "vitest": "^1.4.0",
+    "typescript": "^5.4.0"
+  }
+}

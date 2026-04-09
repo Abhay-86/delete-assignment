@@ -1,0 +1,801 @@
+survey_id,account_id,respondent_email,score,comment,survey_date
+NPS-00093,9,james.singh@icloud.com,0,"API rate limits are too restrictive.",2024-01-02
+NPS-00023,89,samantha.jackson@euroforgegmbh.com,1,"Multi-team permissions are too basic.",2024-01-05
+NPS-00088,102,scott.scott@gmail.com,10,"Highly recommend to any growing team.",2024-01-06
+NPS-00012,13,paul.chen@catalystinnovation.com,10,"Love the new dashboard features!",2024-01-09
+NPS-00082,101,donna.robinson@pacificmart.com,6,"Works fine for our basic needs.",2024-01-09
+NPS-00005,91,michelle.liu@kantomanufacturing.com,6,"Some features are good, others need work.",2024-01-11
+NPS-00053,73,rebecca.brown@genomeinsights.com,1,"Support response times have gotten worse.",2024-01-11
+NPS-00046,53,david.oliveira@hotmail.com,8,"The API is well-designed and easy to work with.",2024-01-15
+NPS-00066,116,anthony.müller@renewabledynamics.com,2,"Performance degrades with large datasets.",2024-01-15
+NPS-00027,52,jack.baker@deepfieldai.com,2,"API rate limits are too restrictive.",2024-01-16
+NPS-00010,17,pamela.garcia@icloud.com,8,"Average experience overall.",2024-01-18
+NPS-00076,35,benjamin.wilson@codexdigital.com,10,"Team adoption was faster than expected.",2024-01-18
+NPS-00014,45,shirley.patel@auroratech.com,4,"Pricing has increased significantly, hard to justify.",2024-01-19
+NPS-00035,8,ronald.scott@gmail.com,6,"Solid foundation, needs more polish.",2024-01-21
+NPS-00057,116,carolyn.johnson@renewabledynamics.com,6,"Decent product, nothing exceptional.",2024-01-21
+NPS-00086,89,nicholas.thompson@euroforgegmbh.com,5,"Some features are good, others need work.",2024-01-22
+NPS-00030,48,larry.lee@cloudvista.com,5,"Good product with room for improvement.",2024-01-26
+NPS-00074,52,aisha.williams@zoho.com,3,"Reporting module needs significant improvement.",2024-01-27
+NPS-00007,79,jeffrey.flores@monetafinancial.com,4,"Performance degrades with large datasets.",2024-01-30
+NPS-00026,71,brandon.young@truehealthcorp.com,7,"Team adoption was faster than expected.",2024-02-03
+NPS-00024,46,valentina.liu@nuvolasrl.com,7,"Meets most of our requirements.",2024-02-05
+NPS-00037,104,scott.scott@beaconretail.com,7,"Highly recommend to any growing team.",2024-02-06
+NPS-00016,111,barbara.allen@spectrumstudios.com,2,"Pricing has increased significantly, hard to justify.",2024-02-08
+NPS-00059,60,pamela.thompson@medvantage.com,8,"Meets most of our requirements.",2024-02-11
+NPS-00091,43,edward.king@yahoo.com,10,"Technically brilliant but the support experience has been terrible lately.",2024-02-11
+NPS-00056,77,rachel.ferreira@sterlingwealth.com,10,"Very reliable platform, minimal downtime.",2024-02-12
+NPS-00019,18,frank.chen@brightfieldcorp.com,7,"Clean UI, fast performance.",2024-02-13
+NPS-00071,100,kevin.carter@nordicshops.com,9,"Data export functionality is top-notch.",2024-02-13
+NPS-00075,53,priya.russo@lightspeedinnovations.com,5,"Some features are good, others need work.",2024-02-13
+NPS-00079,86,ronald.hernandez@titanmanufacturing.com,3,"We've experienced data sync issues multiple times.",2024-02-15
+NPS-00077,31,nancy.costa@icloud.com,5,"Decent product, nothing exceptional.",2024-02-16
+NPS-00031,2,donald.suzuki@icloud.com,1,"Onboarding could be much smoother.",2024-02-17
+NPS-00097,102,scott.miller@outlook.com,6,"Meets most of our requirements.",2024-02-19
+NPS-00018,93,helen.mitchell@andeanmanufacturing.com,10,"Amazing tool when it works. Downtime last month cost us a major client.",2024-02-26
+NPS-00040,101,samantha.flores@pacificmart.com,5,"Good product with room for improvement.",2024-02-26
+NPS-00058,18,daniel.suzuki@icloud.com,3,"Multi-team permissions are too basic.",2024-02-27
+NPS-00069,13,benjamin.scott@catalystinnovation.com,5,"Solid foundation, needs more polish.",2024-02-28
+NPS-00083,95,maria.taylor@urbanmart.com,7,"Excellent value for the price.",2024-03-01
+NPS-00092,102,alexander.fischer@bazaartech.com,0,"The enterprise tier feels overpriced for what you get.",2024-03-01
+NPS-00044,109,donald.watanabe@protonmail.com,8,"Data export functionality is top-notch.",2024-03-03
+NPS-00098,115,hans.rossi@greenvolt.com,5,"Works fine for our basic needs.",2024-03-03
+NPS-00085,49,laura.hernandez@verdantsystems.com,9,"Impressed with the security features.",2024-03-04
+NPS-00072,68,janet.brown@hotmail.com,2,"The recent UI changes are confusing.",2024-03-05
+NPS-00089,98,edward.kim@freshmarketdigital.com,1,"Billing issues took weeks to resolve.",2024-03-06
+NPS-00020,107,kathleen.li@learnsphere.com,3,"Billing issues took weeks to resolve.",2024-03-07
+NPS-00045,59,brenda.ramirez@cortexautomation.com,8,"Some features are good, others need work.",2024-03-10
+NPS-00021,60,jack.dasilva@yahoo.com,1,"Reporting module needs significant improvement.",2024-03-11
+NPS-00009,26,amanda.weber@datastreamai.com,6,"Good product with room for improvement.",2024-03-14
+NPS-00050,28,mary.choi@silverlinetech.com,5,"Gets the job done but could be better.",2024-03-14
+NPS-00049,53,justin.brown@icloud.com,7,"Onboarding was smooth and well-documented.",2024-03-16
+NPS-00022,52,david.williams@outlook.com,7,"Saves our team hours every week.",2024-03-17
+NPS-00006,15,anna.thompson@freshstartlabs.com,10,"Best tool we've used for data management.",2024-03-18
+NPS-00013,29,carol.robinson@nexteradigital.com,9,"The API is well-designed and easy to work with.",2024-03-19
+NPS-00073,96,brian.rodriguez@shopstream.com,10,"Clean UI, fast performance.",2024-03-21
+NPS-00070,33,maria.martinez@terraformlabs.com,5,"Average experience overall.",2024-03-22
+NPS-00052,32,alexander.costa@arcustechnologies.com,0,"API rate limits are too restrictive.",2024-03-25
+NPS-00065,73,charles.russo@genomeinsights.com,4,"Support response times have gotten worse.",2024-03-25
+NPS-00002,51,jonathan.russo@hotmail.com,8,"Team adoption was faster than expected.",2024-03-28
+NPS-00033,65,anthony.rodriguez@aethermedical.com,0,"Support response times have gotten worse.",2024-04-02
+NPS-00067,26,akira.li@datastreamai.com,9,"Love the recent updates to the reporting module.",2024-04-03
+NPS-00080,58,amy.mitchell@edgepointsystems.com,4,"Reporting module needs significant improvement.",2024-04-03
+NPS-00003,90,donald.kumar@hotmail.com,7,"Some features are good, others need work.",2024-04-04
+NPS-00028,108,margaret.costa@academiq.com,5,"Solid foundation, needs more polish.",2024-04-07
+NPS-00094,101,valentina.flores@pacificmart.com,3,"Reporting module needs significant improvement.",2024-04-08
+NPS-00032,51,george.gonzalez@fastmail.com,3,"Documentation is outdated in several areas.",2024-04-11
+NPS-00043,35,patrick.rodriguez@codexdigital.com,7,"Customer success team really understands our needs.",2024-04-16
+NPS-00090,6,dorothy.park@clearviewanalytics.com,0,"API rate limits are too restrictive.",2024-04-17
+NPS-00008,113,paul.young@risingsunmedia.com,1,"The recent UI changes are confusing.",2024-04-18
+NPS-00055,81,maria.choi@icloud.com,9,"Support team is always responsive and helpful.",2024-04-18
+NPS-00036,8,benjamin.wang@hotmail.com,8,"Some features are good, others need work.",2024-04-24
+NPS-00063,31,carolyn.flores@pulseanalytics.com,6,"Meets most of our requirements.",2024-05-04
+NPS-00084,45,sandra.martinez@auroratech.com,3,"Reporting module needs significant improvement.",2024-05-04
+NPS-00042,45,karen.nelson@auroratech.com,9,"Very reliable platform, minimal downtime.",2024-05-07
+NPS-00051,62,barbara.schmidt@vitalityhealthgroup.com,10,"Technically brilliant but the support experience has been terrible lately.",2024-05-07
+NPS-00081,104,kenneth.walker@beaconretail.com,9,"The mobile experience is surprisingly good.",2024-05-11
+NPS-00087,43,stephen.kim@dragoncloud.com,0,"Reporting module needs significant improvement.",2024-05-11
+NPS-00099,92,donald.thompson@icloud.com,7,"Functional but not exciting.",2024-05-11
+NPS-00025,37,jacob.wang@pixelwave.com,7,"Highly recommend to any growing team.",2024-05-17
+NPS-00096,115,laura.miller@greenvolt.com,5,"Gets the job done but could be better.",2024-05-22
+NPS-00034,83,christine.wilson@latamfinserv.com,0,"Missing key integrations with our CRM.",2024-05-26
+NPS-00011,3,kathleen.sanchez@atlaslogisticsgroup.com,6,"Acceptable for the price point.",2024-05-30
+NPS-00064,2,kevin.wright@fastmail.com,1,"API rate limits are too restrictive.",2024-06-03
+NPS-00061,94,michael.wilson@ironworkssolutions.com,8,"Support team is always responsive and helpful.",2024-06-05
+NPS-00062,34,kimberly.clark@vantasoftware.com,0,"Multi-team permissions are too basic.",2024-06-05
+NPS-00100,14,christine.garcia@zoho.com,7,"Best tool we've used for data management.",2024-06-07
+NPS-00017,37,dorothy.wang@outlook.com,3,"Billing issues took weeks to resolve.",2024-06-08
+NPS-00095,105,william.fischer@edupath.com,0,"The recent UI changes are confusing.",2024-06-08
+NPS-00048,77,brenda.nelson@sterlingwealth.com,5,"Acceptable for the price point.",2024-06-12
+NPS-00004,64,daniel.li@healthgrid.com,8,"Love the recent updates to the reporting module.",2024-06-13
+NPS-00041,25,joseph.moore@byteforge.com,8,"Integrations work flawlessly.",2024-06-13
+NPS-00047,25,jeffrey.tanaka@byteforge.com,10,"I'd give a 10 but the billing errors are really frustrating, took months to resolve. Still love the product though I guess.",2024-06-16
+NPS-00054,7,nancy.johnson@prismsoftware.com,3,"The Growth to Scale rename was confusing.",2024-06-21
+NPS-00060,41,kimberly.lewis@icloud.com,1,"Reporting module needs significant improvement.",2024-06-23
+NPS-00078,116,helen.santos@renewabledynamics.com,3,"API rate limits are too restrictive.",2024-06-23
+NPS-00015,56,charles.jackson@sapientdigital.com,3,"Onboarding could be much smoother.",2024-06-25
+NPS-00039,34,samantha.bianchi@vantasoftware.com,7,"Functional but not exciting.",2024-06-25
+NPS-00001,106,michelle.hill@brightmindsacademy.com,3,"Data import tools are unreliable.",2024-06-27
+NPS-00029,103,anthony.bianchi@mercadoonline.com,6,"Some features are good, others need work.",2024-06-27
+NPS-00038,81,aisha.miller@pacificwealth.com,10,"Great ROI for our organization.",2024-06-27
+NPS-00068,98,samantha.kim@freshmarketdigital.com,2,"Feature requests seem to go into a black hole.",2024-06-28
+NPS-00750,114,emily.smith@solarisenergy.com,8,"Customer success team really understands our needs.",2024-07-02
+NPS-00192,72,george.gonzalez@yahoo.com,10,"Team adoption was faster than expected.",2024-07-03
+NPS-00442,81,catherine.weber@pacificwealth.com,10,"Great product, very intuitive interface.",2024-07-03
+NPS-00534,114,lisa.flores@solarisenergy.com,8,"Onboarding was smooth and well-documented.",2024-07-03
+NPS-00406,63,sharon.white@hotmail.com,9,"Amazing tool when it works. Downtime last month cost us a major client.",2024-07-04
+NPS-00458,85,larry.thomas@forgeindustries.com,9,"Clean UI, fast performance.",2024-07-04
+NPS-00463,46,barbara.roberts@nuvolasrl.com,10,"Data export functionality is top-notch.",2024-07-04
+NPS-00231,91,brandon.suzuki@kantomanufacturing.com,0,"The recent UI changes are confusing.",2024-07-05
+NPS-00138,115,ingrid.thompson@zoho.com,5,"Some features are good, others need work.",2024-07-06
+NPS-00151,,richard.moore@hotmail.com,10,"Onboarding was smooth and well-documented.",2024-07-06
+NPS-00210,73,akira.sanchez@genomeinsights.com,4,"Support response times have gotten worse.",2024-07-06
+NPS-00622,30,kevin.garcia@gmail.com,9,"Great ROI for our organization.",2024-07-06
+NPS-00780,21,frank.lopez@protonmail.com,8,"The API is well-designed and easy to work with.",2024-07-06
+NPS-00164,37,debra.perez@fastmail.com,0,"The enterprise tier feels overpriced for what you get.",2024-07-07
+NPS-00565,70,anna.sato@saluddigital.com,4,"Feature requests seem to go into a black hole.",2024-07-07
+NPS-00649,99,james.costa@europaretailgroup.com,10,"I'd give a 10 but the billing errors are really frustrating, took months to resolve. Still love the product though I guess.",2024-07-07
+NPS-00110,3,nancy.nguyen@fastmail.com,9,"Customer success team really understands our needs.",2024-07-08
+NPS-00278,46,brandon.jones@nuvolasrl.com,9,"Integrations work flawlessly.",2024-07-08
+NPS-00279,,barbara.yamamoto@gmail.com,10,"Data export functionality is top-notch.",2024-07-08
+NPS-00387,21,samuel.schmidt@obsidiangroup.com,5,"Average experience overall.",2024-07-08
+NPS-00685,2,steven.rossi@meridianhealthsystems.com,7,"The API is well-designed and easy to work with.",2024-07-08
+NPS-00630,,laura.martin@fastmail.com,5,"Good product with room for improvement.",2024-07-09
+NPS-00283,78,deborah.anderson@banktechsolutions.com,6,"Gets the job done but could be better.",2024-07-10
+NPS-00656,15,eric.sanchez@freshstartlabs.com,0,"Reporting module needs significant improvement.",2024-07-10
+NPS-00304,65,kevin.kim@zoho.com,6,"Decent product, nothing exceptional.",2024-07-11
+NPS-00560,70,scott.wang@saluddigital.com,9,"Saves our team hours every week.",2024-07-11
+NPS-00709,48,dorothy.suzuki@cloudvista.com,3,"Performance degrades with large datasets.",2024-07-11
+NPS-00211,2,sandra.singh@zoho.com,6,"Decent product, nothing exceptional.",2024-07-12
+NPS-00135,111,janet.rivera@spectrumstudios.com,5,"Acceptable for the price point.",2024-07-13
+NPS-00414,32,sarah.zhang@arcustechnologies.com,0,"Account management turnover has been frustrating.",2024-07-13
+NPS-00143,69,valentina.schmidt@medbridgeanalytics.com,1,"The recent UI changes are confusing.",2024-07-14
+NPS-00272,52,brenda.santos@hotmail.com,10,"The mobile experience is surprisingly good.",2024-07-14
+NPS-00491,115,karen.green@greenvolt.com,9,"Team adoption was faster than expected.",2024-07-14
+NPS-00124,103,barbara.taylor@yahoo.com,4,"The enterprise tier feels overpriced for what you get.",2024-07-15
+NPS-00546,25,david.gonzalez@byteforge.com,1,"API rate limits are too restrictive.",2024-07-15
+NPS-00566,110,scott.sanchez@amplifymedia.com,3,"The enterprise tier feels overpriced for what you get.",2024-07-15
+NPS-00640,115,ronald.jackson@greenvolt.com,10,"Highly recommend to any growing team.",2024-07-15
+NPS-00264,42,mark.ramirez@zenithai.com,8,"Impressed with the security features.",2024-07-16
+NPS-00472,69,laura.king@medbridgeanalytics.com,8,"Love the recent updates to the reporting module.",2024-07-16
+NPS-00586,92,christopher.rivera@protonmail.com,3,"Missing key integrations with our CRM.",2024-07-16
+NPS-00741,,katherine.rossi@protonmail.com,0,"The Growth to Scale rename was confusing.",2024-07-16
+NPS-00388,21,michael.thomas@obsidiangroup.com,8,"The mobile experience is surprisingly good.",2024-07-17
+NPS-00459,43,hans.rodriguez@dragoncloud.com,3,"The enterprise tier feels overpriced for what you get.",2024-07-17
+NPS-00506,111,thomas.johnson@spectrumstudios.com,8,"Functional but not exciting.",2024-07-17
+NPS-00621,,sven.baker@outlook.com,7,"Customer success team really understands our needs.",2024-07-17
+NPS-00788,,margaret.martin@yahoo.com,2,"Price increase without corresponding feature improvements.",2024-07-17
+NPS-00758,117,dennis.hill@outlook.com,9,"Great ROI for our organization.",2024-07-18
+NPS-00248,60,fatima.schmidt@medvantage.com,7,"Love the new dashboard features!",2024-07-19
+NPS-00364,7,sarah.singh@prismsoftware.com,6,"Meets most of our requirements.",2024-07-19
+NPS-00407,94,susan.williams@ironworkssolutions.com,5,"Decent product, nothing exceptional.",2024-07-19
+NPS-00451,82,barbara.martin@zoho.com,8,"Decent product, nothing exceptional.",2024-07-19
+NPS-00315,61,barbara.bianchi@carepathsystems.com,7,"Clean UI, fast performance.",2024-07-20
+NPS-00494,72,paul.singh@yahoo.com,8,"Excellent value for the price.",2024-07-21
+NPS-00633,41,amy.park@kineticsystems.com,10,"Impressed with the security features.",2024-07-21
+NPS-00238,88,raymond.thomas@steelbridgecorp.com,4,"Support response times have gotten worse.",2024-07-22
+NPS-00433,4,aisha.martin@novatechgmbh.com,6,"Average experience overall.",2024-07-22
+NPS-00250,67,jack.zhang@centrichealth.com,10,"Customer success team really understands our needs.",2024-07-23
+NPS-00267,31,jason.singh@pulseanalytics.com,10,"Clean UI, fast performance.",2024-07-23
+NPS-00393,38,angela.martinez@hotmail.com,8,"Good product with room for improvement.",2024-07-23
+NPS-00610,38,scott.flores@alpinedataag.com,5,"Functional but not exciting.",2024-07-23
+NPS-00730,22,helen.roberts@zephyranalytics.com,9,"Great product, very intuitive interface.",2024-07-23
+NPS-00785,76,thomas.chen@fidelitybridge.com,3,"Performance degrades with large datasets.",2024-07-23
+NPS-00307,12,sven.schneider@pinnacleretail.com,5,"Good product with room for improvement.",2024-07-24
+NPS-00515,96,benjamin.wright@shopstream.com,5,"Solid foundation, needs more polish.",2024-07-24
+NPS-00624,117,rachel.singh@strattonconsulting.com,2,"Billing issues took weeks to resolve.",2024-07-24
+NPS-00706,101,jack.johnson@outlook.com,3,"We keep getting charged for users who left.",2024-07-24
+NPS-00324,3,elizabeth.allen@atlaslogisticsgroup.com,8,"Integrations work flawlessly.",2024-07-26
+NPS-00354,91,ingrid.campbell@kantomanufacturing.com,2,"Performance degrades with large datasets.",2024-07-26
+NPS-00625,42,jason.davis@fastmail.com,2,"Missing key integrations with our CRM.",2024-07-26
+NPS-00240,15,daniel.sanchez@zoho.com,4,"Onboarding could be much smoother.",2024-07-27
+NPS-00352,19,betty.young@cascadianetworks.com,3,"Reporting module needs significant improvement.",2024-07-27
+NPS-00537,,raj.king@zoho.com,3,"Data import tools are unreliable.",2024-07-27
+NPS-00591,,melissa.tanaka@outlook.com,2,"We keep getting charged for users who left.",2024-07-27
+NPS-00701,12,gary.wilson@pinnacleretail.com,9,"9/10 for features but honestly considering switching due to the price hikes.",2024-07-27
+NPS-00753,56,james.clark@sapientdigital.com,3,"Feature requests seem to go into a black hole.",2024-07-28
+NPS-00182,99,eric.johnson@fastmail.com,6,"Average experience overall.",2024-07-29
+NPS-00400,28,joshua.tanaka@fastmail.com,3,"We keep getting charged for users who left.",2024-07-29
+NPS-00743,43,kevin.chen@yahoo.com,0,"Billing issues took weeks to resolve.",2024-07-29
+NPS-00479,63,pamela.bianchi@biosyncmedical.com,1,"Multi-team permissions are too basic.",2024-07-30
+NPS-00493,84,catherine.smith@trustbankdigital.com,6,"Functional but not exciting.",2024-07-30
+NPS-00525,116,mary.flores@renewabledynamics.com,4,"Feature requests seem to go into a black hole.",2024-07-30
+NPS-00692,,brenda.thompson@gmail.com,1,"Documentation is outdated in several areas.",2024-07-31
+NPS-00254,117,valentina.watanabe@yahoo.com,6,"Functional but not exciting.",2024-08-01
+NPS-00318,7,jacob.liu@prismsoftware.com,10,"The mobile experience is surprisingly good.",2024-08-01
+NPS-00619,67,fatima.chen@icloud.com,1,"The recent UI changes are confusing.",2024-08-01
+NPS-00208,42,ronald.patel@zenithai.com,9,"Exactly what we needed for our workflow.",2024-08-02
+NPS-00361,,ingrid.torres@zoho.com,3,"Feature requests seem to go into a black hole.",2024-08-03
+NPS-00541,19,brenda.watanabe@cascadianetworks.com,2,"Feature requests seem to go into a black hole.",2024-08-03
+NPS-00623,93,kevin.jones@andeanmanufacturing.com,1,"Feature requests seem to go into a black hole.",2024-08-03
+NPS-00161,11,valentina.walker@yahoo.com,4,"Support response times have gotten worse.",2024-08-04
+NPS-00316,92,jacob.schmidt@pacificaindustrial.com,7,"Data export functionality is top-notch.",2024-08-04
+NPS-00392,13,scott.smith@catalystinnovation.com,6,"Works fine for our basic needs.",2024-08-04
+NPS-00570,58,timothy.adams@edgepointsystems.com,7,"Highly recommend to any growing team.",2024-08-05
+NPS-00675,36,rebecca.jones@synthetixgmbh.com,5,"Functional but not exciting.",2024-08-05
+NPS-00705,42,angela.watanabe@outlook.com,3,"Onboarding could be much smoother.",2024-08-05
+NPS-00770,38,yuki.green@alpinedataag.com,6,"Decent product, nothing exceptional.",2024-08-05
+NPS-00103,34,edward.mitchell@zoho.com,5,"Gets the job done but could be better.",2024-08-06
+NPS-00543,8,jennifer.flores@summitfinancial.com,6,"Some features are good, others need work.",2024-08-06
+NPS-00557,,diego.harris@hotmail.com,0,"Multi-team permissions are too basic.",2024-08-06
+NPS-00577,8,nancy.nguyen@yahoo.com,8,"Gets the job done but could be better.",2024-08-06
+NPS-00229,54,kimberly.garcia@omnicorelabs.com,5,"Functional but not exciting.",2024-08-07
+NPS-00338,16,sandra.hall@microsolutions.com,3,"We keep getting charged for users who left.",2024-08-08
+NPS-00498,43,fatima.watanabe@gmail.com,5,"Good product with room for improvement.",2024-08-08
+NPS-00608,65,raj.harris@aethermedical.com,2,"Data import tools are unreliable.",2024-08-08
+NPS-00257,10,raj.rossi@vertexengineering.com,6,"Decent product, nothing exceptional.",2024-08-09
+NPS-00452,27,carol.santos@zoho.com,1,"API rate limits are too restrictive.",2024-08-09
+NPS-00542,115,sharon.walker@greenvolt.com,0,"Missing key integrations with our CRM.",2024-08-09
+NPS-00141,45,stephanie.suzuki@hotmail.com,10,"Data export functionality is top-notch.",2024-08-10
+NPS-00343,,jonathan.torres@protonmail.com,10,"Highly recommend to any growing team.",2024-08-10
+NPS-00550,104,sandra.king@icloud.com,5,"Gets the job done but could be better.",2024-08-10
+NPS-00306,80,ashley.anderson@yahoo.com,1,"The recent UI changes are confusing.",2024-08-11
+NPS-00538,77,eric.green@sterlingwealth.com,3,"Data import tools are unreliable.",2024-08-11
+NPS-00600,42,kimberly.martinez@zenithai.com,7,"Impressed with the security features.",2024-08-11
+NPS-00690,52,david.anderson@deepfieldai.com,1,"The Growth to Scale rename was confusing.",2024-08-11
+NPS-00129,26,sharon.weber@gmail.com,10,"Technically brilliant but the support experience has been terrible lately.",2024-08-12
+NPS-00362,96,carlos.lewis@shopstream.com,10,"Love the new dashboard features!",2024-08-12
+NPS-00108,102,jacob.tanaka@bazaartech.com,5,"Decent product, nothing exceptional.",2024-08-13
+NPS-00342,86,patrick.martin@titanmanufacturing.com,6,"Average experience overall.",2024-08-13
+NPS-00708,50,dennis.mitchell@helixsoftware.com,8,"Great product, very intuitive interface.",2024-08-13
+NPS-00768,67,rachel.sato@centrichealth.com,6,"Meets most of our requirements.",2024-08-13
+NPS-00242,53,donald.adams@lightspeedinnovations.com,7,"Integrations work flawlessly.",2024-08-14
+NPS-00436,90,joseph.li@protonmail.com,5,"Solid foundation, needs more polish.",2024-08-14
+NPS-00444,31,alexander.king@pulseanalytics.com,5,"Meets most of our requirements.",2024-08-14
+NPS-00653,87,larry.müller@precisiondynamics.com,10,"Excellent value for the price.",2024-08-14
+NPS-00139,115,nicole.schmidt@greenvolt.com,6,"Solid foundation, needs more polish.",2024-08-15
+NPS-00293,30,sven.li@protonmail.com,0,"Pricing has increased significantly, hard to justify.",2024-08-15
+NPS-00403,45,michelle.hill@auroratech.com,3,"We've had billing discrepancies for 3 months.",2024-08-15
+NPS-00664,68,george.liu@zoho.com,7,"Best tool we've used for data management.",2024-08-15
+NPS-00447,45,ryan.rossi@yahoo.com,0,"Account management turnover has been frustrating.",2024-08-16
+NPS-00754,109,michelle.taylor@edunova.com,5,"Gets the job done but could be better.",2024-08-16
+NPS-00203,55,brandon.jackson@fluxtech.com,9,"Highly recommend to any growing team.",2024-08-17
+NPS-00337,110,ronald.ramirez@yahoo.com,5,"Gets the job done but could be better.",2024-08-17
+NPS-00503,84,elizabeth.brown@trustbankdigital.com,3,"We've experienced data sync issues multiple times.",2024-08-17
+NPS-00172,105,wei.white@edupath.com,7,"Good product with room for improvement.",2024-08-18
+NPS-00416,17,joshua.lee@tinystack.com,2,"Missing key integrations with our CRM.",2024-08-18
+NPS-00665,87,laura.robinson@precisiondynamics.com,9,"Exactly what we needed for our workflow.",2024-08-18
+NPS-00607,24,donna.gonzalez@icloud.com,8,"Great product, very intuitive interface.",2024-08-20
+NPS-00669,65,jonathan.lee@fastmail.com,1,"We've experienced data sync issues multiple times.",2024-08-20
+NPS-00713,33,helen.santos@terraformlabs.com,0,"Reporting module needs significant improvement.",2024-08-20
+NPS-00159,10,thomas.campbell@fastmail.com,8,"Acceptable for the price point.",2024-08-21
+NPS-00595,41,barbara.gonzalez@kineticsystems.com,2,"Reporting module needs significant improvement.",2024-08-21
+NPS-00476,60,dennis.singh@medvantage.com,4,"Documentation is outdated in several areas.",2024-08-22
+NPS-00220,110,ronald.anderson@amplifymedia.com,1,"The Growth to Scale rename was confusing.",2024-08-24
+NPS-00314,54,mark.suzuki@omnicorelabs.com,2,"Account management turnover has been frustrating.",2024-08-24
+NPS-00121,69,nicholas.hall@medbridgeanalytics.com,4,"Support response times have gotten worse.",2024-08-25
+NPS-00402,13,hiroshi.nguyen@catalystinnovation.com,6,"Average experience overall.",2024-08-25
+NPS-00450,61,donald.walker@hotmail.com,7,"Acceptable for the price point.",2024-08-25
+NPS-00484,16,aisha.choi@microsolutions.com,2,"The enterprise tier feels overpriced for what you get.",2024-08-25
+NPS-00154,39,mei.kim@gmail.com,7,"Data export functionality is top-notch.",2024-08-26
+NPS-00504,45,samuel.baker@hotmail.com,6,"Gets the job done but could be better.",2024-08-26
+NPS-00106,1,rebecca.hill@quantumdynamics.com,3,"Support response times have gotten worse.",2024-08-27
+NPS-00481,80,aisha.miller@gmail.com,4,"We've had billing discrepancies for 3 months.",2024-08-27
+NPS-00500,6,jason.sato@zoho.com,3,"Documentation is outdated in several areas.",2024-08-27
+NPS-00644,103,stephanie.bianchi@mercadoonline.com,10,"Impressed with the security features.",2024-08-27
+NPS-00695,44,sarah.rodriguez@silkroutetech.com,4,"Documentation is outdated in several areas.",2024-08-27
+NPS-00648,53,anna.rivera@icloud.com,1,"Price increase without corresponding feature improvements.",2024-08-28
+NPS-00194,23,anthony.nelson@nebulasystems.com,7,"Very reliable platform, minimal downtime.",2024-08-29
+NPS-00255,108,kevin.oliveira@academiq.com,0,"Support response times have gotten worse.",2024-08-30
+NPS-00265,,james.chen@protonmail.com,6,"Some features are good, others need work.",2024-08-30
+NPS-00276,84,priya.smith@trustbankdigital.com,1,"We've had billing discrepancies for 3 months.",2024-08-30
+NPS-00432,20,emma.choi@polarstartech.com,1,"Support response times have gotten worse.",2024-08-30
+NPS-00579,112,christopher.singh@luminabroadcasting.com,3,"The Growth to Scale rename was confusing.",2024-08-30
+NPS-00632,19,dorothy.rivera@cascadianetworks.com,1,"We've had billing discrepancies for 3 months.",2024-08-30
+NPS-00435,35,stephen.davis@zoho.com,1,"Account management turnover has been frustrating.",2024-09-01
+NPS-00634,100,ashley.zhang@nordicshops.com,6,"Works fine for our basic needs.",2024-09-01
+NPS-00206,57,pamela.brown@wavelengthai.com,8,"Love the new dashboard features!",2024-09-02
+NPS-00289,114,joseph.chen@solarisenergy.com,6,"Decent product, nothing exceptional.",2024-09-02
+NPS-00381,98,yuki.jones@freshmarketdigital.com,2,"We've experienced data sync issues multiple times.",2024-09-02
+NPS-00398,33,scott.sanchez@terraformlabs.com,10,"Great ROI for our organization.",2024-09-02
+NPS-00718,81,debra.nguyen@pacificwealth.com,10,"Very reliable platform, minimal downtime.",2024-09-02
+NPS-00461,49,rebecca.hall@verdantsystems.com,6,"Functional but not exciting.",2024-09-03
+NPS-00158,89,aisha.green@euroforgegmbh.com,8,"The mobile experience is surprisingly good.",2024-09-04
+NPS-00198,,nicholas.jones@gmail.com,8,"Decent product, nothing exceptional.",2024-09-04
+NPS-00219,37,mei.flores@pixelwave.com,10,"Support team is always responsive and helpful.",2024-09-04
+NPS-00454,60,margaret.rivera@medvantage.com,8,"The mobile experience is surprisingly good.",2024-09-04
+NPS-00680,72,nicholas.lopez@wellcoresystems.com,5,"Gets the job done but could be better.",2024-09-04
+NPS-00594,,sarah.kim@outlook.com,6,"Works fine for our basic needs.",2024-09-05
+NPS-00153,39,william.sato@icloud.com,7,"Solid foundation, needs more polish.",2024-09-06
+NPS-00477,15,mary.weber@freshstartlabs.com,2,"Billing issues took weeks to resolve.",2024-09-06
+NPS-00507,13,samuel.bianchi@hotmail.com,5,"Decent product, nothing exceptional.",2024-09-06
+NPS-00258,113,catherine.wang@risingsunmedia.com,7,"Great ROI for our organization.",2024-09-07
+NPS-00523,59,robert.bianchi@cortexautomation.com,7,"Integrations work flawlessly.",2024-09-07
+NPS-00559,10,raymond.hill@vertexengineering.com,3,"Data import tools are unreliable.",2024-09-07
+NPS-00319,42,patrick.gonzalez@zenithai.com,1,"Performance degrades with large datasets.",2024-09-08
+NPS-00357,5,michael.garcia@lumindigitalag.com,9,"Impressed with the security features.",2024-09-08
+NPS-00367,105,jeffrey.allen@edupath.com,3,"Support response times have gotten worse.",2024-09-09
+NPS-00684,101,robert.jackson@protonmail.com,9,"Amazing tool when it works. Downtime last month cost us a major client.",2024-09-09
+NPS-00700,90,andrew.campbell@rhineindustrial.com,2,"Missing key integrations with our CRM.",2024-09-09
+NPS-00792,,edward.patel@yahoo.com,6,"Decent product, nothing exceptional.",2024-09-09
+NPS-00270,45,timothy.li@auroratech.com,3,"Price increase without corresponding feature improvements.",2024-09-10
+NPS-00341,42,aisha.schneider@zenithai.com,4,"Documentation is outdated in several areas.",2024-09-10
+NPS-00301,57,aisha.choi@wavelengthai.com,8,"Great product, very intuitive interface.",2024-09-11
+NPS-00654,49,akira.patel@verdantsystems.com,2,"We've experienced data sync issues multiple times.",2024-09-11
+NPS-00415,67,stephen.rivera@centrichealth.com,3,"Support response times have gotten worse.",2024-09-12
+NPS-00167,21,rebecca.nelson@protonmail.com,5,"Functional but not exciting.",2024-09-13
+NPS-00241,6,debra.adams@clearviewanalytics.com,8,"Data export functionality is top-notch.",2024-09-13
+NPS-00505,46,sofia.kumar@nuvolasrl.com,0,"We've had billing discrepancies for 3 months.",2024-09-13
+NPS-00230,33,amy.lopez@terraformlabs.com,7,"Acceptable for the price point.",2024-09-14
+NPS-00237,84,sarah.hernandez@trustbankdigital.com,1,"Account management turnover has been frustrating.",2024-09-14
+NPS-00620,96,justin.hall@shopstream.com,3,"Onboarding could be much smoother.",2024-09-14
+NPS-00200,91,dennis.anderson@icloud.com,9,"The mobile experience is surprisingly good.",2024-09-15
+NPS-00295,62,dorothy.lee@vitalityhealthgroup.com,6,"Functional but not exciting.",2024-09-15
+NPS-00385,72,michelle.singh@wellcoresystems.com,0,"Support response times have gotten worse.",2024-09-15
+NPS-00474,65,andrew.rivera@aethermedical.com,0,"Reporting module needs significant improvement.",2024-09-16
+NPS-00676,68,shirley.dasilva@hotmail.com,9,"Saves our team hours every week.",2024-09-16
+NPS-00262,31,larry.kim@pulseanalytics.com,3,"We've experienced data sync issues multiple times.",2024-09-17
+NPS-00408,10,kathleen.smith@vertexengineering.com,3,"Account management turnover has been frustrating.",2024-09-17
+NPS-00528,,nicole.harris@outlook.com,10,"Support team is always responsive and helpful.",2024-09-17
+NPS-00356,31,anna.jones@gmail.com,0,"Pricing has increased significantly, hard to justify.",2024-09-18
+NPS-00305,24,hiroshi.baker@ironcladsecurity.com,5,"Good product with room for improvement.",2024-09-19
+NPS-00232,,kimberly.santos@icloud.com,2,"Reporting module needs significant improvement.",2024-09-20
+NPS-00300,75,richard.taylor@zoho.com,2,"Multi-team permissions are too basic.",2024-09-20
+NPS-00299,,william.sanchez@zoho.com,10,"Very reliable platform, minimal downtime.",2024-09-21
+NPS-00606,85,steven.lewis@zoho.com,3,"Feature requests seem to go into a black hole.",2024-09-21
+NPS-00207,32,susan.roberts@arcustechnologies.com,1,"Billing issues took weeks to resolve.",2024-09-22
+NPS-00344,111,yuki.zhang@zoho.com,8,"Team adoption was faster than expected.",2024-09-22
+NPS-00674,22,frank.gonzalez@zephyranalytics.com,4,"Pricing has increased significantly, hard to justify.",2024-09-22
+NPS-00681,51,lisa.king@cirruslogicsystems.com,1,"We've had billing discrepancies for 3 months.",2024-09-22
+NPS-00699,57,hans.adams@wavelengthai.com,9,"Support team is always responsive and helpful.",2024-09-22
+NPS-00779,28,stephen.ramirez@silverlinetech.com,9,"Love the recent updates to the reporting module.",2024-09-22
+NPS-00766,81,laura.clark@pacificwealth.com,5,"Some features are good, others need work.",2024-09-23
+NPS-00422,13,nancy.johnson@catalystinnovation.com,0,"Documentation is outdated in several areas.",2024-09-24
+NPS-00118,9,laura.ramirez@horizonmedia.com,10,"Excellent value for the price.",2024-09-25
+NPS-00213,12,mark.hall@pinnacleretail.com,3,"Documentation is outdated in several areas.",2024-09-25
+NPS-00269,57,patrick.brown@wavelengthai.com,7,"Excellent value for the price.",2024-09-25
+NPS-00144,16,justin.singh@zoho.com,6,"Solid foundation, needs more polish.",2024-09-26
+NPS-00663,33,lisa.green@terraformlabs.com,7,"Customer success team really understands our needs.",2024-09-26
+NPS-00725,100,frank.brown@nordicshops.com,3,"Reporting module needs significant improvement.",2024-09-27
+NPS-00739,108,amy.gonzalez@academiq.com,5,"Good product with room for improvement.",2024-09-27
+NPS-00488,33,amy.johnson@terraformlabs.com,8,"Integrations work flawlessly.",2024-09-28
+NPS-00668,108,james.suzuki@fastmail.com,7,"Integrations work flawlessly.",2024-09-29
+NPS-00286,83,brandon.jackson@latamfinserv.com,2,"Missing key integrations with our CRM.",2024-10-01
+NPS-00657,51,larry.sato@cirruslogicsystems.com,10,"Amazing tool when it works. Downtime last month cost us a major client.",2024-10-01
+NPS-00195,96,susan.sato@shopstream.com,4,"Account management turnover has been frustrating.",2024-10-02
+NPS-00554,108,paul.costa@academiq.com,5,"Solid foundation, needs more polish.",2024-10-02
+NPS-00637,103,hans.johnson@mercadoonline.com,6,"Average experience overall.",2024-10-02
+NPS-00127,27,linda.taylor@cloudpeaksoftware.com,5,"Some features are good, others need work.",2024-10-03
+NPS-00281,46,maria.li@nuvolasrl.com,0,"The enterprise tier feels overpriced for what you get.",2024-10-04
+NPS-00605,97,james.mitchell@retailedge.com,10,"Love the recent updates to the reporting module.",2024-10-04
+NPS-00171,1,fatima.kumar@icloud.com,1,"We've had billing discrepancies for 3 months.",2024-10-05
+NPS-00366,35,rebecca.scott@codexdigital.com,2,"Account management turnover has been frustrating.",2024-10-05
+NPS-00597,27,daniel.scott@gmail.com,1,"Billing issues took weeks to resolve.",2024-10-05
+NPS-00496,13,valentina.zhang@catalystinnovation.com,9,"9/10 for features but honestly considering switching due to the price hikes.",2024-10-06
+NPS-00745,112,priya.lewis@protonmail.com,0,"API rate limits are too restrictive.",2024-10-06
+NPS-00756,52,stephen.li@gmail.com,3,"We keep getting charged for users who left.",2024-10-07
+NPS-00628,,timothy.campbell@gmail.com,3,"Account management turnover has been frustrating.",2024-10-08
+NPS-00757,62,shirley.choi@vitalityhealthgroup.com,10,"Love the new dashboard features!",2024-10-08
+NPS-00148,93,ingrid.kim@andeanmanufacturing.com,6,"Gets the job done but could be better.",2024-10-09
+NPS-00509,67,sofia.miller@centrichealth.com,4,"Price increase without corresponding feature improvements.",2024-10-09
+NPS-00350,66,mary.flores@novacarediagnostics.com,5,"Meets most of our requirements.",2024-10-10
+NPS-00440,17,jeffrey.davis@tinystack.com,0,"Reporting module needs significant improvement.",2024-10-11
+NPS-00601,46,alexander.baker@nuvolasrl.com,3,"API rate limits are too restrictive.",2024-10-12
+NPS-00670,110,thomas.lewis@fastmail.com,7,"Works fine for our basic needs.",2024-10-12
+NPS-00132,21,catherine.kumar@obsidiangroup.com,6,"Average experience overall.",2024-10-13
+NPS-00439,111,angela.thomas@fastmail.com,0,"We've experienced data sync issues multiple times.",2024-10-13
+NPS-00568,21,sven.sanchez@obsidiangroup.com,0,"API rate limits are too restrictive.",2024-10-13
+NPS-00174,87,linda.thomas@precisiondynamics.com,8,"Very reliable platform, minimal downtime.",2024-10-14
+NPS-00377,113,donald.allen@gmail.com,7,"Excellent value for the price.",2024-10-14
+NPS-00140,50,sofia.nelson@helixsoftware.com,10,"Customer success team really understands our needs.",2024-10-15
+NPS-00181,63,helen.ramirez@hotmail.com,10,"Excellent value for the price.",2024-10-15
+NPS-00424,54,david.williams@omnicorelabs.com,4,"Feature requests seem to go into a black hole.",2024-10-15
+NPS-00202,3,donna.lee@atlaslogisticsgroup.com,3,"The recent UI changes are confusing.",2024-10-16
+NPS-00346,30,larry.rivera@corestacksolutions.com,3,"Billing issues took weeks to resolve.",2024-10-16
+NPS-00311,21,betty.sanchez@obsidiangroup.com,10,"Excellent value for the price.",2024-10-17
+NPS-00516,49,edward.rossi@hotmail.com,5,"Meets most of our requirements.",2024-10-17
+NPS-00573,56,sharon.harris@icloud.com,8,"Acceptable for the price point.",2024-10-17
+NPS-00767,42,emma.lopez@zoho.com,1,"The recent UI changes are confusing.",2024-10-17
+NPS-00796,83,jennifer.miller@zoho.com,9,"Great product, very intuitive interface.",2024-10-17
+NPS-00261,78,lisa.rossi@hotmail.com,1,"Account management turnover has been frustrating.",2024-10-18
+NPS-00184,92,kevin.white@pacificaindustrial.com,4,"Performance degrades with large datasets.",2024-10-19
+NPS-00115,2,ronald.yamamoto@meridianhealthsystems.com,10,"Impressed with the security features.",2024-10-20
+NPS-00189,22,hans.weber@protonmail.com,0,"Billing issues took weeks to resolve.",2024-10-20
+NPS-00673,107,wei.zhang@learnsphere.com,9,"9/10 for features but honestly considering switching due to the price hikes.",2024-10-20
+NPS-00715,96,samantha.anderson@zoho.com,5,"Functional but not exciting.",2024-10-21
+NPS-00117,4,jonathan.jones@novatechgmbh.com,9,"Great product, very intuitive interface.",2024-10-22
+NPS-00349,33,matthew.martinez@fastmail.com,6,"Gets the job done but could be better.",2024-10-22
+NPS-00468,53,charles.gonzalez@fastmail.com,10,"Excellent value for the price.",2024-10-22
+NPS-00678,103,kathleen.moore@mercadoonline.com,4,"Missing key integrations with our CRM.",2024-10-22
+NPS-00793,52,angela.ferreira@deepfieldai.com,0,"We've had billing discrepancies for 3 months.",2024-10-22
+NPS-00113,79,sarah.brown@hotmail.com,10,"Customer success team really understands our needs.",2024-10-23
+NPS-00157,33,mark.lopez@terraformlabs.com,4,"Price increase without corresponding feature improvements.",2024-10-24
+NPS-00449,72,mary.yamamoto@wellcoresystems.com,4,"The recent UI changes are confusing.",2024-10-24
+NPS-00410,,rebecca.martin@hotmail.com,4,"The recent UI changes are confusing.",2024-10-26
+NPS-00587,66,scott.perez@novacarediagnostics.com,4,"Missing key integrations with our CRM.",2024-10-26
+NPS-00667,,ingrid.anderson@fastmail.com,7,"Love the recent updates to the reporting module.",2024-10-26
+NPS-00682,104,richard.harris@beaconretail.com,8,"Average experience overall.",2024-10-26
+NPS-00205,7,jeffrey.williams@prismsoftware.com,2,"Pricing has increased significantly, hard to justify.",2024-10-27
+NPS-00409,100,brenda.adams@protonmail.com,9,"9/10 for features but honestly considering switching due to the price hikes.",2024-10-27
+NPS-00575,11,barbara.liu@gmail.com,6,"Good product with room for improvement.",2024-10-27
+NPS-00748,74,linda.watanabe@pulsepointhealth.com,5,"Functional but not exciting.",2024-10-27
+NPS-00128,82,donna.lewis@icloud.com,1,"Reporting module needs significant improvement.",2024-10-28
+NPS-00197,62,fatima.miller@vitalityhealthgroup.com,8,"The mobile experience is surprisingly good.",2024-10-28
+NPS-00510,48,rebecca.kumar@cloudvista.com,0,"Feature requests seem to go into a black hole.",2024-10-28
+NPS-00772,107,catherine.dasilva@fastmail.com,10,"Integrations work flawlessly.",2024-10-29
+NPS-00783,64,wei.kim@healthgrid.com,2,"Billing issues took weeks to resolve.",2024-10-29
+NPS-00185,98,ronald.wang@zoho.com,2,"Account management turnover has been frustrating.",2024-10-30
+NPS-00199,,samantha.carter@icloud.com,2,"Support response times have gotten worse.",2024-10-30
+NPS-00227,41,robert.rivera@hotmail.com,8,"Meets most of our requirements.",2024-10-30
+NPS-00438,80,ingrid.suzuki@fortiscapitalag.com,0,"Support response times have gotten worse.",2024-10-30
+NPS-00540,21,donald.davis@obsidiangroup.com,2,"Billing issues took weeks to resolve.",2024-10-30
+NPS-00602,100,larry.miller@nordicshops.com,5,"Average experience overall.",2024-10-30
+NPS-00627,47,samantha.taylor@digitalbridgesa.com,1,"Reporting module needs significant improvement.",2024-10-30
+NPS-00545,85,sofia.wilson@forgeindustries.com,1,"We've experienced data sync issues multiple times.",2024-10-31
+NPS-00671,96,joseph.oliveira@protonmail.com,8,"Works fine for our basic needs.",2024-10-31
+NPS-00794,100,elizabeth.gonzalez@outlook.com,1,"Data import tools are unreliable.",2024-10-31
+NPS-00372,40,justin.allen@nightowlsoftware.com,3,"Onboarding could be much smoother.",2024-11-01
+NPS-00446,93,ronald.lewis@andeanmanufacturing.com,1,"We've experienced data sync issues multiple times.",2024-11-01
+NPS-00749,36,carol.santos@synthetixgmbh.com,3,"Missing key integrations with our CRM.",2024-11-01
+NPS-00187,,thomas.nguyen@zoho.com,5,"Functional but not exciting.",2024-11-02
+NPS-00351,85,sarah.garcia@yahoo.com,6,"Solid foundation, needs more polish.",2024-11-02
+NPS-00417,105,eric.kim@edupath.com,8,"Clean UI, fast performance.",2024-11-02
+NPS-00578,8,donna.moore@hotmail.com,4,"The recent UI changes are confusing.",2024-11-02
+NPS-00259,71,hiroshi.brown@truehealthcorp.com,0,"We've had billing discrepancies for 3 months.",2024-11-03
+NPS-00374,11,george.chen@yahoo.com,2,"We've had billing discrepancies for 3 months.",2024-11-03
+NPS-00470,107,barbara.davis@hotmail.com,8,"Exactly what we needed for our workflow.",2024-11-03
+NPS-00327,90,rachel.suzuki@rhineindustrial.com,6,"Acceptable for the price point.",2024-11-04
+NPS-00599,100,carolyn.choi@nordicshops.com,9,"Clean UI, fast performance.",2024-11-04
+NPS-00130,116,diego.lewis@renewabledynamics.com,10,"Best tool we've used for data management.",2024-11-05
+NPS-00244,47,samuel.weber@digitalbridgesa.com,5,"Solid foundation, needs more polish.",2024-11-05
+NPS-00609,82,matthew.hill@finovagroup.com,1,"Price increase without corresponding feature improvements.",2024-11-06
+NPS-00555,89,emily.fischer@euroforgegmbh.com,3,"We keep getting charged for users who left.",2024-11-07
+NPS-00716,52,emma.white@hotmail.com,0,"Performance degrades with large datasets.",2024-11-07
+NPS-00726,,brian.ramirez@yahoo.com,0,"The enterprise tier feels overpriced for what you get.",2024-11-07
+NPS-00776,102,aisha.carter@bazaartech.com,4,"Billing issues took weeks to resolve.",2024-11-07
+NPS-00778,27,kathleen.flores@cloudpeaksoftware.com,9,"Our team loves it but finance is pushing back hard on the renewal cost.",2024-11-07
+NPS-00636,94,yuki.allen@ironworkssolutions.com,8,"The mobile experience is surprisingly good.",2024-11-08
+NPS-00762,111,rebecca.williams@spectrumstudios.com,3,"Feature requests seem to go into a black hole.",2024-11-08
+NPS-00581,16,joseph.campbell@hotmail.com,2,"The recent UI changes are confusing.",2024-11-09
+NPS-00735,27,ronald.robinson@cloudpeaksoftware.com,3,"Reporting module needs significant improvement.",2024-11-09
+NPS-00256,28,jonathan.nelson@silverlinetech.com,1,"Documentation is outdated in several areas.",2024-11-10
+NPS-00347,45,rebecca.jackson@auroratech.com,2,"We've had billing discrepancies for 3 months.",2024-11-10
+NPS-00427,,nicole.watanabe@protonmail.com,6,"Acceptable for the price point.",2024-11-10
+NPS-00535,75,nicholas.wilson@apexcapital.com,9,"Exactly what we needed for our workflow.",2024-11-10
+NPS-00777,69,anthony.tanaka@medbridgeanalytics.com,7,"Meets most of our requirements.",2024-11-10
+NPS-00784,,fatima.green@gmail.com,8,"Functional but not exciting.",2024-11-10
+NPS-00611,46,diego.fischer@nuvolasrl.com,2,"Account management turnover has been frustrating.",2024-11-11
+NPS-00688,38,anthony.nelson@alpinedataag.com,3,"Onboarding could be much smoother.",2024-11-11
+NPS-00162,25,gary.mitchell@byteforge.com,8,"Great ROI for our organization.",2024-11-12
+NPS-00358,,christopher.wang@yahoo.com,7,"Works fine for our basic needs.",2024-11-12
+NPS-00694,40,jeffrey.white@nightowlsoftware.com,10,"Integrations work flawlessly.",2024-11-12
+NPS-00339,114,jennifer.sato@solarisenergy.com,2,"We've experienced data sync issues multiple times.",2024-11-13
+NPS-00380,49,jeffrey.davis@verdantsystems.com,0,"Data import tools are unreliable.",2024-11-13
+NPS-00736,62,thomas.rodriguez@icloud.com,9,"Our team loves it but finance is pushing back hard on the renewal cost.",2024-11-13
+NPS-00282,24,carlos.davis@yahoo.com,7,"Highly recommend to any growing team.",2024-11-14
+NPS-00394,29,donna.nguyen@nexteradigital.com,0,"We've experienced data sync issues multiple times.",2024-11-14
+NPS-00495,108,jessica.müller@hotmail.com,0,"We've had billing discrepancies for 3 months.",2024-11-14
+NPS-00647,,paul.robinson@outlook.com,8,"Works fine for our basic needs.",2024-11-14
+NPS-00655,58,emily.tanaka@gmail.com,2,"Reporting module needs significant improvement.",2024-11-14
+NPS-00482,34,andrew.brown@vantasoftware.com,7,"Best tool we've used for data management.",2024-11-16
+NPS-00638,26,wei.miller@outlook.com,10,"Love the new dashboard features!",2024-11-16
+NPS-00239,81,linda.baker@pacificwealth.com,3,"Multi-team permissions are too basic.",2024-11-17
+NPS-00539,23,sarah.nguyen@fastmail.com,9,"Highly recommend to any growing team.",2024-11-17
+NPS-00564,100,david.liu@nordicshops.com,6,"Decent product, nothing exceptional.",2024-11-17
+NPS-00614,80,mei.costa@fortiscapitalag.com,7,"Support team is always responsive and helpful.",2024-11-17
+NPS-00355,22,emily.davis@zephyranalytics.com,1,"Documentation is outdated in several areas.",2024-11-19
+NPS-00710,,nancy.taylor@outlook.com,1,"Pricing has increased significantly, hard to justify.",2024-11-20
+NPS-00196,28,helen.scott@silverlinetech.com,5,"Solid foundation, needs more polish.",2024-11-21
+NPS-00277,50,brian.kim@yahoo.com,2,"Price increase without corresponding feature improvements.",2024-11-21
+NPS-00336,86,gary.lopez@icloud.com,6,"Functional but not exciting.",2024-11-21
+NPS-00437,,jeffrey.miller@protonmail.com,6,"Gets the job done but could be better.",2024-11-21
+NPS-00613,32,laura.dasilva@outlook.com,0,"Billing issues took weeks to resolve.",2024-11-21
+NPS-00266,15,william.hernandez@freshstartlabs.com,9,"Great product, very intuitive interface.",2024-11-22
+NPS-00328,65,benjamin.suzuki@aethermedical.com,10,"The mobile experience is surprisingly good.",2024-11-22
+NPS-00360,16,anna.johnson@fastmail.com,3,"Missing key integrations with our CRM.",2024-11-22
+NPS-00384,,mark.walker@protonmail.com,7,"Support team is always responsive and helpful.",2024-11-22
+NPS-00303,118,scott.clark@vanguardadvisory.com,0,"We've experienced data sync issues multiple times.",2024-11-23
+NPS-00497,73,christine.lewis@gmail.com,1,"Price increase without corresponding feature improvements.",2024-11-23
+NPS-00563,95,priya.park@urbanmart.com,1,"Support response times have gotten worse.",2024-11-23
+NPS-00179,,dennis.walker@outlook.com,8,"Works fine for our basic needs.",2024-11-24
+NPS-00186,70,jeffrey.green@hotmail.com,1,"Onboarding could be much smoother.",2024-11-24
+NPS-00271,101,timothy.allen@pacificmart.com,1,"We keep getting charged for users who left.",2024-11-24
+NPS-00326,58,patrick.martinez@edgepointsystems.com,1,"Missing key integrations with our CRM.",2024-11-24
+NPS-00530,57,brian.lee@protonmail.com,9,"Customer success team really understands our needs.",2024-11-24
+NPS-00576,66,rebecca.roberts@novacarediagnostics.com,0,"Support response times have gotten worse.",2024-11-24
+NPS-00589,30,barbara.bianchi@hotmail.com,7,"Love the new dashboard features!",2024-11-24
+NPS-00177,90,daniel.russo@rhineindustrial.com,2,"Data import tools are unreliable.",2024-11-25
+NPS-00170,21,hiroshi.walker@obsidiangroup.com,0,"The recent UI changes are confusing.",2024-11-26
+NPS-00413,,valentina.ramirez@hotmail.com,2,"Billing issues took weeks to resolve.",2024-11-26
+NPS-00781,32,fatima.chen@hotmail.com,10,"Support team is always responsive and helpful.",2024-11-26
+NPS-00485,32,raj.oliveira@arcustechnologies.com,7,"Best tool we've used for data management.",2024-11-27
+NPS-00615,82,joseph.yamamoto@finovagroup.com,1,"Documentation is outdated in several areas.",2024-11-27
+NPS-00204,15,gary.nguyen@freshstartlabs.com,7,"Impressed with the security features.",2024-11-28
+NPS-00489,89,gregory.dasilva@euroforgegmbh.com,5,"Gets the job done but could be better.",2024-11-28
+NPS-00721,17,sarah.schneider@tinystack.com,0,"Pricing has increased significantly, hard to justify.",2024-11-28
+NPS-00268,,scott.thomas@protonmail.com,2,"Price increase without corresponding feature improvements.",2024-11-29
+NPS-00616,69,gary.lee@medbridgeanalytics.com,3,"API rate limits are too restrictive.",2024-11-29
+NPS-00247,114,kathleen.nelson@gmail.com,2,"Data import tools are unreliable.",2024-11-30
+NPS-00455,8,betty.garcia@summitfinancial.com,6,"Functional but not exciting.",2024-11-30
+NPS-00693,21,steven.li@obsidiangroup.com,6,"Gets the job done but could be better.",2024-11-30
+NPS-00168,103,joseph.ferreira@gmail.com,1,"Documentation is outdated in several areas.",2024-12-01
+NPS-00456,2,kevin.clark@meridianhealthsystems.com,10,"Great product, very intuitive interface.",2024-12-01
+NPS-00473,92,carol.torres@pacificaindustrial.com,2,"Account management turnover has been frustrating.",2024-12-02
+NPS-00322,64,betty.mitchell@healthgrid.com,10,"Amazing tool when it works. Downtime last month cost us a major client.",2024-12-03
+NPS-00285,25,donald.williams@yahoo.com,6,"Good product with room for improvement.",2024-12-04
+NPS-00434,,mary.kumar@zoho.com,8,"Gets the job done but could be better.",2024-12-04
+NPS-00499,107,gary.adams@learnsphere.com,10,"Saves our team hours every week.",2024-12-04
+NPS-00666,57,christopher.wang@wavelengthai.com,5,"Acceptable for the price point.",2024-12-04
+NPS-00173,58,george.roberts@edgepointsystems.com,9,"The API is well-designed and easy to work with.",2024-12-05
+NPS-00191,51,benjamin.bianchi@cirruslogicsystems.com,0,"Reporting module needs significant improvement.",2024-12-05
+NPS-00287,111,emily.li@spectrumstudios.com,0,"The recent UI changes are confusing.",2024-12-05
+NPS-00448,77,brenda.martinez@sterlingwealth.com,7,"Clean UI, fast performance.",2024-12-05
+NPS-00596,27,ronald.white@cloudpeaksoftware.com,6,"Gets the job done but could be better.",2024-12-05
+NPS-00746,69,elizabeth.hall@medbridgeanalytics.com,2,"Billing issues took weeks to resolve.",2024-12-05
+NPS-00280,93,edward.rossi@andeanmanufacturing.com,3,"Feature requests seem to go into a black hole.",2024-12-06
+NPS-00359,77,sarah.zhang@sterlingwealth.com,5,"Acceptable for the price point.",2024-12-06
+NPS-00378,91,sandra.watanabe@kantomanufacturing.com,5,"Acceptable for the price point.",2024-12-06
+NPS-00234,15,nancy.davis@outlook.com,7,"Excellent value for the price.",2024-12-08
+NPS-00486,61,joseph.wilson@carepathsystems.com,6,"Functional but not exciting.",2024-12-08
+NPS-00712,30,kathleen.wilson@fastmail.com,7,"Saves our team hours every week.",2024-12-08
+NPS-00782,21,kenneth.chen@yahoo.com,10,"Saves our team hours every week.",2024-12-08
+NPS-00251,17,jessica.rodriguez@icloud.com,10,"Support team is always responsive and helpful.",2024-12-09
+NPS-00797,104,valentina.rodriguez@beaconretail.com,3,"We've had billing discrepancies for 3 months.",2024-12-09
+NPS-00547,71,joshua.white@truehealthcorp.com,8,"Customer success team really understands our needs.",2024-12-10
+NPS-00711,96,charles.schneider@outlook.com,5,"Functional but not exciting.",2024-12-10
+NPS-00430,75,sven.anderson@zoho.com,7,"Clean UI, fast performance.",2024-12-11
+NPS-00183,105,elizabeth.perez@edupath.com,3,"Data import tools are unreliable.",2024-12-12
+NPS-00429,17,richard.sato@tinystack.com,4,"Onboarding could be much smoother.",2024-12-12
+NPS-00733,23,kimberly.moore@nebulasystems.com,2,"We've experienced data sync issues multiple times.",2024-12-12
+NPS-00659,25,sven.martin@byteforge.com,8,"Average experience overall.",2024-12-13
+NPS-00738,69,jonathan.rodriguez@medbridgeanalytics.com,7,"Great product, very intuitive interface.",2024-12-13
+NPS-00297,16,christine.müller@microsolutions.com,3,"Billing issues took weeks to resolve.",2024-12-14
+NPS-00323,93,sofia.clark@andeanmanufacturing.com,7,"The mobile experience is surprisingly good.",2024-12-14
+NPS-00672,5,raj.dasilva@hotmail.com,3,"Onboarding could be much smoother.",2024-12-14
+NPS-00246,46,fatima.ramirez@nuvolasrl.com,1,"Pricing has increased significantly, hard to justify.",2024-12-15
+NPS-00274,67,samuel.thompson@centrichealth.com,0,"We've experienced data sync issues multiple times.",2024-12-15
+NPS-00390,39,brenda.wilson@orbistech.com,5,"Decent product, nothing exceptional.",2024-12-15
+NPS-00800,40,hiroshi.tanaka@icloud.com,2,"Data import tools are unreliable.",2024-12-15
+NPS-00152,83,ryan.gonzalez@latamfinserv.com,8,"Integrations work flawlessly.",2024-12-16
+NPS-00188,82,nicole.moore@gmail.com,4,"API rate limits are too restrictive.",2024-12-16
+NPS-00190,39,james.li@orbistech.com,8,"Highly recommend to any growing team.",2024-12-16
+NPS-00717,107,samantha.chen@gmail.com,4,"Data import tools are unreliable.",2024-12-16
+NPS-00789,20,thomas.sanchez@polarstartech.com,1,"Data import tools are unreliable.",2024-12-16
+NPS-00330,59,elizabeth.brown@cortexautomation.com,8,"The API is well-designed and easy to work with.",2024-12-17
+NPS-00340,112,robert.bianchi@luminabroadcasting.com,3,"Performance degrades with large datasets.",2024-12-17
+NPS-00487,57,sofia.singh@protonmail.com,4,"Feature requests seem to go into a black hole.",2024-12-17
+NPS-00513,20,stephen.santos@polarstartech.com,8,"Average experience overall.",2024-12-17
+NPS-00514,54,stephen.wright@icloud.com,8,"Integrations work flawlessly.",2024-12-17
+NPS-00795,72,fatima.jackson@wellcoresystems.com,2,"The recent UI changes are confusing.",2024-12-17
+NPS-00146,,akira.moore@gmail.com,7,"Excellent value for the price.",2024-12-18
+NPS-00727,114,george.tanaka@solarisenergy.com,2,"Reporting module needs significant improvement.",2024-12-18
+NPS-00376,9,amanda.garcia@horizonmedia.com,3,"API rate limits are too restrictive.",2024-12-19
+NPS-00391,87,amanda.yamamoto@precisiondynamics.com,5,"Functional but not exciting.",2024-12-19
+NPS-00703,95,dennis.lee@urbanmart.com,8,"Integrations work flawlessly.",2024-12-19
+NPS-00116,,justin.king@gmail.com,7,"Integrations work flawlessly.",2024-12-20
+NPS-00217,114,david.yamamoto@solarisenergy.com,6,"Meets most of our requirements.",2024-12-20
+NPS-00175,88,jonathan.oliveira@steelbridgecorp.com,4,"Performance degrades with large datasets.",2024-12-21
+NPS-00291,68,andrew.jones@pacifichealthsystems.com,1,"Data import tools are unreliable.",2024-12-21
+NPS-00798,,anna.mitchell@gmail.com,7,"Onboarding was smooth and well-documented.",2024-12-21
+NPS-00228,27,joshua.walker@cloudpeaksoftware.com,0,"We've experienced data sync issues multiple times.",2024-12-22
+NPS-00308,63,hans.jones@fastmail.com,3,"The Growth to Scale rename was confusing.",2024-12-22
+NPS-00309,72,stephanie.rodriguez@wellcoresystems.com,9,"Great product, very intuitive interface.",2024-12-22
+NPS-00320,14,ingrid.sato@redwoodmanufacturing.com,5,"Acceptable for the price point.",2024-12-22
+NPS-00517,88,jessica.schneider@steelbridgecorp.com,5,"Works fine for our basic needs.",2024-12-22
+NPS-00635,61,stephanie.kim@gmail.com,1,"Support response times have gotten worse.",2024-12-22
+NPS-00732,54,laura.lopez@omnicorelabs.com,0,"Feature requests seem to go into a black hole.",2024-12-23
+NPS-00150,37,raymond.tanaka@icloud.com,7,"Data export functionality is top-notch.",2024-12-24
+NPS-00386,,brian.perez@yahoo.com,6,"Solid foundation, needs more polish.",2024-12-24
+NPS-00418,62,christopher.wright@vitalityhealthgroup.com,3,"Multi-team permissions are too basic.",2024-12-24
+NPS-00475,41,linda.davis@kineticsystems.com,4,"We've had billing discrepancies for 3 months.",2024-12-24
+NPS-00585,29,sven.baker@nexteradigital.com,7,"Good product with room for improvement.",2024-12-24
+NPS-00420,43,wei.baker@dragoncloud.com,7,"Average experience overall.",2024-12-25
+NPS-00502,63,william.sanchez@biosyncmedical.com,5,"Decent product, nothing exceptional.",2024-12-25
+NPS-00553,12,stephen.miller@pinnacleretail.com,0,"Data import tools are unreliable.",2024-12-25
+NPS-00379,,raj.li@yahoo.com,3,"Feature requests seem to go into a black hole.",2024-12-26
+NPS-00723,60,barbara.harris@medvantage.com,1,"The enterprise tier feels overpriced for what you get.",2024-12-26
+NPS-00404,64,anthony.davis@healthgrid.com,7,"Integrations work flawlessly.",2024-12-27
+NPS-00419,82,robert.green@finovagroup.com,1,"Pricing has increased significantly, hard to justify.",2024-12-27
+NPS-00312,43,nancy.rossi@dragoncloud.com,7,"Data export functionality is top-notch.",2024-12-28
+NPS-00369,10,mark.oliveira@yahoo.com,0,"Data import tools are unreliable.",2024-12-28
+NPS-00719,66,anthony.ramirez@novacarediagnostics.com,7,"Excellent value for the price.",2024-12-28
+NPS-00363,83,edward.wright@latamfinserv.com,6,"Meets most of our requirements.",2024-12-29
+NPS-00399,76,margaret.baker@icloud.com,9,"Saves our team hours every week.",2024-12-29
+NPS-00443,101,aisha.moore@pacificmart.com,4,"Onboarding could be much smoother.",2024-12-29
+NPS-00160,10,matthew.jackson@gmail.com,1,"Missing key integrations with our CRM.",2024-12-30
+NPS-00519,41,kimberly.young@kineticsystems.com,10,"Impressed with the security features.",2024-12-30
+NPS-00544,65,brandon.scott@aethermedical.com,8,"Great product, very intuitive interface.",2024-12-30
+NPS-00631,5,yuki.oliveira@lumindigitalag.com,6,"Solid foundation, needs more polish.",2024-12-30
+NPS-00302,107,robert.garcia@learnsphere.com,4,"Multi-team permissions are too basic.",2025-01-01
+NPS-00501,97,george.martin@gmail.com,3,"The Growth to Scale rename was confusing.",2025-01-01
+NPS-00114,74,brandon.johnson@pulsepointhealth.com,9,"Exactly what we needed for our workflow.",2025-01-02
+NPS-00122,22,michael.davis@zephyranalytics.com,9,"Data export functionality is top-notch.",2025-01-02
+NPS-00249,53,alexander.sanchez@lightspeedinnovations.com,3,"We keep getting charged for users who left.",2025-01-02
+NPS-00799,62,donald.patel@outlook.com,10,"Onboarding was smooth and well-documented.",2025-01-03
+NPS-00112,63,jonathan.weber@biosyncmedical.com,0,"Documentation is outdated in several areas.",2025-01-04
+NPS-00180,92,edward.garcia@pacificaindustrial.com,10,"Integrations work flawlessly.",2025-01-04
+NPS-00373,110,rebecca.brown@amplifymedia.com,5,"Average experience overall.",2025-01-04
+NPS-00702,,kenneth.thomas@zoho.com,8,"Clean UI, fast performance.",2025-01-04
+NPS-00774,61,gregory.sanchez@carepathsystems.com,2,"API rate limits are too restrictive.",2025-01-04
+NPS-00298,53,dennis.singh@lightspeedinnovations.com,7,"Impressed with the security features.",2025-01-05
+NPS-00412,112,maria.baker@protonmail.com,8,"Customer success team really understands our needs.",2025-01-05
+NPS-00518,25,james.oliveira@byteforge.com,2,"Multi-team permissions are too basic.",2025-01-05
+NPS-00582,35,steven.flores@codexdigital.com,1,"Missing key integrations with our CRM.",2025-01-06
+NPS-00686,71,anna.lopez@truehealthcorp.com,10,"Exactly what we needed for our workflow.",2025-01-06
+NPS-00401,97,david.jackson@retailedge.com,4,"We've had billing discrepancies for 3 months.",2025-01-07
+NPS-00520,13,mark.robinson@catalystinnovation.com,8,"Average experience overall.",2025-01-07
+NPS-00761,88,patrick.nelson@steelbridgecorp.com,6,"Functional but not exciting.",2025-01-07
+NPS-00689,82,jason.li@yahoo.com,9,"The API is well-designed and easy to work with.",2025-01-08
+NPS-00222,,nicole.rossi@protonmail.com,6,"Works fine for our basic needs.",2025-01-09
+NPS-00310,40,paul.santos@nightowlsoftware.com,2,"The enterprise tier feels overpriced for what you get.",2025-01-09
+NPS-00512,28,yuki.garcia@silverlinetech.com,10,"Great product, very intuitive interface.",2025-01-09
+NPS-00661,90,sharon.zhang@yahoo.com,6,"Meets most of our requirements.",2025-01-09
+NPS-00775,42,shirley.ferreira@gmail.com,7,"The mobile experience is surprisingly good.",2025-01-09
+NPS-00465,42,karen.jones@zenithai.com,7,"The mobile experience is surprisingly good.",2025-01-10
+NPS-00645,73,susan.flores@hotmail.com,5,"Acceptable for the price point.",2025-01-10
+NPS-00651,118,james.gonzalez@vanguardadvisory.com,6,"Decent product, nothing exceptional.",2025-01-11
+NPS-00747,102,daniel.adams@bazaartech.com,10,"Customer success team really understands our needs.",2025-01-11
+NPS-00791,101,sofia.johnson@pacificmart.com,7,"Clean UI, fast performance.",2025-01-12
+NPS-00120,1,joshua.zhang@quantumdynamics.com,5,"Average experience overall.",2025-01-13
+NPS-00233,26,charles.singh@datastreamai.com,9,"Saves our team hours every week.",2025-01-13
+NPS-00598,75,charles.chen@apexcapital.com,8,"Very reliable platform, minimal downtime.",2025-01-13
+NPS-00683,100,carolyn.rossi@nordicshops.com,10,"Highly recommend to any growing team.",2025-01-13
+NPS-00169,55,thomas.anderson@fluxtech.com,0,"The Growth to Scale rename was confusing.",2025-01-15
+NPS-00313,64,angela.hill@healthgrid.com,10,"Very reliable platform, minimal downtime.",2025-01-15
+NPS-00383,12,kevin.scott@pinnacleretail.com,4,"We've experienced data sync issues multiple times.",2025-01-16
+NPS-00466,80,steven.white@fortiscapitalag.com,0,"Billing issues took weeks to resolve.",2025-01-16
+NPS-00332,83,rebecca.allen@yahoo.com,1,"We keep getting charged for users who left.",2025-01-17
+NPS-00389,80,brandon.mitchell@fortiscapitalag.com,9,"Team adoption was faster than expected.",2025-01-17
+NPS-00441,59,wei.smith@cortexautomation.com,5,"Some features are good, others need work.",2025-01-17
+NPS-00166,107,lisa.russo@learnsphere.com,5,"Average experience overall.",2025-01-19
+NPS-00235,63,mark.garcia@biosyncmedical.com,7,"Saves our team hours every week.",2025-01-19
+NPS-00529,110,carlos.wright@fastmail.com,2,"The recent UI changes are confusing.",2025-01-19
+NPS-00375,114,paul.wilson@fastmail.com,7,"Excellent value for the price.",2025-01-20
+NPS-00460,84,aisha.martinez@trustbankdigital.com,1,"The Growth to Scale rename was confusing.",2025-01-20
+NPS-00572,78,anna.patel@banktechsolutions.com,8,"Acceptable for the price point.",2025-01-20
+NPS-00731,76,karen.suzuki@fidelitybridge.com,4,"Documentation is outdated in several areas.",2025-01-20
+NPS-00335,69,kimberly.bianchi@icloud.com,5,"Solid foundation, needs more polish.",2025-01-21
+NPS-00445,117,scott.davis@icloud.com,8,"Integrations work flawlessly.",2025-01-21
+NPS-00556,51,mark.liu@cirruslogicsystems.com,6,"Decent product, nothing exceptional.",2025-01-21
+NPS-00551,46,christopher.li@nuvolasrl.com,1,"Account management turnover has been frustrating.",2025-01-22
+NPS-00752,4,emily.müller@novatechgmbh.com,10,"Love the new dashboard features!",2025-01-22
+NPS-00263,79,hiroshi.davis@outlook.com,4,"Onboarding could be much smoother.",2025-01-23
+NPS-00275,6,james.walker@icloud.com,4,"Documentation is outdated in several areas.",2025-01-23
+NPS-00698,81,ryan.suzuki@pacificwealth.com,8,"Functional but not exciting.",2025-01-23
+NPS-00724,2,yuki.king@meridianhealthsystems.com,4,"The enterprise tier feels overpriced for what you get.",2025-01-23
+NPS-00288,32,melissa.torres@arcustechnologies.com,9,"Love the recent updates to the reporting module.",2025-01-24
+NPS-00296,,betty.torres@yahoo.com,8,"Saves our team hours every week.",2025-01-24
+NPS-00549,56,ryan.scott@sapientdigital.com,9,"Highly recommend to any growing team.",2025-01-24
+NPS-00133,94,george.king@ironworkssolutions.com,2,"We've experienced data sync issues multiple times.",2025-01-25
+NPS-00134,74,jacob.anderson@pulsepointhealth.com,4,"The enterprise tier feels overpriced for what you get.",2025-01-25
+NPS-00532,54,ingrid.patel@omnicorelabs.com,10,"The API is well-designed and easy to work with.",2025-01-25
+NPS-00423,66,lisa.clark@novacarediagnostics.com,9,"Love the recent updates to the reporting module.",2025-01-26
+NPS-00660,71,michelle.allen@truehealthcorp.com,3,"Billing issues took weeks to resolve.",2025-01-26
+NPS-00764,78,lisa.bianchi@banktechsolutions.com,5,"Solid foundation, needs more polish.",2025-01-26
+NPS-00453,,karen.williams@zoho.com,2,"Feature requests seem to go into a black hole.",2025-01-27
+NPS-00480,43,benjamin.müller@dragoncloud.com,10,"Love the new dashboard features!",2025-01-27
+NPS-00584,11,paul.rivera@stratoscloud.com,5,"Acceptable for the price point.",2025-01-27
+NPS-00226,47,deborah.lewis@digitalbridgesa.com,10,"Exactly what we needed for our workflow.",2025-01-28
+NPS-00531,113,fatima.king@risingsunmedia.com,9,"Support team is always responsive and helpful.",2025-01-28
+NPS-00558,62,james.schmidt@vitalityhealthgroup.com,6,"Solid foundation, needs more polish.",2025-01-28
+NPS-00329,112,benjamin.scott@zoho.com,5,"Functional but not exciting.",2025-01-29
+NPS-00371,15,debra.liu@freshstartlabs.com,0,"We've experienced data sync issues multiple times.",2025-01-29
+NPS-00697,80,dorothy.harris@fortiscapitalag.com,1,"Reporting module needs significant improvement.",2025-01-29
+NPS-00156,26,fatima.singh@datastreamai.com,6,"Gets the job done but could be better.",2025-01-30
+NPS-00353,63,hiroshi.scott@biosyncmedical.com,4,"Documentation is outdated in several areas.",2025-01-30
+NPS-00457,,andrew.campbell@protonmail.com,3,"We keep getting charged for users who left.",2025-01-30
+NPS-00760,117,david.carter@strattonconsulting.com,3,"The Growth to Scale rename was confusing.",2025-01-30
+NPS-00569,37,donna.roberts@pixelwave.com,6,"Functional but not exciting.",2025-01-31
+NPS-00658,80,raymond.rossi@fortiscapitalag.com,2,"We've had billing discrepancies for 3 months.",2025-01-31
+NPS-00221,26,susan.hill@datastreamai.com,5,"Acceptable for the price point.",2025-02-01
+NPS-00522,29,charles.campbell@nexteradigital.com,9,"Data export functionality is top-notch.",2025-02-01
+NPS-00536,32,sarah.kumar@arcustechnologies.com,10,"Data export functionality is top-notch.",2025-02-01
+NPS-00652,91,anna.kumar@kantomanufacturing.com,9,"Data export functionality is top-notch.",2025-02-01
+NPS-00561,52,david.clark@deepfieldai.com,9,"Support team is always responsive and helpful.",2025-02-02
+NPS-00734,13,george.hill@catalystinnovation.com,1,"The Growth to Scale rename was confusing.",2025-02-02
+NPS-00218,97,jack.brown@retailedge.com,7,"The mobile experience is surprisingly good.",2025-02-03
+NPS-00331,15,priya.clark@outlook.com,8,"Support team is always responsive and helpful.",2025-02-03
+NPS-00411,,valentina.kumar@fastmail.com,9,"Technically brilliant but the support experience has been terrible lately.",2025-02-03
+NPS-00626,64,sarah.dasilva@healthgrid.com,0,"The Growth to Scale rename was confusing.",2025-02-03
+NPS-00165,6,william.sanchez@fastmail.com,5,"Meets most of our requirements.",2025-02-04
+NPS-00751,41,amy.kumar@kineticsystems.com,3,"We've experienced data sync issues multiple times.",2025-02-04
+NPS-00201,87,raj.mitchell@precisiondynamics.com,10,"Impressed with the security features.",2025-02-05
+NPS-00284,,brandon.hill@hotmail.com,0,"Feature requests seem to go into a black hole.",2025-02-05
+NPS-00729,38,wei.lopez@alpinedataag.com,0,"Price increase without corresponding feature improvements.",2025-02-05
+NPS-00765,6,amanda.thompson@outlook.com,2,"Reporting module needs significant improvement.",2025-02-05
+NPS-00603,29,wei.schmidt@fastmail.com,10,"Saves our team hours every week.",2025-02-06
+NPS-00209,89,larry.martinez@euroforgegmbh.com,8,"Love the recent updates to the reporting module.",2025-02-07
+NPS-00252,87,samantha.weber@precisiondynamics.com,5,"Gets the job done but could be better.",2025-02-07
+NPS-00321,13,mary.kim@catalystinnovation.com,4,"We've had billing discrepancies for 3 months.",2025-02-07
+NPS-00650,112,larry.adams@luminabroadcasting.com,3,"Onboarding could be much smoother.",2025-02-07
+NPS-00771,,joseph.clark@outlook.com,6,"Decent product, nothing exceptional.",2025-02-07
+NPS-00421,70,thomas.suzuki@saluddigital.com,9,"Great ROI for our organization.",2025-02-08
+NPS-00243,28,william.costa@silverlinetech.com,4,"Data import tools are unreliable.",2025-02-09
+NPS-00325,48,robert.lewis@cloudvista.com,4,"API rate limits are too restrictive.",2025-02-09
+NPS-00483,81,akira.moore@gmail.com,5,"Gets the job done but could be better.",2025-02-09
+NPS-00508,114,ingrid.jones@solarisenergy.com,8,"Support team is always responsive and helpful.",2025-02-09
+NPS-00526,101,brenda.bianchi@pacificmart.com,10,"Love the new dashboard features!",2025-02-09
+NPS-00552,67,donald.liu@centrichealth.com,0,"Missing key integrations with our CRM.",2025-02-10
+NPS-00580,108,steven.hill@zoho.com,2,"Documentation is outdated in several areas.",2025-02-10
+NPS-00604,6,kimberly.rossi@clearviewanalytics.com,5,"Good product with room for improvement.",2025-02-10
+NPS-00176,4,fatima.campbell@novatechgmbh.com,10,"The API is well-designed and easy to work with.",2025-02-12
+NPS-00790,68,maria.bianchi@yahoo.com,8,"Meets most of our requirements.",2025-02-12
+NPS-00102,,sharon.thomas@outlook.com,10,"Saves our team hours every week.",2025-02-13
+NPS-00334,60,lisa.robinson@outlook.com,2,"We've experienced data sync issues multiple times.",2025-02-14
+NPS-00492,5,cynthia.rodriguez@lumindigitalag.com,0,"The Growth to Scale rename was confusing.",2025-02-14
+NPS-00787,112,catherine.davis@luminabroadcasting.com,4,"Pricing has increased significantly, hard to justify.",2025-02-14
+NPS-00126,40,jonathan.miller@nightowlsoftware.com,9,"Best tool we've used for data management.",2025-02-15
+NPS-00137,43,kenneth.scott@dragoncloud.com,5,"Some features are good, others need work.",2025-02-15
+NPS-00431,11,sofia.clark@yahoo.com,0,"The recent UI changes are confusing.",2025-02-15
+NPS-00593,28,janet.clark@icloud.com,2,"The Growth to Scale rename was confusing.",2025-02-16
+NPS-00704,20,janet.wright@polarstartech.com,0,"Performance degrades with large datasets.",2025-02-16
+NPS-00290,57,anthony.clark@wavelengthai.com,5,"Gets the job done but could be better.",2025-02-17
+NPS-00462,41,hans.nguyen@kineticsystems.com,0,"The Growth to Scale rename was confusing.",2025-02-17
+NPS-00548,18,paul.gonzalez@brightfieldcorp.com,8,"Love the recent updates to the reporting module.",2025-02-17
+NPS-00253,83,justin.torres@latamfinserv.com,7,"Onboarding was smooth and well-documented.",2025-02-18
+NPS-00294,,raj.dasilva@outlook.com,9,"Love the recent updates to the reporting module.",2025-02-18
+NPS-00562,,anthony.rossi@yahoo.com,9,"The mobile experience is surprisingly good.",2025-02-18
+NPS-00583,109,stephen.dasilva@protonmail.com,1,"Onboarding could be much smoother.",2025-02-18
+NPS-00662,98,raj.fischer@freshmarketdigital.com,2,"We keep getting charged for users who left.",2025-02-18
+NPS-00155,10,catherine.rodriguez@vertexengineering.com,8,"The API is well-designed and easy to work with.",2025-02-20
+NPS-00405,66,patrick.king@novacarediagnostics.com,7,"Meets most of our requirements.",2025-02-20
+NPS-00755,98,brenda.chen@hotmail.com,5,"Gets the job done but could be better.",2025-02-20
+NPS-00786,32,jason.ferreira@arcustechnologies.com,10,"Data export functionality is top-notch.",2025-02-20
+NPS-00101,46,benjamin.robinson@nuvolasrl.com,1,"Feature requests seem to go into a black hole.",2025-02-21
+NPS-00107,60,mary.fischer@outlook.com,3,"Missing key integrations with our CRM.",2025-02-21
+NPS-00527,35,rachel.garcia@protonmail.com,4,"The Growth to Scale rename was confusing.",2025-02-21
+NPS-00612,118,matthew.hill@vanguardadvisory.com,4,"We keep getting charged for users who left.",2025-02-21
+NPS-00147,24,linda.baker@gmail.com,7,"Impressed with the security features.",2025-02-22
+NPS-00225,107,paul.roberts@learnsphere.com,9,"Impressed with the security features.",2025-02-22
+NPS-00567,33,charles.park@hotmail.com,3,"Multi-team permissions are too basic.",2025-02-22
+NPS-00742,28,priya.robinson@silverlinetech.com,7,"Gets the job done but could be better.",2025-02-22
+NPS-00773,70,amy.young@saluddigital.com,10,"Team adoption was faster than expected.",2025-02-22
+NPS-00728,92,wei.brown@pacificaindustrial.com,1,"The Growth to Scale rename was confusing.",2025-02-23
+NPS-00740,36,jessica.hill@synthetixgmbh.com,10,"Exactly what we needed for our workflow.",2025-02-23
+NPS-00687,48,christopher.suzuki@fastmail.com,2,"The Growth to Scale rename was confusing.",2025-02-24
+NPS-00588,103,angela.nguyen@zoho.com,0,"Data import tools are unreliable.",2025-02-25
+NPS-00365,7,richard.brown@prismsoftware.com,6,"Solid foundation, needs more polish.",2025-02-26
+NPS-00533,34,rachel.dasilva@hotmail.com,0,"Pricing has increased significantly, hard to justify.",2025-02-26
+NPS-00679,7,brenda.robinson@prismsoftware.com,10,"Customer success team really understands our needs.",2025-02-26
+NPS-00212,35,deborah.white@codexdigital.com,8,"Solid foundation, needs more polish.",2025-02-27
+NPS-00618,57,wei.ramirez@wavelengthai.com,9,"Data export functionality is top-notch.",2025-02-27
+NPS-00639,39,michael.oliveira@orbistech.com,9,"Technically brilliant but the support experience has been terrible lately.",2025-02-27
+NPS-00136,38,frank.gonzalez@alpinedataag.com,2,"Feature requests seem to go into a black hole.",2025-03-01
+NPS-00260,,eric.singh@outlook.com,8,"Data export functionality is top-notch.",2025-03-01
+NPS-00426,,larry.santos@gmail.com,2,"We keep getting charged for users who left.",2025-03-02
+NPS-00592,98,betty.anderson@freshmarketdigital.com,7,"Some features are good, others need work.",2025-03-02
+NPS-00642,117,gary.tanaka@strattonconsulting.com,2,"Reporting module needs significant improvement.",2025-03-02
+NPS-00125,101,carol.singh@pacificmart.com,9,"Exactly what we needed for our workflow.",2025-03-03
+NPS-00317,30,margaret.davis@corestacksolutions.com,2,"Performance degrades with large datasets.",2025-03-03
+NPS-00216,2,jessica.sato@meridianhealthsystems.com,10,"Saves our team hours every week.",2025-03-04
+NPS-00368,82,larry.martin@yahoo.com,5,"Average experience overall.",2025-03-04
+NPS-00396,103,raj.davis@mercadoonline.com,8,"Love the recent updates to the reporting module.",2025-03-04
+NPS-00571,48,elizabeth.oliveira@cloudvista.com,7,"Integrations work flawlessly.",2025-03-04
+NPS-00744,116,patrick.green@renewabledynamics.com,5,"Solid foundation, needs more polish.",2025-03-04
+NPS-00677,36,nancy.miller@icloud.com,10,"Integrations work flawlessly.",2025-03-05
+NPS-00759,41,michelle.ferreira@kineticsystems.com,9,"Clean UI, fast performance.",2025-03-05
+NPS-00105,95,hans.taylor@gmail.com,2,"Support response times have gotten worse.",2025-03-06
+NPS-00428,65,joseph.gonzalez@aethermedical.com,4,"API rate limits are too restrictive.",2025-03-06
+NPS-00109,62,anna.jackson@vitalityhealthgroup.com,5,"Some features are good, others need work.",2025-03-07
+NPS-00178,110,debra.choi@amplifymedia.com,10,"Great product, very intuitive interface.",2025-03-07
+NPS-00395,103,steven.chen@mercadoonline.com,1,"Onboarding could be much smoother.",2025-03-07
+NPS-00646,103,sven.white@mercadoonline.com,4,"The Growth to Scale rename was confusing.",2025-03-07
+NPS-00707,82,susan.williams@finovagroup.com,7,"Gets the job done but could be better.",2025-03-08
+NPS-00737,10,kevin.sanchez@vertexengineering.com,7,"Good product with room for improvement.",2025-03-08
+NPS-00123,15,benjamin.fischer@freshstartlabs.com,0,"Multi-team permissions are too basic.",2025-03-10
+NPS-00223,65,paul.carter@icloud.com,9,"Exactly what we needed for our workflow.",2025-03-10
+NPS-00215,8,maria.tanaka@summitfinancial.com,10,"Love the recent updates to the reporting module.",2025-03-11
+NPS-00469,98,diego.ferreira@freshmarketdigital.com,2,"Support response times have gotten worse.",2025-03-11
+NPS-00629,101,sofia.park@fastmail.com,7,"Gets the job done but could be better.",2025-03-11
+NPS-00722,97,joseph.wang@retailedge.com,7,"Solid foundation, needs more polish.",2025-03-11
+NPS-00245,89,jacob.yamamoto@euroforgegmbh.com,1,"Documentation is outdated in several areas.",2025-03-14
+NPS-00333,,jacob.adams@hotmail.com,10,"Team adoption was faster than expected.",2025-03-14
+NPS-00720,,sandra.zhang@fastmail.com,8,"Impressed with the security features.",2025-03-15
+NPS-00131,46,carol.liu@outlook.com,9,"Love the new dashboard features!",2025-03-16
+NPS-00214,61,justin.watanabe@carepathsystems.com,3,"Account management turnover has been frustrating.",2025-03-16
+NPS-00292,,nicholas.clark@zoho.com,9,"Love the recent updates to the reporting module.",2025-03-16
+NPS-00348,93,brian.singh@andeanmanufacturing.com,6,"Good product with room for improvement.",2025-03-16
+NPS-00111,105,angela.kumar@edupath.com,6,"Decent product, nothing exceptional.",2025-03-17
+NPS-00163,87,carlos.fischer@precisiondynamics.com,1,"We've experienced data sync issues multiple times.",2025-03-17
+NPS-00478,64,mei.sanchez@healthgrid.com,3,"Reporting module needs significant improvement.",2025-03-17
+NPS-00763,112,matthew.rivera@luminabroadcasting.com,10,"The API is well-designed and easy to work with.",2025-03-17
+NPS-00142,,gary.williams@yahoo.com,2,"Data import tools are unreliable.",2025-03-18
+NPS-00521,21,katherine.watanabe@obsidiangroup.com,10,"Our team loves it but finance is pushing back hard on the renewal cost.",2025-03-18
+NPS-00236,104,kenneth.weber@gmail.com,0,"Multi-team permissions are too basic.",2025-03-19
+NPS-00425,107,stephen.allen@learnsphere.com,1,"Account management turnover has been frustrating.",2025-03-19
+NPS-00464,92,ryan.johnson@pacificaindustrial.com,4,"The enterprise tier feels overpriced for what you get.",2025-03-19
+NPS-00511,34,carolyn.thomas@icloud.com,3,"The Growth to Scale rename was confusing.",2025-03-19
+NPS-00691,46,deborah.ramirez@zoho.com,7,"Great product, very intuitive interface.",2025-03-19
+NPS-00104,25,emily.roberts@byteforge.com,2,"API rate limits are too restrictive.",2025-03-20
+NPS-00345,31,alexander.schneider@hotmail.com,7,"Love the recent updates to the reporting module.",2025-03-20
+NPS-00193,14,emma.kim@redwoodmanufacturing.com,6,"Gets the job done but could be better.",2025-03-21
+NPS-00574,95,lisa.ramirez@urbanmart.com,7,"Team adoption was faster than expected.",2025-03-22
+NPS-00714,16,edward.sato@microsolutions.com,6,"Meets most of our requirements.",2025-03-22
+NPS-00382,72,edward.nelson@yahoo.com,1,"Account management turnover has been frustrating.",2025-03-23
+NPS-00471,39,gregory.allen@orbistech.com,0,"Multi-team permissions are too basic.",2025-03-23
+NPS-00590,9,sofia.nelson@gmail.com,10,"Impressed with the security features.",2025-03-24
+NPS-00397,10,dorothy.nguyen@vertexengineering.com,9,"Impressed with the security features.",2025-03-25
+NPS-00224,72,wei.chen@wellcoresystems.com,2,"Documentation is outdated in several areas.",2025-03-26
+NPS-00119,35,jeffrey.suzuki@codexdigital.com,10,"The mobile experience is surprisingly good.",2025-03-27
+NPS-00273,55,christine.harris@fluxtech.com,7,"Data export functionality is top-notch.",2025-03-27
+NPS-00490,46,anthony.zhang@nuvolasrl.com,3,"Feature requests seem to go into a black hole.",2025-03-27
+NPS-00524,101,jack.wright@outlook.com,10,"Great ROI for our organization.",2025-03-27
+NPS-00643,32,emily.clark@arcustechnologies.com,9,"Very reliable platform, minimal downtime.",2025-03-27
+NPS-00145,88,patrick.singh@yahoo.com,8,"Acceptable for the price point.",2025-03-28
+NPS-00617,63,stephen.perez@biosyncmedical.com,10,"The mobile experience is surprisingly good.",2025-03-28
+NPS-00467,96,christine.suzuki@protonmail.com,9,"Clean UI, fast performance.",2025-03-29
+NPS-00696,6,sharon.hall@clearviewanalytics.com,9,"Integrations work flawlessly.",2025-03-29
+NPS-00149,112,steven.thompson@gmail.com,0,"The enterprise tier feels overpriced for what you get.",2025-03-30
+NPS-00370,59,anthony.martin@cortexautomation.com,2,"Missing key integrations with our CRM.",2025-03-30
+NPS-00641,7,pamela.santos@prismsoftware.com,2,"We've had billing discrepancies for 3 months.",2025-03-30
+NPS-00769,8,edward.costa@summitfinancial.com,6,"Gets the job done but could be better.",2025-03-30
