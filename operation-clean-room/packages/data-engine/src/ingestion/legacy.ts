@@ -1,3 +1,5 @@
+import { join } from 'node:path';
+import { loadXML } from './xml-loader.js';
 import { LegacyInvoice } from './types.js';
 
 /**
@@ -30,6 +32,24 @@ import { LegacyInvoice } from './types.js';
  * @returns Normalized legacy invoice records
  */
 export async function loadLegacyInvoices(dataDir: string): Promise<LegacyInvoice[]> {
-  // TODO: Implement - load from legacy_invoices.xml, normalize, and return
-  throw new Error('Not implemented');
+  const filePath = join(dataDir, 'legacy_invoices.xml');
+
+  const doc = await loadXML<{
+    invoices: {
+      invoice: LegacyInvoice[];
+    };
+  }>(filePath, {
+    arrayTags: ['invoice'],
+  });
+
+  return doc.invoices.invoice.map((invoice) => ({
+    id: invoice.id,
+    customer_name: invoice.customer_name,
+    amount: Number(invoice.amount),
+    currency: invoice.currency,
+    date: invoice.date,
+    status: invoice.status as 'paid' | 'unpaid' | 'overdue' | 'void' | 'partially_paid',
+    description: invoice.description || null,
+    payment_ref: invoice.payment_ref || null,
+  }));
 }
