@@ -3,6 +3,7 @@ import { healthRouter } from './health.js';
 import { reconciliationRouter } from './reconciliation.js';
 import { metricsRouter } from './metrics.js';
 import { scenariosRouter } from './scenarios.js';
+import testRouter from './test.js';
 
 /**
  * Register all route modules on the Express application.
@@ -15,4 +16,5 @@ export function registerRoutes(app: Express): void {
   app.use('/api/reconciliation', reconciliationRouter);
   app.use('/api/metrics', metricsRouter);
   app.use('/api/scenarios', scenariosRouter);
+  app.use('/api/test', testRouter);
 }
