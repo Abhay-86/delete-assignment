@@ -8,6 +8,7 @@ import {
   Sliders,
   FileSearch,
   Terminal,
+  Copy,
 } from 'lucide-react';
 import { clsx } from 'clsx';
 
@@ -18,13 +19,14 @@ interface NavItem {
 }
 
 const navigation: NavItem[] = [
-  { to: '/revenue', label: 'Revenue', icon: <DollarSign size={18} /> },
-  { to: '/discrepancies', label: 'Discrepancies', icon: <AlertTriangle size={18} /> },
-  { to: '/cohorts', label: 'Cohorts', icon: <Users size={18} /> },
-  { to: '/health', label: 'Customer Health', icon: <Activity size={18} /> },
-  { to: '/pipeline', label: 'Pipeline', icon: <GitBranch size={18} /> },
-  { to: '/scenarios', label: 'Scenarios', icon: <Sliders size={18} /> },
-  { to: '/audit', label: 'Audit Trail', icon: <FileSearch size={18} /> },
+  { to: '/revenue',      label: 'Revenue',        icon: <DollarSign size={18} /> },
+  { to: '/discrepancies', label: 'Discrepancies',  icon: <AlertTriangle size={18} /> },
+  { to: '/duplicates',   label: 'Duplicates',      icon: <Copy size={18} /> },
+  { to: '/cohorts',      label: 'Cohorts',         icon: <Users size={18} /> },
+  { to: '/health',       label: 'Customer Health', icon: <Activity size={18} /> },
+  { to: '/pipeline',     label: 'Pipeline',        icon: <GitBranch size={18} /> },
+  { to: '/scenarios',    label: 'Scenarios',       icon: <Sliders size={18} /> },
+  { to: '/audit',        label: 'Audit Trail',     icon: <FileSearch size={18} /> },
 ];
 
 export function Sidebar() {
