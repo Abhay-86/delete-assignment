@@ -1,5 +1,6 @@
 import type { RevenueReconciliationResult } from './types.js';
 import type { ChargebeeSubscription, StripePayment, FXRate } from '../ingestion/types.js';
+import { convertToUSD } from '../utils/fx.js';
 
 /**
  * Revenue reconciliation across billing systems.
@@ -44,34 +45,6 @@ export interface RevenueReconciliationOptions {
 }
 
 const DEFAULT_TOLERANCE_USD = 0.50;
-
-/**
- * Convert amount to USD using historical FX rates.
- */
-function convertToUSD(
-  amount: number,
-  currency: string,
-  date: string,
-  fxRates: FXRate[],
-): number {
-  if (currency === 'USD') return amount;
-
-  // Find the closest FX rate by date
-  const targetDate = new Date(date);
-  const sortedRates = fxRates
-    .filter(rate => new Date(rate.date) <= targetDate)
-    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
-
-  const fxRate = sortedRates[0];
-  if (!fxRate) return amount; // No FX data available
-
-  const rate = currency.toLowerCase() === 'eur' ? fxRate.eur_usd :
-               currency.toLowerCase() === 'gbp' ? fxRate.gbp_usd :
-               currency.toLowerCase() === 'jpy' ? fxRate.jpy_usd :
-               currency.toLowerCase() === 'aud' ? fxRate.aud_usd : 1;
-
-  return amount * rate;
-}
 
 /**
  * Calculate expected revenue from active subscriptions for a given period.
@@ -154,7 +127,7 @@ export function calculateExpectedRevenue(
     const usdAmount = convertToUSD(
       expectedAmount,
       subscription.plan.currency,
-      subscription.current_term_start,
+      new Date(subscription.current_term_start),
       fxRates,
     );
 
@@ -190,7 +163,7 @@ export function calculateActualRevenue(
       const usdAmount = convertToUSD(
         payment.amount,
         payment.currency,
-        payment.payment_date,
+        new Date(payment.payment_date),
         fxRates,
       );
 
