@@ -1,4 +1,5 @@
 import type { MatchResult, MatchConfidence } from './types.js';
+import type { SalesforceAccount, ChargebeeSubscription, StripePayment } from '../ingestion/types.js';
 
 /**
  * Fuzzy matching engine for cross-system entity resolution.
@@ -41,6 +42,177 @@ export interface MatchOptions {
   allowMultipleMatches?: boolean;
 }
 
+const DEFAULT_OPTIONS: Required<Pick<MatchOptions, 'threshold' | 'idWeight' | 'domainWeight' | 'nameWeight'>> = {
+  threshold: 0.7,
+  idWeight: 1.0,
+  domainWeight: 0.9,
+  nameWeight: 0.6,
+};
+
+/**
+ * Normalize company name for matching.
+ */
+function normalizeCompanyName(name: string): string {
+  return name
+    .toLowerCase()
+    .trim()
+    .replace(/\b(inc|corp|corporation|ltd|llc|limited|gmbh|ag|sa|srl|bv)\b\.?/g, '')
+    .replace(/[^\w\s]/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
+/**
+ * Extract domain from website or email.
+ */
+function extractDomain(input: string): string | null {
+  if (!input) return null;
+  
+  // Handle email format
+  if (input.includes('@')) {
+    return input.split('@')[1]?.toLowerCase() || null;
+  }
+  
+  // Handle website format
+  const match = input.match(/(?:https?:\/\/)?(?:www\.)?([^\/\s]+)/);
+  return match?.[1]?.toLowerCase() || null;
+}
+
+/**
+ * Calculate Levenshtein distance between two strings.
+ */
+function levenshteinDistance(a: string, b: string): number {
+  const matrix: number[][] = Array(b.length + 1)
+    .fill(0)
+    .map(() => Array(a.length + 1).fill(0));
+
+  for (let i = 0; i <= a.length; i++) {
+    matrix[0]![i] = i;
+  }
+  for (let j = 0; j <= b.length; j++) {
+    matrix[j]![0] = j;
+  }
+
+  for (let j = 1; j <= b.length; j++) {
+    for (let i = 1; i <= a.length; i++) {
+      const indicator = a[i - 1] === b[j - 1] ? 0 : 1;
+      matrix[j]![i] = Math.min(
+        matrix[j]![i - 1]! + 1, // deletion
+        matrix[j - 1]![i]! + 1, // insertion
+        matrix[j - 1]![i - 1]! + indicator, // substitution
+      );
+    }
+  }
+
+  return matrix[b.length]![a.length]!;
+}
+
+/**
+ * Calculate string similarity (0-1, where 1 is perfect match).
+ */
+function stringSimilarity(a: string, b: string): number {
+  if (a === b) return 1;
+  if (!a || !b) return 0;
+
+  const maxLength = Math.max(a.length, b.length);
+  const distance = levenshteinDistance(a, b);
+  return 1 - (distance / maxLength);
+}
+
+/**
+ * Calculate match confidence between Salesforce account and Chargebee subscription.
+ */
+export function matchSalesforceToChargebee(
+  account: SalesforceAccount,
+  subscription: ChargebeeSubscription,
+  options: MatchOptions = {},
+): MatchConfidence {
+  const opts = { ...DEFAULT_OPTIONS, ...options };
+  const matchedFields: string[] = [];
+  const unmatchedFields: string[] = [];
+  let totalScore = 0;
+  let totalWeight = 0;
+
+  // 1. Exact ID match (highest confidence)
+  if (account.chargebee_customer_id && account.chargebee_customer_id === subscription.customer.customer_id) {
+    matchedFields.push('chargebee_customer_id');
+    totalScore += opts.idWeight;
+    totalWeight += opts.idWeight;
+  } else if (account.chargebee_customer_id) {
+    unmatchedFields.push('chargebee_customer_id');
+  }
+
+  // 2. Domain/website matching
+  const accountDomain = extractDomain(account.website);
+  const subscriptionDomain = extractDomain(subscription.customer.email);
+  
+  if (accountDomain && subscriptionDomain && accountDomain === subscriptionDomain) {
+    matchedFields.push('domain');
+    totalScore += opts.domainWeight;
+  } else {
+    unmatchedFields.push('domain');
+  }
+  totalWeight += opts.domainWeight;
+
+  // 3. Company name similarity
+  const normalizedAccountName = normalizeCompanyName(account.account_name);
+  const normalizedCompanyName = normalizeCompanyName(subscription.customer.company);
+  const nameSimilarity = stringSimilarity(normalizedAccountName, normalizedCompanyName);
+  
+  if (nameSimilarity > 0.8) {
+    matchedFields.push('company_name');
+  } else {
+    unmatchedFields.push('company_name');
+  }
+  totalScore += nameSimilarity * opts.nameWeight;
+  totalWeight += opts.nameWeight;
+
+  const confidence = totalWeight > 0 ? totalScore / totalWeight : 0;
+
+  return {
+    score: Math.max(0, Math.min(1, confidence)),
+    matchedFields,
+    unmatchedFields,
+  };
+}
+
+/**
+ * Find best matches between Salesforce accounts and Chargebee subscriptions.
+ */
+export function findAccountMatches(
+  accounts: SalesforceAccount[],
+  subscriptions: ChargebeeSubscription[],
+  options: MatchOptions = {},
+): MatchResult[] {
+  const opts = { ...DEFAULT_OPTIONS, ...options };
+  const matches: MatchResult[] = [];
+
+  for (const account of accounts) {
+    for (const subscription of subscriptions) {
+      const confidence = matchSalesforceToChargebee(account, subscription, options);
+      
+      if (confidence.score >= opts.threshold) {
+        matches.push({
+          entityA: {
+            id: account.account_id,
+            source: 'salesforce',
+            data: account,
+          },
+          entityB: {
+            id: subscription.subscription_id,
+            source: 'chargebee',
+            data: subscription,
+          },
+          confidence,
+        });
+      }
+    }
+  }
+
+  // Sort by confidence score (highest first)
+  return matches.sort((a, b) => b.confidence.score - a.confidence.score);
+}
+
 /**
  * Match entities across two data sources using fuzzy matching.
  *
@@ -69,6 +241,47 @@ export async function calculateConfidence(
   entityA: Record<string, unknown>,
   entityB: Record<string, unknown>,
 ): Promise<MatchConfidence> {
-  // TODO: Implement composite confidence scoring
-  throw new Error('Not implemented');
+  const matchedFields: string[] = [];
+  const unmatchedFields: string[] = [];
+  let score = 0;
+
+  // Extract fields from entities
+  const nameA = String(entityA.name || entityA.account_name || '');
+  const nameB = String(entityB.name || entityB.account_name || (entityB as any).customer?.company || '');
+  const domainA = extractDomain(String(entityA.domain || entityA.website || ''));
+  const domainB = extractDomain(String(entityB.domain || entityB.website || ''));
+
+  // Domain matching (60% weight)
+  if (domainA && domainB) {
+    if (domainA.toLowerCase() === domainB.toLowerCase()) {
+      score += 0.6;
+      matchedFields.push('domain');
+    } else {
+      unmatchedFields.push('domain');
+    }
+  }
+
+  // Company name matching (40% weight)
+  if (nameA && nameB) {
+    const normalizedA = normalizeCompanyName(nameA);
+    const normalizedB = normalizeCompanyName(nameB);
+    
+    // Calculate similarity using Levenshtein distance
+    const maxLen = Math.max(normalizedA.length, normalizedB.length);
+    const distance = levenshteinDistance(normalizedA, normalizedB);
+    const similarity = maxLen > 0 ? (maxLen - distance) / maxLen : 0;
+    
+    if (similarity > 0.7) {
+      score += 0.4 * similarity;
+      matchedFields.push('company_name');
+    } else {
+      unmatchedFields.push('company_name');
+    }
+  }
+
+  return {
+    score: Math.min(1.0, score), // Cap at 1.0
+    matchedFields,
+    unmatchedFields,
+  };
 }
