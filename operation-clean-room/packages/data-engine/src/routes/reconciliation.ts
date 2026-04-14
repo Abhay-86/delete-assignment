@@ -250,22 +250,30 @@ reconciliationRouter.get('/duplicates', async (req, res) => {
     
     res.json({
       success: true,
-      matches: matches.map(match => ({
-        salesforceId: match.entityA.id,
-        salesforceName: (match.entityA as any).name || 'N/A',
-        chargebeeId: match.entityB.id,
-        chargebeeName: (match.entityB as any).customer?.company || 'N/A',
-        confidence: match.confidence.score,
-        matchedFields: match.confidence.matchedFields,
-        unmatchedFields: match.confidence.unmatchedFields,
-        classification: match.confidence.score > 0.8 ? 'high_confidence' : 
-                      match.confidence.score > 0.6 ? 'medium_confidence' : 'low_confidence',
-      })),
+      matches: matches.map(match => {
+        const sfAccount = match.entityA.data as SalesforceAccount;
+        const cbSub = match.entityB.data as ChargebeeSubscription;
+        return {
+          salesforceId:   match.entityA.id,
+          salesforceName: sfAccount.account_name,
+          chargebeeId:    match.entityB.id,
+          chargebeeName:  cbSub.customer.company,
+          mrrUSD:         cbSub.mrr / 100,          // cents → dollars
+          arrUSD:         (cbSub.mrr / 100) * 12,   // annualized
+          confidence:     match.confidence.score,
+          matchedFields:  match.confidence.matchedFields,
+          classification: match.confidence.score > 0.8 ? 'high_confidence'
+                        : match.confidence.score > 0.6 ? 'medium_confidence'
+                        : 'low_confidence',
+        };
+      }),
       summary: {
         totalMatches: matches.length,
-        highConfidenceMatches: matches.filter(m => m.confidence.score > 0.8).length,
+        highConfidenceMatches:   matches.filter(m => m.confidence.score > 0.8).length,
         mediumConfidenceMatches: matches.filter(m => m.confidence.score > 0.6 && m.confidence.score <= 0.8).length,
-        lowConfidenceMatches: matches.filter(m => m.confidence.score <= 0.6).length,
+        lowConfidenceMatches:    matches.filter(m => m.confidence.score <= 0.6).length,
+        totalDuplicateMRR:  matches.reduce((s, m) => s + (m.entityB.data as ChargebeeSubscription).mrr, 0) / 100,
+        totalDuplicateARR:  matches.reduce((s, m) => s + (m.entityB.data as ChargebeeSubscription).mrr, 0) / 100 * 12,
       },
     });
   } catch (error) {
