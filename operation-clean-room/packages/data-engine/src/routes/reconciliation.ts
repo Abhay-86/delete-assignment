@@ -102,7 +102,7 @@ reconciliationRouter.post('/run', async (req, res) => {
     // 3. Pipeline Quality Analysis: Identify CRM data issues
     console.log('Analyzing pipeline quality...');
     const pipelineAnalysis = analyzePipelineQuality(opportunities, accounts, subscriptions, payments);
-    console.log(`Pipeline analysis complete. Health score: ${pipelineAnalysis.summary.pipelineHealthScore}, Zombie deals: ${pipelineAnalysis.summary.totalZombieDeals}, Unbooked MRR: $${pipelineAnalysis.summary.totalUnbookedMRR.toFixed(2)}`);
+    console.log(`Pipeline analysis complete. Health score: ${pipelineAnalysis.summary.pipelineHealthScore}, Zombie deals: ${pipelineAnalysis.summary.totalZombieDeals}, Unbooked MRR: $${(pipelineAnalysis.summary.totalUnbookedMRR / 100).toFixed(2)}`);
     
     const endTime = Date.now();
     const duration = endTime - startTime;
@@ -137,9 +137,9 @@ reconciliationRouter.post('/run', async (req, res) => {
             .slice(0, 5)
             .map(item => ({
               customer: item.customerName,
-              expected: item.expected,
-              actual: item.actual,
-              difference: item.difference,
+              expected: item.expected / 100,   // cents → dollars
+              actual: item.actual / 100,        // cents → dollars
+              difference: item.difference / 100, // cents → dollars
               reason: item.reason,
             })),
           breakdown: revenueReconciliation.breakdown,
@@ -156,7 +156,7 @@ reconciliationRouter.post('/run', async (req, res) => {
             details: pipelineAnalysis.mismatches.slice(0, 5), // Top 5 mismatches
           },
           unbookedRevenue: {
-            totalMRR: pipelineAnalysis.summary.totalUnbookedMRR,
+            totalMRR: pipelineAnalysis.summary.totalUnbookedMRR / 100, // cents → dollars
             count: pipelineAnalysis.unbookedRevenue.length,
             details: pipelineAnalysis.unbookedRevenue.slice(0, 5), // Top 5 by MRR
           },
