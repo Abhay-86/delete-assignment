@@ -1,4 +1,7 @@
 import { Router } from 'express';
+import { calculateARR } from '../metrics/arr.js';
+import { runScenario } from '../scenarios/engine.js';
+import type { ScenarioInput } from '../scenarios/types.js';
 
 export const scenariosRouter = Router();
 
@@ -23,11 +26,65 @@ export const scenariosRouter = Router();
  *   - Returns: Array of ScenarioResult with labels for side-by-side comparison.
  */
 
-// TODO: Implement POST /api/scenarios/run
-// scenariosRouter.post('/run', async (req, res) => { ... });
+const PRESETS: ScenarioInput[] = [
+  { label: 'Optimistic',       churnRateDelta: -0.2,  expansionRateDelta:  0.1,  newBusinessDelta: 0, pricingChange: 1.0, fxAssumption: 1.0 },
+  { label: 'Pessimistic',      churnRateDelta:  0.2,  expansionRateDelta: -0.1,  newBusinessDelta: 0, pricingChange: 1.0, fxAssumption: 1.0 },
+  { label: 'Reduce Churn 10%', churnRateDelta: -0.1,  expansionRateDelta:  0.0,  newBusinessDelta: 0, pricingChange: 1.0, fxAssumption: 1.0 },
+];
 
-// TODO: Implement GET /api/scenarios/presets
-// scenariosRouter.get('/presets', async (req, res) => { ... });
+async function getBaseMetrics() {
+  const now = new Date();
+  const arrResult = await calculateARR(now);
+  return { arrResult };
+}
 
-// TODO: Implement POST /api/scenarios/compare
-// scenariosRouter.post('/compare', async (req, res) => { ... });
+scenariosRouter.post('/run', async (req, res) => {
+  try {
+    const inputs: ScenarioInput = {
+      churnRateDelta:     req.body.churnRateDelta     ?? 0,
+      expansionRateDelta: req.body.expansionRateDelta ?? 0,
+      newBusinessDelta:   req.body.newBusinessDelta   ?? 0,
+      pricingChange:      req.body.pricingChange      ?? 1.0,
+      fxAssumption:       req.body.fxAssumption       ?? 1.0,
+      label:              req.body.label,
+    };
+
+    const { arrResult } = await getBaseMetrics();
+    const result = await runScenario(arrResult, inputs);
+
+    res.json({ success: true, data: result });
+  } catch (err) {
+    res.status(500).json({ success: false, error: (err as Error).message });
+  }
+});
+
+scenariosRouter.get('/presets', (_req, res) => {
+  res.json({ success: true, data: PRESETS });
+});
+
+scenariosRouter.post('/compare', async (req, res) => {
+  try {
+    const scenarios = req.body as ScenarioInput[];
+
+    const { arrResult } = await getBaseMetrics();
+
+    const results = await Promise.all(
+      scenarios.map((s, i) =>
+        runScenario(arrResult, {
+          churnRateDelta:     s.churnRateDelta     ?? 0,
+          expansionRateDelta: s.expansionRateDelta ?? 0,
+          newBusinessDelta:   s.newBusinessDelta   ?? 0,
+          pricingChange:      s.pricingChange      ?? 1.0,
+          fxAssumption:       s.fxAssumption       ?? 1.0,
+          label:              s.label ?? `Scenario ${i + 1}`,
+        }),
+      ),
+    );
+
+    res.json({ success: true, data: results });
+  } catch (err) {
+    res.status(500).json({ success: false, error: (err as Error).message });
+  }
+});
+
+
