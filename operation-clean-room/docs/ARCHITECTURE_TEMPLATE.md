@@ -9,17 +9,18 @@ The revenue reconciliation system consists of two main components:
 
 ### Architecture Flow
 ```
-Raw Data Sources → Data Engine (Ingestion) → Data Engine (Reconciliation) → API → Dashboard
-     ↓                    ↓                       ↓                        ↓        ↓
-[CSV/JSON/XML]    [Normalize & Load]      [Entity Resolution]       [REST API]  [React UI]
-                                          [Revenue Analysis]
-                                          [Pipeline Quality]
+Raw Data Sources → Data Engine (Ingestion) → Data Engine (Reconciliation) → Data Engine (Metrics) → API → Dashboard
+     ↓                    ↓                       ↓                              ↓                   ↓        ↓
+[CSV/JSON/XML]    [Normalize & Load]      [Entity Resolution]           [ARR / NRR / Churn]   [REST API]  [React UI]
+                                          [Revenue Analysis]            [Cohort Logic]
+                                          [Pipeline Quality]            [FX Normalization]
 ```
 
 ### Data Flow
 1. **Phase 1 (Ingestion)**: Raw files → Validated TypeScript objects → Memory storage
 2. **Phase 2 (Reconciliation)**: Cross-system analysis → Discrepancy detection → Business insights
-3. **Phase 3 (Presentation)**: API endpoints → JSON responses → Dashboard visualization
+3. **Phase 3 (Metrics)**: Subscription data → FX-normalized ARR → NRR/churn with date-range cohort logic
+4. **Phase 4 (Presentation)**: API endpoints → JSON responses → Dashboard visualization
 
 The system prioritizes data quality identification over data cleaning, preserving messy data patterns for analysis.
 
@@ -104,15 +105,56 @@ confidence = (domain_match_weight * domain_score) +
 
 ## Metric Definitions
 
+### NRR (Net Revenue Retention)
+
+**Definition**: Percentage of ARR retained from an existing customer cohort after expansion, contraction, and churn
+**Formula**: `(startingARR + expansion - contraction - churn) / startingARR * 100`
+
+**Cohort Definition**: Customers active at `startDate` — i.e., `created_at <= startDate AND (cancelled_at IS NULL OR cancelled_at > startDate)`
+
+**Critical Design Decision**: Cohort uses explicit date-range logic on `created_at`/`cancelled_at`, **not** the `status` field. The `status` field reflects today's snapshot. A customer who churned 6 months ago has `status = 'cancelled'` today — using status for a historical NRR query would misclassify them as "never active in that cohort".
+
+**Expansion/Contraction Classification**:
+- For each cohort customer: compare `endArr` (ARR at `endDate`) vs `startArr` (ARR at `startDate`)
+- `delta > $1`: expansion
+- `delta < -$1`: contraction  
+- Customer absent at `endDate` (churned during period): churn
+- **$1 threshold**: avoids classifying sub-dollar FX fluctuations on multi-currency subs as expansion/contraction
+
+**Edge cases**:
+- Customers still in `non_renewing` state at `endDate` are included (still billing)
+- New customers acquired during the period are excluded (not in starting cohort)
+- Multi-currency subscriptions: both start and end ARR converted via `utils/fx.ts` using respective period dates
+
+### Churn (Gross & Logo)
+
+**Definition**: Revenue and customer count lost in a period from cancellations
+**Gross Churn Rate**: `(ARR of churned customers / startingARR) * 100`
+**Logo Churn Rate**: `(count of churned customers / startingCustomerCount) * 100`
+
+**Churn Detection**: `cancelled_at` falls within `[startDate, endDate]` (inclusive). Uses date field, not status snapshot — same rationale as NRR cohort logic.
+
+**Breakdowns provided**:
+- `byReason`: grouped by `cancellation_reason` field (upgrade_downgrade, non_payment, voluntary, etc.)
+- `byPlan`: grouped by plan ID at time of cancellation
+
+**Edge cases**:
+- `churn = 0` for narrow recent date windows (e.g., Feb–Apr 2026) is data-correct: all cancellations in the dataset occurred in late 2024 / mid-2025
+- Churn rate is expressed against the starting cohort ARR at `startDate`, not total current ARR
+
 ### ARR (Annual Recurring Revenue)
 
 **Definition**: Annualized value of active recurring subscriptions, normalized to USD
-**Formula**: `sum(active_subscriptions.mrr * 12 * fx_rate_to_usd)`
+**Formula**: `sum(active_subscriptions.mrr / 100 * fx_rate_to_usd * 12)`
+
+**Key implementation detail**: Chargebee stores MRR in **cents** (smallest currency unit). Always divide by 100 before any calculation. `sub.mrr` already includes addon quantities and active coupon discounts (computed via `computeMRR()` at ingestion time — not re-derived at the metric layer).
+
+**Segment breakdown**: Segment label (`enterprise`, `mid-market`, `smb`) comes from Salesforce accounts, matched to Chargebee via normalized company name. Unmatched companies fall back to `"smb"`.
+
 **Edge cases**: 
-- Trial subscriptions ($0 MRR) are excluded
-- Paused subscriptions counted as $0 until reactivated
-- Mid-month subscription changes are prorated
-- Currency conversion uses subscription start date FX rate
+- Trial subscriptions excluded by default (`excludeTrials=true`); configurable via query param
+- Paused and cancelled subscriptions excluded
+- Currency conversion uses subscription-level currency + date via `utils/fx.ts` (5-day weekend fallback)
 
 ### Revenue Reconciliation
 
@@ -152,7 +194,7 @@ See [ASSUMPTIONS_TEMPLATE.md](./ASSUMPTIONS_TEMPLATE.md) for the full log.
 1. **Revenue reconciliation requires date filtering** - Currently analyzes all-time data instead of specific periods
 2. **Entity resolution match rate is low (1.3%)** - Indicates need for additional matching strategies
 3. **No real-time processing** - All analysis is batch-based with manual triggering
-4. **Limited FX rate handling** - Simple interpolation for missing weekend/holiday rates
+4. **Limited FX rate handling** - 5-day weekend lookback covers holidays but does not interpolate for extended data gaps
 5. **Memory-only data storage** - No persistence layer for large datasets
 
 **Intentionally Skipped Edge Cases**:
