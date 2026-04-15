@@ -56,13 +56,15 @@ export async function loadSalesforceData(
         type: (row.deal_type?.toLowerCase().replace(/\s+/g, '_') ||
           'new_business') as 'new_business' | 'expansion' | 'renewal',
         owner_name: row.owner_name,
-        owner_email: '', // Not available in source data
+        // Not available in source data
+        owner_email: '', 
         next_step: row.next_step || null,
-        tcv: Number(row.amount), // Using amount as TCV
-        acv: Number(row.amount) / (Number(row.contract_term_months) / 12 || 1), // Calculate ACV
+        tcv: Number(row.amount), 
+        acv: Number(row.amount) / (Number(row.contract_term_months) / 12 || 1), 
         contract_term_months: Number(row.contract_term_months),
-        competitor: null, // Not available in source data
-        loss_reason: null, // Not available in source data
+        // Not available in source data
+        competitor: null,
+        loss_reason: null,
         partner_id: row.partner_id || null,
       }),
     },
@@ -76,15 +78,18 @@ export async function loadSalesforceData(
       employee_count: Number(row.employee_count) || 0,
       annual_revenue: Number(row.annual_contract_value) || 0, // Using ACV as annual revenue
       billing_country: row.region || '', // Using region as billing country
-      billing_state: '', // Not available in source data
       website: row.website,
       owner_name: row.account_owner || '', // Using account_owner
-      owner_email: '', // Not available in source data
-      created_date: row.created_date,
+      created_date: row.created_date || null,
       segment: 'smb' as const, // Default segment, could derive from employee_count
       parent_account_id: row.parent_account_id || null,
-      stripe_customer_id: null, // Not available in source data
-      chargebee_customer_id: null, // Not available in source data
+
+      // Not available in source data
+      billing_state: '',
+      owner_email: '',
+      stripe_customer_id: null, 
+      chargebee_customer_id: null, 
+
     }),
   });
 

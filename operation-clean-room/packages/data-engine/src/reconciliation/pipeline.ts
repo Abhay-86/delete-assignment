@@ -1,23 +1,6 @@
 import type { PipelineAnalysisResult, Discrepancy } from './types.js';
 import { DiscrepancyType, Severity } from './types.js';
 import type { SalesforceOpportunity, ChargebeeSubscription, StripePayment, SalesforceAccount } from '../ingestion/types.js';
-import { findAccountMatches } from './matcher.js';
-
-/**
- * Normalize a company name by stripping common legal suffixes and
- * punctuation so that cross-system name variants (e.g. "Ivy Systems Ltd"
- * vs "Ivy Systems Inc") can be compared on equal footing.
- */
-function normalizeCompanyName(name: string): string {
-  return name
-    .toLowerCase()
-    .trim()
-    // Strip legal suffixes
-    .replace(/\b(inc\.?|incorporated|corp\.?|corporation|llc\.?|ltd\.?|limited|plc\.?|co\.?|company|group|holdings?|international|intl\.?|technologies|technology|solutions?|systems?)\b/g, '')
-    // Collapse whitespace
-    .replace(/\s+/g, ' ')
-    .trim();
-}
 /**
  * CRM pipeline quality analysis.
  *
@@ -55,9 +38,11 @@ export interface PipelineAnalysisOptions {
   amountToleranceFraction?: number;
   /** Whether to include closed-lost opportunities in the analysis. Defaults to false. */
   includeClosedLost?: boolean;
+  /** Reference date for staleness calculations. Defaults to the latest date in the dataset. */
+  asOf?: Date;
 }
 
-const DEFAULT_OPTIONS: Required<PipelineAnalysisOptions> = {
+const DEFAULT_OPTIONS: Omit<Required<PipelineAnalysisOptions>, 'asOf'> = {
   zombieThresholdDays: 90,
   amountToleranceFraction: 0.1,
   includeClosedLost: false,
@@ -82,24 +67,27 @@ export function analyzePipelineQuality(
 ): PipelineAnalysisResult {
   const opts = { ...DEFAULT_OPTIONS, ...options };
   const discrepancies: Discrepancy[] = [];
-  const now = new Date();
 
-  // Find account matches between Salesforce and Chargebee
-  const accountMatches = findAccountMatches(accounts, subscriptions);
-  
-  // Build a set of matched account names (normalized) for fast lookup
-  const matchedAccountNames = new Set<string>();
-  const matchedAccountIds = new Set<string>();
-  for (const match of accountMatches) {
-    const sfAccount = match.entityA.data as SalesforceAccount;
-    const cbSub = match.entityB.data as ChargebeeSubscription;
-    matchedAccountIds.add(match.entityA.id);
-    // Track both the SF account name and the CB customer name as matched
-    matchedAccountNames.add(sfAccount.account_name.toLowerCase().trim());
-    matchedAccountNames.add(cbSub.customer.company.toLowerCase().trim());
+  // Avoids using wall-clock now() against a historical snapshot.
+  const now = opts.asOf ?? (() => {
+    const allDates = [
+      ...opportunities.map(o => new Date(o.close_date).getTime()),
+      ...opportunities.map(o => new Date(o.created_date).getTime()),
+      ...subscriptions.map(s => new Date(s.current_term_end).getTime()),
+    ].filter(t => !isNaN(t));
+    return allDates.length > 0 ? new Date(Math.max(...allDates)) : new Date();
+  })();
+
+  // Build a set of ALL Salesforce-known company names (accounts + opp account names)
+  // for fast O(1) lookup in both the mismatch check and the unbooked revenue check.
+  const allSalesforceAccountNames = new Set<string>(
+    accounts.map(a => a.account_name.toLowerCase().trim())
+  );
+  for (const opp of opportunities) {
+    allSalesforceAccountNames.add(opp.account_name.toLowerCase().trim());
   }
 
-  // 1. Find zombie deals (stale opportunities — use close_date as the activity proxy)
+  // Find zombie deals (stale )
   const staleDate = new Date(now.getTime() - (opts.zombieThresholdDays * 24 * 60 * 60 * 1000));
   const openOpportunities = opportunities.filter(opp => 
     opp.stage !== 'Closed Won' && opp.stage !== 'Closed Lost'
@@ -107,8 +95,6 @@ export function analyzePipelineQuality(
 
   const zombieDeals = [];
   for (const opp of openOpportunities) {
-    // Use close_date as the staleness signal — if the expected close date
-    // is far in the past and still open, it's a zombie deal.
     const closeDate = new Date(opp.close_date);
     const createdDate = new Date(opp.created_date);
     // Take the more recent of close_date and created_date as last meaningful activity
@@ -149,42 +135,20 @@ export function analyzePipelineQuality(
     }
   }
 
-  // 2. Find stage mismatches (Closed Won without subscription)
+  // Find stage mismatches (Closed Won without subscription)
   const closedWonOpportunities = opportunities.filter(opp => opp.stage === 'Closed Won');
   const mismatches = [];
   
   for (const opp of closedWonOpportunities) {
-    // Try to find a match by account_id first, then by account name
-    const matchedByAccountId = accountMatches.find(m => m.entityA.id === opp.account_id);
     const oppAccountNameNorm = opp.account_name.toLowerCase().trim();
-    const matchedByName = !matchedByAccountId && matchedAccountNames.has(oppAccountNameNorm);
-    const matchedAccount = matchedByAccountId ?? null;
-    const hasAnyMatch = matchedByAccountId || matchedByName;
-    
-    if (!hasAnyMatch) {
-      // Check if there's at least an active subscription for this company by name
-      const relatedSub = subscriptions.find(s => 
-        s.status === 'active' &&
-        s.customer.company.toLowerCase().trim() === oppAccountNameNorm
-      );
-      if (relatedSub) {
-        // Has subscription but not properly matched — flag as amount discrepancy
-        const annualizedMRR = relatedSub.mrr * 12;
-        const acv = opp.acv || opp.amount;
-        const percentDifference = Math.abs(annualizedMRR - acv) / Math.max(acv, 1);
-        if (percentDifference > opts.amountToleranceFraction) {
-          mismatches.push({
-            opportunityId: opp.opportunity_id,
-            accountName: opp.account_name,
-            issue: 'ACV/MRR mismatch',
-            crmValue: acv,
-            billingValue: annualizedMRR,
-          });
-        }
-        // Subscription exists — skip "no subscription" flag
-        continue;
-      }
+    // the subscription by exact match (normalised) name match.
+    const relatedSub = subscriptions.find(s =>
+      s.status === 'active' &&
+      s.customer.company.toLowerCase().trim() === oppAccountNameNorm
+    );
 
+    if (!relatedSub) {
+      // No active subscription found for this company at all
       mismatches.push({
         opportunityId: opp.opportunity_id,
         accountName: opp.account_name,
@@ -214,12 +178,14 @@ export function analyzePipelineQuality(
         resolved: false,
         resolutionNote: null,
       });
-    } else if (matchedAccount) {
-      // Check for amount discrepancies
-      const subscription = subscriptions.find(s => s.subscription_id === matchedAccount.entityB.id);
-      if (subscription) {
-        const annualizedMRR = subscription.mrr * 12;
-        const acv = opp.acv || opp.amount; // Use ACV if available, otherwise amount
+    } else {
+      // Subscription found — check for ACV/MRR amount discrepancy
+      {
+        // mrr is in cents → divide by 100 for dollars, then annualize.
+        // Compare against ACV (annual contract value), not raw amount which is TCV
+        // and varies by contract term (e.g. $348k for 24mo = $174k/yr ACV).
+        const annualizedMRR = (relatedSub.mrr / 100) * 12;
+        const acv = opp.acv; // annual contract value (ingestion computes: amount / (term_months/12))
         const percentDifference = Math.abs(annualizedMRR - acv) / Math.max(acv, 1);
         
         if (percentDifference > opts.amountToleranceFraction) {
@@ -232,7 +198,7 @@ export function analyzePipelineQuality(
           });
 
           discrepancies.push({
-            id: `amount_mismatch_${opp.opportunity_id}_${subscription.subscription_id}`,
+            id: `amount_mismatch_${opp.opportunity_id}_${relatedSub.subscription_id}`,
             type: DiscrepancyType.AMOUNT_MISMATCH,
             severity: percentDifference > 0.5 ? Severity.HIGH : Severity.MEDIUM,
             sourceA: {
@@ -242,7 +208,7 @@ export function analyzePipelineQuality(
             },
             sourceB: {
               system: 'chargebee',
-              recordId: subscription.subscription_id,
+              recordId: relatedSub.subscription_id,
               value: annualizedMRR,
             },
             customerName: opp.account_name,
@@ -257,30 +223,20 @@ export function analyzePipelineQuality(
     }
   }
 
-  // Build a set of ALL Salesforce account names (any customer known to SF)
-  const allSalesforceAccountNames = new Set<string>(
-    accounts.map(a => a.account_name.toLowerCase().trim())
-  );
-  // Also add opportunity account names (sometimes they differ slightly from account master)
-  for (const opp of opportunities) {
-    allSalesforceAccountNames.add(opp.account_name.toLowerCase().trim());
-  }
-
-  // 3. Find unbooked revenue (active subscriptions without CRM presence at all)
+  // Find unbooked revenue (active subscriptions without CRM presence at all)
   const unbookedRevenue = [];
   for (const subscription of subscriptions) {
     if (subscription.status !== 'active') continue;
     
     const customerNameNorm = subscription.customer.company.toLowerCase().trim();
     // Customer is "tracked" if their name appears anywhere in Salesforce
-    const isKnownToSalesforce = allSalesforceAccountNames.has(customerNameNorm)
-      || matchedAccountNames.has(customerNameNorm);
+    const isKnownToSalesforce = allSalesforceAccountNames.has(customerNameNorm);
     
     if (!isKnownToSalesforce) {
       unbookedRevenue.push({
         subscriptionId: subscription.subscription_id,
         customerName: subscription.customer.company,
-        mrr: subscription.mrr,
+        mrr: (subscription.mrr / 100),
         system: 'chargebee',
       });
 
@@ -291,7 +247,7 @@ export function analyzePipelineQuality(
         sourceA: {
           system: 'chargebee',
           recordId: subscription.subscription_id,
-          value: subscription.mrr * 12,
+          value: (subscription.mrr / 100) * 12,
         },
         sourceB: {
           system: 'salesforce',
@@ -299,7 +255,7 @@ export function analyzePipelineQuality(
           value: null,
         },
         customerName: subscription.customer.company,
-        amount: subscription.mrr * 12,
+        amount: (subscription.mrr / 100) * 12,
         description: `Active subscription has no corresponding opportunity in Salesforce`,
         detectedAt: now.toISOString(),
         resolved: false,
@@ -312,6 +268,8 @@ export function analyzePipelineQuality(
   const totalZombieDeals = zombieDeals.length;
   const totalZombieValue = zombieDeals.reduce((sum, deal) => sum + deal.amount, 0);
   const totalMismatches = mismatches.length;
+  // Split mismatches into "no subscription at all" vs "ACV/MRR amount off"
+  const missingSubscriptionCount = mismatches.filter(m => m.issue === 'Closed Won opportunity with no active subscription').length;
   const totalUnbookedMRR = unbookedRevenue.reduce((sum, sub) => sum + sub.mrr, 0);
 
   // Calculate pipeline health score (0–1, where 1 is perfect).
@@ -338,6 +296,7 @@ export function analyzePipelineQuality(
       totalZombieDeals,
       totalZombieValue,
       totalMismatches,
+      missingSubscriptionCount,  // Closed Won with zero active sub (excludes ACV-only mismatches)
       totalUnbookedMRR,
       pipelineHealthScore,
     },

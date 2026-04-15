@@ -58,7 +58,7 @@ export async function calculateARR(
   }
 
   const active = subscriptions.filter(s => {
-    if (s.status === 'cancelled' || s.status === 'paused') return false;
+    if (s.status === 'cancelled') return false;
     if (excludeTrials && s.status === 'in_trial') return false;
     return true;
   });

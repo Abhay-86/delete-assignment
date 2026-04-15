@@ -1,5 +1,6 @@
 import type { MatchResult, MatchConfidence } from './types.js';
 import type { SalesforceAccount, ChargebeeSubscription, StripePayment } from '../ingestion/types.js';
+import { normalizeCompanyName } from '../utils/normalization.js';
 
 /**
  * Fuzzy matching engine for cross-system entity resolution.
@@ -43,24 +44,11 @@ export interface MatchOptions {
 }
 
 const DEFAULT_OPTIONS: Required<Pick<MatchOptions, 'threshold' | 'idWeight' | 'domainWeight' | 'nameWeight'>> = {
-  threshold: 0.7,
+  threshold: 0.36,    
   idWeight: 1.0,
   domainWeight: 0.9,
-  nameWeight: 0.6,
+  nameWeight: 0.8,  
 };
-
-/**
- * Normalize company name for matching.
- */
-function normalizeCompanyName(name: string): string {
-  return name
-    .toLowerCase()
-    .trim()
-    .replace(/\b(inc|corp|corporation|ltd|llc|limited|gmbh|ag|sa|srl|bv)\b\.?/g, '')
-    .replace(/[^\w\s]/g, ' ')
-    .replace(/\s+/g, ' ')
-    .trim();
-}
 
 /**
  * Extract domain from website or email.
@@ -68,12 +56,12 @@ function normalizeCompanyName(name: string): string {
 function extractDomain(input: string): string | null {
   if (!input) return null;
   
-  // Handle email format
+  // email
   if (input.includes('@')) {
     return input.split('@')[1]?.toLowerCase() || null;
   }
   
-  // Handle website format
+  // website
   const match = input.match(/(?:https?:\/\/)?(?:www\.)?([^\/\s]+)/);
   return match?.[1]?.toLowerCase() || null;
 }
@@ -133,7 +121,7 @@ export function matchSalesforceToChargebee(
   let totalScore = 0;
   let totalWeight = 0;
 
-  // 1. Exact ID match (highest confidence)
+  // Exact ID match (highest confidence)
   if (account.chargebee_customer_id && account.chargebee_customer_id === subscription.customer.customer_id) {
     matchedFields.push('chargebee_customer_id');
     totalScore += opts.idWeight;
@@ -142,35 +130,55 @@ export function matchSalesforceToChargebee(
     unmatchedFields.push('chargebee_customer_id');
   }
 
-  // 2. Domain/website matching
   const accountDomain = extractDomain(account.website);
   const subscriptionDomain = extractDomain(subscription.customer.email);
-  
-  if (accountDomain && subscriptionDomain && accountDomain === subscriptionDomain) {
-    matchedFields.push('domain');
-    totalScore += opts.domainWeight;
-  } else {
-    unmatchedFields.push('domain');
-  }
-  totalWeight += opts.domainWeight;
 
-  // 3. Company name similarity
+  if (accountDomain && subscriptionDomain) {
+    totalWeight += opts.domainWeight;   
+    const domainMatch =
+      accountDomain === subscriptionDomain ||
+      accountDomain.includes(subscriptionDomain) ||
+      subscriptionDomain.includes(accountDomain);
+    if (domainMatch) {
+      matchedFields.push('domain');
+      totalScore += opts.domainWeight;
+    } else {
+      unmatchedFields.push('domain');
+    }
+  }
+
+  // Company name similarity
   const normalizedAccountName = normalizeCompanyName(account.account_name);
   const normalizedCompanyName = normalizeCompanyName(subscription.customer.company);
+
+  // whether domain was present or not — an exact name match is definitive.
+  if (normalizedAccountName === normalizedCompanyName) {
+    matchedFields.push('company_name_exact');
+    return {
+      score: 1.0,
+      matchedFields,
+      unmatchedFields,
+    };
+  }
+
   const nameSimilarity = stringSimilarity(normalizedAccountName, normalizedCompanyName);
-  
-  if (nameSimilarity > 0.8) {
+
+  // Boost: high similarity (>= 0.9) should not score below 0.85 — Levenshtein
+  // can undervalue near-identical strings (e.g. one extra word).
+  const effectiveSimilarity = nameSimilarity >= 0.9 ? Math.max(nameSimilarity, 0.85) : nameSimilarity;
+
+  if (nameSimilarity > 0.7) {
     matchedFields.push('company_name');
   } else {
     unmatchedFields.push('company_name');
   }
-  totalScore += nameSimilarity * opts.nameWeight;
+  totalScore += effectiveSimilarity * opts.nameWeight;
   totalWeight += opts.nameWeight;
 
   const confidence = totalWeight > 0 ? totalScore / totalWeight : 0;
 
   return {
-    score: Math.max(0, Math.min(1, confidence)),
+    score: Math.max(0, Math.min(1, confidence)), // safely clamped
     matchedFields,
     unmatchedFields,
   };
@@ -188,28 +196,33 @@ export function findAccountMatches(
   const matches: MatchResult[] = [];
 
   for (const account of accounts) {
+    // Score this account against every subscription, keep all above threshold
+    const candidates: MatchResult[] = [];
+
     for (const subscription of subscriptions) {
       const confidence = matchSalesforceToChargebee(account, subscription, options);
-      
       if (confidence.score >= opts.threshold) {
-        matches.push({
-          entityA: {
-            id: account.account_id,
-            source: 'salesforce',
-            data: account,
-          },
-          entityB: {
-            id: subscription.subscription_id,
-            source: 'chargebee',
-            data: subscription,
-          },
+        candidates.push({
+          entityA: { id: account.account_id, source: 'salesforce', data: account },
+          entityB: { id: subscription.subscription_id, source: 'chargebee', data: subscription },
           confidence,
         });
       }
     }
+
+    if (candidates.length === 0) continue;
+
+    if (opts.allowMultipleMatches) {
+      // Caller explicitly asked for all matches above threshold
+      matches.push(...candidates);
+    } else {
+      // Default: keep only the single best match per Salesforce account
+      candidates.sort((a, b) => b.confidence.score - a.confidence.score);
+      matches.push(candidates[0]!);
+    }
   }
 
-  // Sort by confidence score (highest first)
+  // Sort final list by confidence score (highest first)
   return matches.sort((a, b) => b.confidence.score - a.confidence.score);
 }
 

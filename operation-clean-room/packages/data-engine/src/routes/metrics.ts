@@ -1,7 +1,18 @@
 import { Router } from 'express';
+import { join } from 'node:path';
 import { calculateARR } from '../metrics/arr.js';
 import { calculateNRR } from '../metrics/nrr.js';
 import { calculateChurn } from '../metrics/churn.js';
+import { loadChargebeeSubscriptions } from '../ingestion/chargebee.js';
+
+/** Derive "now" from the dataset: max(current_term_end) across active subs. */
+async function datasetNow(): Promise<Date> {
+  const dataDir = join(process.cwd(), '../../data');
+  const subs = await loadChargebeeSubscriptions(dataDir);
+  const active = subs.filter(s => s.status === 'active');
+  if (active.length === 0) return new Date();
+  return new Date(Math.max(...active.map(s => new Date(s.current_term_end).getTime())));
+}
 
 export const metricsRouter = Router();
 
@@ -45,7 +56,7 @@ export const metricsRouter = Router();
 // GET /api/metrics/arr
 metricsRouter.get('/arr', async (req, res) => {
   try {
-    const date = req.query.date ? new Date(req.query.date as string) : new Date();
+    const date = req.query.date ? new Date(req.query.date as string) : await datasetNow();
     const excludeTrials = req.query.excludeTrials !== 'false';
     const result = await calculateARR(date, { excludeTrials });
     res.json({ success: true, data: result });
@@ -57,7 +68,8 @@ metricsRouter.get('/arr', async (req, res) => {
 // GET /api/metrics/nrr
 metricsRouter.get('/nrr', async (req, res) => {
   try {
-    const endDate = req.query.endDate ? new Date(req.query.endDate as string) : new Date();
+    const now = await datasetNow();
+    const endDate = req.query.endDate ? new Date(req.query.endDate as string) : now;
     const startDate = req.query.startDate
       ? new Date(req.query.startDate as string)
       : new Date(endDate.getFullYear(), endDate.getMonth() - 12, 1);
@@ -71,7 +83,8 @@ metricsRouter.get('/nrr', async (req, res) => {
 // GET /api/metrics/churn
 metricsRouter.get('/churn', async (req, res) => {
   try {
-    const endDate = req.query.endDate ? new Date(req.query.endDate as string) : new Date();
+    const now = await datasetNow();
+    const endDate = req.query.endDate ? new Date(req.query.endDate as string) : now;
     const startDate = req.query.startDate
       ? new Date(req.query.startDate as string)
       : new Date(endDate.getFullYear(), endDate.getMonth() - 1, 1);
@@ -87,7 +100,8 @@ metricsRouter.get('/churn', async (req, res) => {
 // Uses calculateARR().byCohort — no snapshot store needed.
 metricsRouter.get('/arr-trend', async (req, res) => {
   try {
-    const result = await calculateARR(new Date(), { excludeTrials: true });
+    const now = await datasetNow();
+    const result = await calculateARR(now, { excludeTrials: true });
     const trend = result.byCohort
       .slice()
       .sort((a, b) => a.label.localeCompare(b.label))
@@ -108,14 +122,13 @@ metricsRouter.get('/arr-trend', async (req, res) => {
 // GET /api/metrics/overview
 metricsRouter.get('/overview', async (req, res) => {
   try {
-    const now = new Date();
+    const now = await datasetNow();
     const periodStart = new Date(now.getFullYear(), now.getMonth() - 12, 1);
-    const monthStart = new Date(now.getFullYear(), now.getMonth() - 1, 1);
 
     const [arr, nrr, churn] = await Promise.all([
       calculateARR(now, { excludeTrials: true }),
       calculateNRR(periodStart, now),
-      calculateChurn(monthStart, now),
+      calculateChurn(periodStart, now), // same 12-month window as NRR — single month had 0 cancellations
     ]);
 
     res.json({

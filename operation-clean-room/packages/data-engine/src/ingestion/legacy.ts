@@ -34,11 +34,7 @@ import { LegacyInvoice } from './types.js';
 export async function loadLegacyInvoices(dataDir: string): Promise<LegacyInvoice[]> {
   const filePath = join(dataDir, 'legacy_invoices.xml');
 
-  const doc = await loadXML<{
-    invoices: {
-      invoice: LegacyInvoice[];
-    };
-  }>(filePath, {
+  const doc = await loadXML<{invoices: {invoice: LegacyInvoice[]}}>(filePath, {
     arrayTags: ['invoice'],
   });
 

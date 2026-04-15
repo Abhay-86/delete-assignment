@@ -67,72 +67,58 @@ export function calculateExpectedRevenue(
     // Check if subscription overlaps with the analysis period
     if (termEnd < startDate || termStart > endDate) continue;
 
-    // Calculate prorated revenue for the overlap period
+    // later start date
     const overlapStart = new Date(Math.max(termStart.getTime(), startDate.getTime()));
+    // earlier end date
     const overlapEnd = new Date(Math.min(termEnd.getTime(), endDate.getTime()));
     const overlapDays = (overlapEnd.getTime() - overlapStart.getTime()) / (1000 * 60 * 60 * 24);
     
     let expectedAmount = 0;
 
-    // Handle plan changes (upgrades/downgrades with proration)
+    // Handle plan changes
     if (subscription.plan_changes && subscription.plan_changes.length > 0) {
-      // Sort plan changes by date
+      // Keep only changes that fall within the overlap window, sorted chronologically
       const sortedChanges = subscription.plan_changes
         .filter(change => {
           const changeDate = new Date(change.change_date);
-          return changeDate >= overlapStart && changeDate <= overlapEnd;
+          return changeDate > overlapStart && changeDate < overlapEnd;
         })
         .sort((a, b) => new Date(a.change_date).getTime() - new Date(b.change_date).getTime());
 
       if (sortedChanges.length > 0) {
-        // For mid-month changes, calculate prorated amounts
+        // Build timeline segments: [overlapStart → change1 → change2 → ... → overlapEnd]
+        let segmentStart = overlapStart;
         for (const change of sortedChanges) {
-          const changeDate = new Date(change.change_date);
-          
-          // Days before change at old plan
-          const daysBefore = Math.max(0, (changeDate.getTime() - overlapStart.getTime()) / (1000 * 60 * 60 * 24));
-          if (daysBefore > 0) {
-            const dailyRate = change.previous_amount / 30; // Assume 30-day months for simplicity
-            expectedAmount += dailyRate * daysBefore;
+          const segmentEnd = new Date(change.change_date);
+          const segDays = (segmentEnd.getTime() - segmentStart.getTime()) / (1000 * 60 * 60 * 24);
+          if (segDays > 0) {
+            // previous_amount is the plan price (cents) active before this change
+            expectedAmount += (change.previous_amount / 100 / 30) * segDays;
           }
-          
-          // Days after change at new plan
-          const daysAfter = Math.max(0, (overlapEnd.getTime() - changeDate.getTime()) / (1000 * 60 * 60 * 24));
-          if (daysAfter > 0) {
-            const dailyRate = change.new_amount / 30; // Assume 30-day months for simplicity
-            expectedAmount += dailyRate * daysAfter;
-          }
+          segmentStart = segmentEnd;
+        }
+        // Final segment: last change date → overlapEnd, at the newest plan price
+        const lastChange = sortedChanges[sortedChanges.length - 1]!;
+        const finalDays = (overlapEnd.getTime() - segmentStart.getTime()) / (1000 * 60 * 60 * 24);
+        if (finalDays > 0) {
+          expectedAmount += (lastChange.new_amount / 100 / 30) * finalDays;
         }
       } else {
-        // No plan changes in this period, use current MRR
-        expectedAmount = subscription.mrr;
+        // No plan changes within the overlap window — use current MRR (cents → dollars)
+        expectedAmount = (subscription.mrr / 100 / 30) * overlapDays;
       }
     } else {
-      // No plan changes, use MRR and prorate based on subscription billing period
-      if (subscription.plan.billing_period_unit === 'month') {
-        if (subscription.plan.billing_period === 12) {
-          // Annual subscription - attribute 1/12 per month
-          expectedAmount = subscription.mrr; // MRR should already be monthly
-        } else {
-          // Monthly subscription
-          expectedAmount = subscription.mrr;
-        }
-      } else {
-        // Other billing periods
-        expectedAmount = subscription.mrr;
-      }
+      // No plan changes at all — prorate current MRR (cents → dollars) over overlap days
+      expectedAmount = (subscription.mrr / 100 / 30) * overlapDays;
     }
-
-    // Convert to USD (amounts are in smallest currency unit — cents)
+    // expectedAmount is now in local-currency dollars — convert to USD dollars
     const usdAmount = convertToUSD(
       expectedAmount,
       subscription.plan.currency,
-      new Date(subscription.current_term_start),
+      overlapStart,
       fxRates,
     );
 
-    // Key by customer company name so we can join against Stripe payments
-    // (Stripe subscription IDs don't match Chargebee subscription IDs)
     const key = subscription.customer.company.toLowerCase().trim();
     expectedRevenue.set(key, (expectedRevenue.get(key) ?? 0) + usdAmount);
   }
@@ -159,16 +145,15 @@ export function calculateActualRevenue(
     if (paymentDate < startDate || paymentDate > endDate) continue;
 
     if (payment.subscription_id || payment.customer_name) {
-      // Amounts are in smallest currency unit (cents), convert to USD
+      // payment.amount is in USD cents (normalized by loadStripePayments) —
+      // divide by 100 to get dollars before passing to convertToUSD.
       const usdAmount = convertToUSD(
-        payment.amount,
+        payment.amount / 100,
         payment.currency,
         new Date(payment.payment_date),
         fxRates,
       );
 
-      // Key by customer name to match against Chargebee subscriptions
-      // (Stripe sub IDs use a different format than Chargebee sub IDs)
       const key = payment.customer_name.toLowerCase().trim();
       const existing = actualRevenue.get(key) || 0;
       actualRevenue.set(key, existing + usdAmount);

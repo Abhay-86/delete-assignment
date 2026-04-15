@@ -7,6 +7,7 @@ import { reconcileRevenue } from '../reconciliation/revenue.js';
 import { analyzePipelineQuality } from '../reconciliation/pipeline.js';
 import { findAccountMatches } from '../reconciliation/matcher.js';
 import { loadFXRates } from '../utils/load-fx-rates.js';
+import { convertToUSD } from '../utils/fx.js';
 import type { SalesforceAccount, ChargebeeSubscription } from '../ingestion/types.js';
 
 export const reconciliationRouter = Router();
@@ -49,13 +50,11 @@ function getDataDir(): string {
 
 // POST /api/reconciliation/run - Trigger full reconciliation
 reconciliationRouter.post('/run', async (req, res) => {
+  const { threshold, nameWeight } = req.body;
   try {
-    console.log('Starting Phase 2 reconciliation run...');
     const startTime = Date.now();
     const dataDir = getDataDir();
     
-    // Load all data sources
-    console.log('Loading data from all sources...');
     const [subscriptions, payments, fxRates] = await Promise.all([
       loadChargebeeSubscriptions(dataDir),
       loadStripePayments(dataDir),
@@ -63,30 +62,21 @@ reconciliationRouter.post('/run', async (req, res) => {
     ]);
     
     const [opportunities, accounts] = await loadSalesforceData(dataDir);
-    
-    console.log(`Loaded: ${subscriptions.length} subscriptions, ${payments.length} payments, ${opportunities.length} opportunities, ${accounts.length} accounts, ${fxRates.length} fx rates`);
-    
-    // 1. Entity Resolution: Match customers across systems
-    console.log('Performing entity resolution...');
+
+
+    // Data Reconciliation: list of object of match results(A,B, confidence)
     const accountMatches = findAccountMatches(accounts, subscriptions);
-    console.log(`Found ${accountMatches.length} account matches between Salesforce and Chargebee`);
+    console.log(accountMatches.length);
     
-    // 2. Revenue Reconciliation: Compare expected vs actual revenue
-    console.log('Performing revenue reconciliation...');
-    // Use the current subscription term window for both expected and actual revenue.
-    // This ensures an apples-to-apples comparison: expected MRR for the current
-    // billing period vs payments that arrived during that same period.
+    // Revenue Reconciliation: Compare expected vs actual revenue
+    // Reporting window is fixed to the board reporting period: 2024 Q1–Q4.
+    // This ensures Stripe payment data for the full year is included, rather
+    // than the narrow Feb–Mar 2025 active subscription term window which only
+    // captures ~113 payments. The active subscription snapshot is still used
+    // to determine which subscriptions are "active" for MRR/ARR purposes.
     const activeSubscriptions = subscriptions.filter(s => s.status === 'active');
-    const allTermDates = activeSubscriptions.flatMap(s => [
-      new Date(s.current_term_start),
-      new Date(s.current_term_end),
-    ]);
-    const startDate = allTermDates.length > 0
-      ? new Date(Math.min(...allTermDates.map(d => d.getTime())))
-      : new Date(new Date().getFullYear(), 0, 1);
-    const endDate = allTermDates.length > 0
-      ? new Date(Math.max(...allTermDates.map(d => d.getTime())))
-      : new Date();
+    const startDate = new Date('2024-01-01');
+    const endDate   = new Date('2024-12-31');
     
     const revenueReconciliation = reconcileRevenue(
       subscriptions, 
@@ -98,10 +88,62 @@ reconciliationRouter.post('/run', async (req, res) => {
       }
     );
     console.log(`Revenue reconciliation complete. Difference: $${revenueReconciliation.difference.toFixed(2)} (${revenueReconciliation.differencePercent.toFixed(1)}%)`);
-    
+
+    // Coverage gap: how much of the total expected MRR does Stripe actually cover?
+    //
+    // differencePercent above is the *within-window proration accuracy* — it compares
+    // prorated expected revenue (small denominator) against Stripe payments in the same
+    // window. Because overlapDays are fractional the denominator shrinks, making the gap
+    // look artificially small (e.g. -1%).
+    //
+    // coverageGapPercent uses the **full monthly MRR** of every active subscription as the
+    // denominator. This answers the more useful CFO question: "What share of the MRR we
+    // expect from active subscriptions is actually showing up as Stripe payments?"
+    // A value of -99% means Stripe has recorded only ~1% of what Chargebee says is owed —
+    // indicating Stripe data is partial / historical, not a complete billing record.
+    //
+    // MRR is in local-currency cents — convert each sub to USD cents via FX before summing,
+    // so that EUR/GBP/AUD subscriptions are on the same scale as USD subscriptions.
+    const totalActiveMRR = activeSubscriptions.reduce((sum, s) => {
+      // const usdCents = convertToUSD(s.mrr, s.plan.currency, new Date(s.current_term_start), fxRates);
+      const usdAmount = convertToUSD(
+        s.mrr / 100, 
+        s.plan.currency,
+        new Date(s.current_term_start),
+        fxRates
+      );
+
+      const usdCents = Math.round(usdAmount * 100);
+      return sum + usdCents;
+    }, 0); 
+    const paymentsInWindow = payments.filter(p => {
+      if (p.status !== 'succeeded') return false;
+      const d = new Date(p.payment_date);
+      return d >= startDate && d <= endDate;
+    });
+    const totalStripeInWindow = paymentsInWindow.reduce((sum, p) => sum + p.amount, 0); // USD cents
+
+    // Customer coverage: how many active CB customers have ANY Stripe payment ever?
+    // This is the root cause of the -99% gap — most CB customers simply don't appear
+    // in Stripe at all (they pay via invoice/ACH/wire, not through Stripe).
+    const allSucceededPayments = payments.filter(p => p.status === 'succeeded');
+    const stripeCustomerNames = new Set(
+      allSucceededPayments.map(p => p.customer_name.toLowerCase().trim())
+    );
+    const cbCustomersWithStripe = activeSubscriptions.filter(
+      s => stripeCustomerNames.has(s.customer.company.toLowerCase().trim())
+    ).length;
+    const cbCustomersNoStripe = activeSubscriptions.length - cbCustomersWithStripe;
+
+    const coverageGapPercent = totalActiveMRR > 0
+      ? ((totalStripeInWindow - totalActiveMRR) / totalActiveMRR) * 100
+      : 0;
+
     // 3. Pipeline Quality Analysis: Identify CRM data issues
     console.log('Analyzing pipeline quality...');
-    const pipelineAnalysis = analyzePipelineQuality(opportunities, accounts, subscriptions, payments);
+    const pipelineAnalysis = analyzePipelineQuality(opportunities, accounts, subscriptions, payments, {
+      asOf: endDate,
+    });
     console.log(`Pipeline analysis complete. Health score: ${pipelineAnalysis.summary.pipelineHealthScore}, Zombie deals: ${pipelineAnalysis.summary.totalZombieDeals}, Unbooked MRR: $${(pipelineAnalysis.summary.totalUnbookedMRR / 100).toFixed(2)}`);
     
     const endTime = Date.now();
@@ -113,6 +155,11 @@ reconciliationRouter.post('/run', async (req, res) => {
       reconciliation: {
         entityResolution: {
           accountMatches: accountMatches.length,
+          // Which SF accounts were NOT matched to any CB subscription?
+          unmatchedSfAccounts: accounts.length - accountMatches.length,
+          // Which CB subscriptions were NOT matched to any SF account?
+          // (accountMatches is 1 CB sub per SF account, so unmatched CB = total active - matched)
+          unmatchedCbSubscriptions: activeSubscriptions.length - accountMatches.length,
           matchedAccounts: accountMatches.slice(0, 10).map(match => {
             const sfAccount = match.entityA.data as SalesforceAccount;
             const cbSub = match.entityB.data as ChargebeeSubscription;
@@ -131,15 +178,29 @@ reconciliationRouter.post('/run', async (req, res) => {
           actualRevenue: revenueReconciliation.actualRevenue,
           difference: revenueReconciliation.difference,
           differencePercent: revenueReconciliation.differencePercent,
+          // coverageGap: full-MRR denominator vs Stripe payments in window.
+          // This is the meaningful gap for the CFO — not the narrow proration accuracy.
+          coverageGap: {
+            totalActiveMRR: totalActiveMRR / 100,                  
+            totalStripeInWindow: (totalStripeInWindow / 100), 
+            paymentsInWindow: paymentsInWindow.length,
+            activeSubscriptions: activeSubscriptions.length,
+            gapPercent: coverageGapPercent,
+            windowStart: startDate.toISOString().slice(0, 10),
+            windowEnd: endDate.toISOString().slice(0, 10),
+            // Customer coverage breakdown — explains WHY the gap is large
+            cbCustomersWithStripe,   // CB customers that appear in Stripe (any time)
+            cbCustomersNoStripe,     // CB customers with zero Stripe payments ever
+          },
           lineItemCount: revenueReconciliation.lineItems.length,
           topDiscrepancies: revenueReconciliation.lineItems
             .sort((a, b) => Math.abs(b.difference) - Math.abs(a.difference))
             .slice(0, 5)
             .map(item => ({
               customer: item.customerName,
-              expected: item.expected / 100,   // cents → dollars
-              actual: item.actual / 100,        // cents → dollars
-              difference: item.difference / 100, // cents → dollars
+              expected: item.expected,
+              actual: item.actual,
+              difference: item.difference,
               reason: item.reason,
             })),
           breakdown: revenueReconciliation.breakdown,
@@ -153,6 +214,7 @@ reconciliationRouter.post('/run', async (req, res) => {
           },
           mismatches: {
             count: pipelineAnalysis.summary.totalMismatches,
+            missingSubscriptionCount: pipelineAnalysis.summary.missingSubscriptionCount,
             details: pipelineAnalysis.mismatches.slice(0, 5), // Top 5 mismatches
           },
           unbookedRevenue: {
@@ -195,8 +257,22 @@ reconciliationRouter.get('/pipeline', async (req, res) => {
     ]);
     
     const [opportunities, accounts] = await loadSalesforceData(dataDir);
-    
-    const analysis = analyzePipelineQuality(opportunities, accounts, subscriptions, payments);
+
+    // Derive the snapshot reference date from the active subscription terms —
+    // same logic as POST /run — so zombie staleness is measured against the
+    // dataset's own timeline, not wall-clock now().
+    const activeSubscriptions = subscriptions.filter(s => s.status === 'active');
+    const allTermDates = activeSubscriptions.flatMap(s => [
+      new Date(s.current_term_start),
+      new Date(s.current_term_end),
+    ]);
+    const endDate = allTermDates.length > 0
+      ? new Date(Math.max(...allTermDates.map(d => d.getTime())))
+      : new Date();
+
+    const analysis = analyzePipelineQuality(opportunities, accounts, subscriptions, payments, {
+      asOf: endDate,
+    });
     
     res.json({
       success: true,
