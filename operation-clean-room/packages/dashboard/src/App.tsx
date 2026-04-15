@@ -7,6 +7,7 @@ import { CustomerHealth } from './components/features/CustomerHealth';
 import { PipelineQuality } from './components/features/PipelineQuality';
 import { ScenarioModeler } from './components/features/ScenarioModeler';
 import { AuditTrail } from './components/features/AuditTrail';
+import { DuplicateRevenue } from './components/features/DuplicateRevenue';
 
 export function App() {
   return (
@@ -15,6 +16,7 @@ export function App() {
         <Route path="/" element={<Navigate to="/revenue" replace />} />
         <Route path="/revenue" element={<RevenueSummary />} />
         <Route path="/discrepancies" element={<DiscrepancyTable />} />
+        <Route path="/duplicates" element={<DuplicateRevenue />} />
         <Route path="/cohorts" element={<CohortAnalysis />} />
         <Route path="/health" element={<CustomerHealth />} />
         <Route path="/pipeline" element={<PipelineQuality />} />

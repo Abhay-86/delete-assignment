@@ -102,7 +102,7 @@ reconciliationRouter.post('/run', async (req, res) => {
     // 3. Pipeline Quality Analysis: Identify CRM data issues
     console.log('Analyzing pipeline quality...');
     const pipelineAnalysis = analyzePipelineQuality(opportunities, accounts, subscriptions, payments);
-    console.log(`Pipeline analysis complete. Health score: ${pipelineAnalysis.summary.pipelineHealthScore}, Zombie deals: ${pipelineAnalysis.summary.totalZombieDeals}, Unbooked MRR: $${pipelineAnalysis.summary.totalUnbookedMRR.toFixed(2)}`);
+    console.log(`Pipeline analysis complete. Health score: ${pipelineAnalysis.summary.pipelineHealthScore}, Zombie deals: ${pipelineAnalysis.summary.totalZombieDeals}, Unbooked MRR: $${(pipelineAnalysis.summary.totalUnbookedMRR / 100).toFixed(2)}`);
     
     const endTime = Date.now();
     const duration = endTime - startTime;
@@ -137,9 +137,9 @@ reconciliationRouter.post('/run', async (req, res) => {
             .slice(0, 5)
             .map(item => ({
               customer: item.customerName,
-              expected: item.expected,
-              actual: item.actual,
-              difference: item.difference,
+              expected: item.expected / 100,   // cents → dollars
+              actual: item.actual / 100,        // cents → dollars
+              difference: item.difference / 100, // cents → dollars
               reason: item.reason,
             })),
           breakdown: revenueReconciliation.breakdown,
@@ -156,7 +156,7 @@ reconciliationRouter.post('/run', async (req, res) => {
             details: pipelineAnalysis.mismatches.slice(0, 5), // Top 5 mismatches
           },
           unbookedRevenue: {
-            totalMRR: pipelineAnalysis.summary.totalUnbookedMRR,
+            totalMRR: pipelineAnalysis.summary.totalUnbookedMRR / 100, // cents → dollars
             count: pipelineAnalysis.unbookedRevenue.length,
             details: pipelineAnalysis.unbookedRevenue.slice(0, 5), // Top 5 by MRR
           },
@@ -250,22 +250,30 @@ reconciliationRouter.get('/duplicates', async (req, res) => {
     
     res.json({
       success: true,
-      matches: matches.map(match => ({
-        salesforceId: match.entityA.id,
-        salesforceName: (match.entityA as any).name || 'N/A',
-        chargebeeId: match.entityB.id,
-        chargebeeName: (match.entityB as any).customer?.company || 'N/A',
-        confidence: match.confidence.score,
-        matchedFields: match.confidence.matchedFields,
-        unmatchedFields: match.confidence.unmatchedFields,
-        classification: match.confidence.score > 0.8 ? 'high_confidence' : 
-                      match.confidence.score > 0.6 ? 'medium_confidence' : 'low_confidence',
-      })),
+      matches: matches.map(match => {
+        const sfAccount = match.entityA.data as SalesforceAccount;
+        const cbSub = match.entityB.data as ChargebeeSubscription;
+        return {
+          salesforceId:   match.entityA.id,
+          salesforceName: sfAccount.account_name,
+          chargebeeId:    match.entityB.id,
+          chargebeeName:  cbSub.customer.company,
+          mrrUSD:         cbSub.mrr / 100,          // cents → dollars
+          arrUSD:         (cbSub.mrr / 100) * 12,   // annualized
+          confidence:     match.confidence.score,
+          matchedFields:  match.confidence.matchedFields,
+          classification: match.confidence.score > 0.8 ? 'high_confidence'
+                        : match.confidence.score > 0.6 ? 'medium_confidence'
+                        : 'low_confidence',
+        };
+      }),
       summary: {
         totalMatches: matches.length,
-        highConfidenceMatches: matches.filter(m => m.confidence.score > 0.8).length,
+        highConfidenceMatches:   matches.filter(m => m.confidence.score > 0.8).length,
         mediumConfidenceMatches: matches.filter(m => m.confidence.score > 0.6 && m.confidence.score <= 0.8).length,
-        lowConfidenceMatches: matches.filter(m => m.confidence.score <= 0.6).length,
+        lowConfidenceMatches:    matches.filter(m => m.confidence.score <= 0.6).length,
+        totalDuplicateMRR:  matches.reduce((s, m) => s + (m.entityB.data as ChargebeeSubscription).mrr, 0) / 100,
+        totalDuplicateARR:  matches.reduce((s, m) => s + (m.entityB.data as ChargebeeSubscription).mrr, 0) / 100 * 12,
       },
     });
   } catch (error) {

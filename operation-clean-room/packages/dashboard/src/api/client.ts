@@ -172,6 +172,10 @@ export function getMetricsOverview(): Promise<MetricsOverview> {
   return request<MetricsOverview>('/metrics/overview');
 }
 
+export function getARRTrend(): Promise<unknown> {
+  return request<unknown>('/metrics/arr-trend');
+}
+
 // ── Customer Health ──────────────────────────────────────────────────────────
 
 export function getCustomerHealth(options?: {

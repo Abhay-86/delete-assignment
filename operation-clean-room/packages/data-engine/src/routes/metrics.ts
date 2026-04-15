@@ -82,6 +82,29 @@ metricsRouter.get('/churn', async (req, res) => {
   }
 });
 
+// GET /api/metrics/arr-trend
+// Returns ARR broken down by signup cohort month, sorted chronologically.
+// Uses calculateARR().byCohort — no snapshot store needed.
+metricsRouter.get('/arr-trend', async (req, res) => {
+  try {
+    const result = await calculateARR(new Date(), { excludeTrials: true });
+    const trend = result.byCohort
+      .slice()
+      .sort((a, b) => a.label.localeCompare(b.label))
+      .map(c => ({
+        month:     c.label,
+        arr:       c.arr,
+        customers: c.customerCount,
+      }));
+    res.json({
+      success: true,
+      data: { trend, total: result.total, asOfDate: result.asOfDate },
+    });
+  } catch (error) {
+    res.status(500).json({ success: false, error: error instanceof Error ? error.message : 'Unknown error' });
+  }
+});
+
 // GET /api/metrics/overview
 metricsRouter.get('/overview', async (req, res) => {
   try {
