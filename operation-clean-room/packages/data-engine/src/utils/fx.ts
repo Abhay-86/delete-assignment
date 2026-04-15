@@ -28,6 +28,30 @@ export function convertToUSD(
   date: Date,
   rates: FXRate[],
 ): number {
-  // TODO: Implement - handle missing dates (weekends/holidays), currency lookup
-  throw new Error('Not implemented');
+  const upper = currency.toUpperCase();
+  if (upper === 'USD') return amount;
+
+  const supported = ['EUR', 'GBP', 'JPY', 'AUD'];
+  if (!supported.includes(upper)) {
+    throw new Error(`Unsupported currency: ${currency}`);
+  }
+
+  // Try exact date, then up to 5 prior days (weekends / holidays)
+  const dateStr = date.toISOString().slice(0, 10);
+  for (let offset = 0; offset <= 5; offset++) {
+    const d = new Date(date);
+    d.setDate(d.getDate() - offset);
+    const key = d.toISOString().slice(0, 10);
+    const rate = rates.find(r => r.date === key);
+    if (rate) {
+      const multiplier =
+        upper === 'EUR' ? rate.eur_usd :
+        upper === 'GBP' ? rate.gbp_usd :
+        upper === 'JPY' ? rate.jpy_usd :
+        rate.aud_usd;
+      return amount * multiplier;
+    }
+  }
+
+  throw new Error(`No FX rate found for ${currency} near ${dateStr}`);
 }

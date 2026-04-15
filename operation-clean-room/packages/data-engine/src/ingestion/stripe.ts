@@ -22,7 +22,10 @@ export async function loadStripePayments(dataDir: string): Promise<StripePayment
       payment_id: row.payment_id,
       customer_id: row.customer_id,
       customer_name: row.customer_name,
-      amount: Number(row.amount),
+      // The CSV stores amounts in major currency units (e.g. dollars), but the
+      // reconciliation engine works in the smallest unit (cents) to match how
+      // Chargebee stores prices.  Multiply by 100 to normalize.
+      amount: Math.round(Number(row.amount) * 100),
       currency: row.currency,
       status: row.status as 'succeeded' | 'failed' | 'pending' | 'refunded' | 'disputed',
       payment_date: row.payment_date,
