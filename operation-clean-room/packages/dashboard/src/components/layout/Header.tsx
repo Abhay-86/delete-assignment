@@ -1,5 +1,9 @@
 import { RefreshCw } from 'lucide-react';
 
+// Reporting period is fixed: full year 2024 (Q1–Q4).
+const WINDOW_START = 'Q1 2024';
+const WINDOW_END   = 'Q4 2024';
+
 export function Header() {
   return (
     <header className="flex items-center justify-between border-b border-slate-800/80 bg-slate-950/80 px-6 py-4 backdrop-blur-sm">
@@ -15,11 +19,11 @@ export function Header() {
 
       {/* Right side: filter placeholders + refresh */}
       <div className="flex items-center gap-4">
-        {/* Date range placeholder */}
+        {/* Date range — fixed 2024 Q1–Q4 reporting window */}
         <div className="hidden items-center gap-2 rounded-md border border-slate-700/50 bg-slate-800/50 px-3 py-1.5 font-mono text-xs text-slate-400 sm:flex">
-          <span>Q1 2024</span>
+          <span>{WINDOW_START}</span>
           <span className="text-slate-600">&mdash;</span>
-          <span>Q4 2024</span>
+          <span>{WINDOW_END}</span>
         </div>
 
         {/* Refresh button */}
