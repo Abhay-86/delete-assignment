@@ -50,14 +50,11 @@ function computeMRR(
   coupons: any[],
   termEnd: string,
 ): number {
-  // 1. Base + addons
-  const addonTotal = (addons ?? []).reduce(
-    (sum: number, a: any) => sum + (Number(a.quantity) || 0) * (Number(a.unit_price) || 0),
-    0,
-  );
+  // Base + addons
+  const addonTotal = (addons ?? []).reduce((sum: number, a: any) => sum + (Number(a.quantity) || 0) * (Number(a.unit_price) || 0), 0);
   let gross = planPrice + addonTotal;
 
-  // 2. Apply only active coupons (unexpired at term end)
+  // active coupons
   for (const coupon of coupons ?? []) {
     const validTill: string | null = coupon.valid_till ?? null;
     const isActive = validTill === null || validTill >= termEnd;
@@ -111,16 +108,18 @@ export async function loadChargebeeSubscriptions(
       subscription_id: sub.id,
       customer: {
         customer_id: sub.customer.id,
-        first_name: '',  // Not available in source data
-        last_name: '',   // Not available in source data
+        // Not available in source data
+        first_name: '',  
+        last_name: '',  
         email: sub.customer.email,
         company: sub.customer.company,
+        // Not available in source data
         billing_address: {
-          line1: '',   // Not available in source data
-          city: '',    // Not available in source data
-          state: '',   // Not available in source data
-          country: '', // Not available in source data
-          zip: '',     // Not available in source data
+          line1: '',
+          city: '',
+          state: '',
+          country: '',
+          zip: '',
         },
       },
       plan: {
@@ -137,8 +136,10 @@ export async function loadChargebeeSubscriptions(
       current_term_end: sub.current_term_end,
       created_at: sub.created_at,
       cancelled_at: sub.cancelled_at ?? null,
-      cancel_reason: null, // Not available in source data
-      mrr,                 // plan + addons − active coupon discounts (all in cents)
+      // Not available in source data
+      cancel_reason: null,
+      // plan + addons − active coupon discounts (all in cents)
+      mrr,                 
       coupons: normalizedCoupons,
       plan_changes: sub.plan_changes ?? [],
       addons: normalizedAddons,

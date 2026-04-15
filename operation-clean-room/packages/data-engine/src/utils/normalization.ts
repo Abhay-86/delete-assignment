@@ -31,8 +31,14 @@
  * @returns Normalized name suitable for comparison
  */
 export function normalizeCompanyName(name: string): string {
-  // TODO: Implement company name normalization
-  throw new Error('Not implemented');
+  return name
+    .toLowerCase()
+    .trim()
+    // Strip common legal suffixes (with or without trailing dot)
+    .replace(/\b(inc|incorporated|corp|corporation|ltd|limited|llc|plc|gmbh|ag|sa|srl|bv|co|company|group|holdings?|international|intl|technologies|technology|solutions?|systems?)\b\.?/g, '')
+    .replace(/[^\w\s]/g, ' ')  // punctuation → space
+    .replace(/\s+/g, ' ')       // collapse whitespace
+    .trim();
 }
 
 /**

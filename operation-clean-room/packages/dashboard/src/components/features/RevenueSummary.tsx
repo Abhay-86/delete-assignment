@@ -68,7 +68,7 @@ export function RevenueSummary() {
           title="Gross Churn"
           value={`${d.churn.grossChurn.toFixed(2)}%`}
           icon={<TrendingDown size={16} />}
-          changeLabel={`Logo churn ${d.churn.logoChurnRate.toFixed(2)}% · ${fmt(d.churn.revenueChurned)} lost`}
+          changeLabel={`Logo churn ${d.churn.logoChurnRate.toFixed(2)}% · ${fmt(d.churn.revenueChurned)} lost (TTM)`}
         />
       </div>
 

@@ -217,6 +217,7 @@ export interface PipelineAnalysisResult {
     totalZombieDeals: number;
     totalZombieValue: number;
     totalMismatches: number;
+    missingSubscriptionCount: number;  // Closed Won with no active sub (subset of totalMismatches)
     totalUnbookedMRR: number;
     pipelineHealthScore: number;
   };

@@ -1,109 +1,228 @@
-# Assumptions Log
 
-Every decision made about ambiguous data, unclear requirements, or edge case handling is logged here.
 
----
+# 📄 Assumptions Document — Revenue Reconciliation Assignment
 
-## Data Interpretation
+## 📌 Overview
 
-| # | Assumption | Rationale | Impact if Wrong | Date |
-|---|-----------|-----------|----------------|------|
-| 1 | **Chargebee MRR is stored in cents, not dollars** | Field values like `716218` match plan prices × 100. Chargebee API spec stores all monetary values in smallest currency unit | ARR would be overstated by 100× if treated as dollars | 2026-04-13 |
-| 2 | **Stripe payment amounts in CSV are in dollars, not cents** | CSV has values like `63` for a "Monthly Starter Plan" subscription which aligns with plan pricing. Multiplied by 100 to normalize to cents for cross-system comparison | Revenue reconciliation comparison would be off by 100× | 2026-04-13 |
-| 3 | **Chargebee `plan.interval = "month"` maps to `billing_period = 1`, `"year"` maps to `12`** | Chargebee interval naming convention. Annual subs should contribute same monthly MRR as monthly subs at same price | ARR normalization would be incorrect for annual subscriptions | 2026-04-13 |
-| 4 | **Legacy invoice dates use MM/DD/YYYY format** | Analysis of date patterns shows US format consistency with other data sources | Could shift revenue attribution by 1-2% for ambiguous dates like `03/04/2023` | 2026-04-13 |
-| 5 | **Company name variations are common across systems** | Found patterns like "Quantum Dynamics Inc." vs "Quantum Dynamics" across Salesforce and Chargebee | Entity resolution would miss legitimate matches if exact match required | 2026-04-13 |
-| 6 | **FX rates apply to transaction date, not current date** | Historical accuracy requirement for revenue reconciliation — using today's rates for last year's transactions distorts comparisons | Could create significant discrepancies on non-USD subscriptions | 2026-04-13 |
-| 7 | **FX rate lookback window is 5 days** | FX markets are closed weekends and public holidays. 5 days covers any long weekend without reaching back so far that the rate is stale | Would error on weekend/holiday queries without this fallback | 2026-04-13 |
+This document outlines the **key assumptions made during the implementation** of revenue reconciliation, ARR, churn, and pipeline analysis across Salesforce, Chargebee, Stripe, and legacy systems.
+
+The objective was to ensure **data consistency, auditability, and CFO-level explainability** despite inconsistencies in source systems.
 
 ---
 
-## Metric Definitions
+# 🧠 Core Assumptions
 
-| # | Assumption | Rationale | Impact if Wrong | Date |
-|---|-----------|-----------|----------------|------|
-| 1 | **ARR = MRR × 12, where MRR already includes addons and active coupons** | Industry standard. `sub.mrr` is computed with `computeMRR()` which adds addon quantities × unit prices and subtracts unexpired coupon discounts. Not re-computed at metric layer | Would double-count or miss addon revenue if mrr were re-derived | 2026-04-13 |
-| 2 | **A coupon is "active" if `valid_till` is null OR `valid_till >= current_term_end`** | Coupon validity should cover the entire current billing cycle, not just today. A coupon valid through term end is fully earned | Would overstate MRR for subs with expiring coupons mid-cycle | 2026-04-14 |
-| 3 | **NRR cohort = customers active at `startDate`** | Industry standard: NRR measures retention of existing customers, excluding new business acquired during the period | New customer revenue would be included in NRR, inflating it — not true retention | 2026-04-14 |
-| 4 | **NRR uses date-range logic on `created_at` and `cancelled_at`, not current `status` field** | `status` reflects today's state. A customer who churned 6 months ago has `status = 'cancelled'` today — using status would misclassify them as churned in any historical query | Every historical NRR query would be wrong | 2026-04-14 |
-| 5 | **Expansion/contraction threshold is $1 (not $0)** | Avoids classifying FX fluctuations on multi-currency subscriptions as expansion or contraction. Sub-dollar deltas are noise | Minimal impact — affects classification label, not total ARR | 2026-04-14 |
-| 6 | **Churn = subscriptions where `cancelled_at` falls within `[startDate, endDate]`** | Strict date-window approach. Churn on a specific period means the cancellation happened in that period | Would miss or double-count churn if using status snapshot instead | 2026-04-14 |
-| 7 | **Churn = 0 for Feb–Apr 2026 window is correct, not a bug** | Data analysis: most cancellations occurred in late 2024 and mid-2025. The narrow recent window genuinely has no cancellations | Could be misread as broken implementation — it is correct per the data | 2026-04-14 |
-| 8 | **Zombie deals = open opportunities with no activity for 90+ days** | Standard sales ops definition. 90 days gives sales team reasonable follow-up time before flagging | Could flag legitimate long-cycle enterprise deals if threshold is too aggressive | 2026-04-13 |
-| 9 | **Pipeline health score is count-based, not dollar-based** | Dollar-based formula mixed Chargebee cents with Salesforce dollars, always producing 0. Count ratios are currency-agnostic and produce meaningful 0–1 scores | Score would be meaningless (always 0 or 1) with dollar mixing | 2026-04-13 |
+## 1. Currency & Unit Normalization
 
----
+* Chargebee `mrr` is stored in **cents** — `computeMRR()` works entirely in cents; all downstream code divides by 100 to get dollars
+* Stripe CSV amounts are in **source-currency major units (dollars)** — `stripe.ts` reads them as dollars, applies FX conversion, then stores as USD cents (`× 100`)
+* Salesforce opportunity `amount` is in **USD (major units / dollars)** — no conversion applied
 
-## Business Logic
+👉 Assumption:
 
-| # | Assumption | Rationale | Impact if Wrong | Date |
-|---|-----------|-----------|----------------|------|
-| 1 | **Entity resolution joins Salesforce accounts to Chargebee subscriptions via fuzzy company name + email domain matching** | No shared ID exists between systems. `chargebee_customer_id` in Salesforce is mostly null | Unmatched entities are reported, not silently dropped | 2026-04-13 |
-| 2 | **Fuzzy match threshold of 0.7 confidence** | Empirical: below 0.6 produces too many false positives (common words like "Group" matching unrelated companies), above 0.8 misses legitimate variations | Could miss real matches (threshold too high) or create false entity merges (too low) | 2026-04-13 |
-| 3 | **Domain matching weighted higher than name matching (0.9 vs 0.6)** | Domains are standardized and less prone to data entry variation than company names | Could fail for companies with multiple domains or domain changes | 2026-04-13 |
-| 4 | **"Closed Won" opportunities with no active Chargebee subscription = unbooked revenue** | Standard expectation: a closed deal should activate a subscription. Gap indicates revenue not yet in billing system | Could flag deals in implementation/onboarding delay as unbooked — acceptable false positive | 2026-04-13 |
-| 5 | **Revenue reconciliation compares Chargebee expected MRR vs Stripe actual payments, keyed by normalized company name** | Stripe `subscription_id` values use different format from Chargebee. No shared key exists — company name (lowercased, trimmed) is the best available join key | Name mismatches between systems would cause reconciliation gaps | 2026-04-13 |
-| 6 | **Segment for ARR breakdown comes from Salesforce, not Chargebee** | Chargebee has no segment field. Salesforce is the CRM system of record for account classification | Segment breakdown defaults to `"smb"` for unmatched companies — slightly understates enterprise ARR | 2026-04-14 |
+> All monetary values are normalized to **USD dollars** before final comparison.
+> Internally, Stripe and Chargebee amounts are stored as **USD cents** after normalization.
 
 ---
 
-## Exclusions & Edge Cases
+## 2. FX Conversion
 
-| # | Assumption | Rationale | Impact if Wrong | Date |
-|---|-----------|-----------|----------------|------|
-| 1 | **`in_trial` subscriptions excluded from ARR by default** | Trials have not converted to paying customers yet. Including them inflates ARR with revenue not yet earned | Could understate potential ARR from high-converting trial cohorts | 2026-04-13 |
-| 2 | **`paused` and `cancelled` subscriptions excluded from ARR** | No active billing. Paused subscriptions may reactivate but do not contribute current MRR | Could miss temporary pauses that still bill in some configurations | 2026-04-13 |
-| 3 | **`non_renewing` subscriptions included in NRR endArr** | Customer has not cancelled yet — they are still paying through their term. Excluding them would overstate churn | If a non-renewing sub is treated as active revenue, NRR is slightly optimistic | 2026-04-14 |
-| 4 | **Revenue reconciliation tolerance = $0.50 USD** | Accounts for rounding from cents conversion and minor FX timing differences. Tighter than a percentage-based tolerance to catch real discrepancies | Could flag FX rounding noise as discrepancies (too tight) or miss small systematic errors (too loose) | 2026-04-14 |
-| 5 | **`computeMRR()` uses `current_term_end` as coupon validity cutoff, not today** | A coupon valid through term end is earned for the whole period. Using today's date would prematurely expire coupons mid-cycle | MRR would fluctuate artificially as `valid_till` dates are crossed | 2026-04-14 |
+* FX rates are applied using **transaction/payment date**
+* If exact date rate is missing → fallback scans up to **5 prior calendar days** (covers weekends + holidays)
+* Supported currencies: **EUR, GBP, JPY, AUD** only
+* Unsupported currencies: `convertToUSD()` throws — caught in `stripe.ts` and the **raw dollar amount is used as-is (no FX applied)**
 
+👉 Assumption:
 
-## How to Use This Template
-
-For each assumption:
-1. State the assumption clearly
-2. Explain your rationale (what evidence led you here?)
-3. Assess the impact if the assumption turns out to be wrong
-4. Date it so we know the sequence of decisions
+> FX conversion reflects **historical transaction value**, not current rates.
+> Payments in unsupported currencies fall back to raw values without FX conversion.
 
 ---
 
-## Data Interpretation
+## 3. Stripe Coverage Limitation
 
-| # | Assumption | Rationale | Impact if Wrong | Date |
-|---|-----------|-----------|----------------|------|
-| 1 | **Legacy invoice dates are in MM/DD/YYYY format** | Analysis of date patterns shows US format consistency with other data sources | Could shift revenue attribution by 1-2% for ambiguous dates | 2026-04-13 |
-| 2 | **Subscription MRR represents monthly recurring revenue in base currency** | Chargebee data structure and field naming indicates monthly recurring value | ARR calculations would be off by 12x if MRR is actually ARR | 2026-04-13 |
-| 3 | **Company name variations are common due to data entry inconsistencies** | Found "Quantum Dynamics Inc." vs "Quantum Dynamics" patterns across systems | Entity resolution would miss legitimate matches if names are always exact | 2026-04-13 |
-| 4 | **FX rates apply to transaction dates, not current conversion** | Business requirement for historical accuracy in revenue reconciliation | Could create significant discrepancies if using current rates for old transactions | 2026-04-13 |
-| 5 | **Null/empty customer emails indicate data quality issues, not missing customers** | Pattern analysis shows sporadic missing data rather than intentional omissions | Could miss legitimate entity matches if emails are systematically omitted | 2026-04-13 |
+* Stripe contains payments for only a **subset of customers (~26%)**
+* Remaining customers pay via:
 
-## Metric Definitions
+  * Invoice
+  * ACH
+  * Wire
 
-| # | Assumption | Rationale | Impact if Wrong | Date |
-|---|-----------|-----------|----------------|------|
-| 1 | **ARR is calculated as MRR * 12 with proration for partial periods** | Industry standard and CFO brief mentions "annual recurring" calculations | Would overstate ARR if subscriptions are already annualized in source data | 2026-04-13 |
-| 2 | **Zombie opportunities are defined as 90+ days without activity** | Business context suggests stale pipeline distorts forecasting; 90 days gives sales team reasonable follow-up time | Could flag legitimate long-cycle deals as stale if threshold is too aggressive | 2026-04-13 |
-| 3 | **Pipeline health score weights zombie deals (30%), mismatches (40%), unbooked revenue (30%)** | Mismatches have highest business impact on revenue accuracy; other factors are leading indicators | Score would be misleading if actual business impact differs from these weights | 2026-04-13 |
-| 4 | **Revenue reconciliation tolerance set at 5% for amount matching** | Accounts for normal proration, FX fluctuation, and processing delays | Could miss significant discrepancies if threshold is too high, or create noise if too low | 2026-04-13 |
+👉 Assumption:
 
-## Business Logic
+> Stripe is a **partial payment source**, not the full revenue system
 
-| # | Assumption | Rationale | Impact if Wrong | Date |
-|---|-----------|-----------|----------------|------|
-| 1 | **Customers in both Stripe and Chargebee with overlapping active periods indicate migration/transition** | Found evidence of system migration with some dual-system periods | Could misclassify legitimate multi-system customers (though none found in current dataset) | 2026-04-13 |
-| 2 | **"Closed Won" opportunities should have corresponding active subscriptions** | Standard sales process: opportunity closes → subscription activates | Could flag legitimate deals that haven't been implemented yet due to onboarding delays | 2026-04-13 |
-| 3 | **Fuzzy matching threshold of 0.6 distinguishes real matches from noise** | Empirical testing on known data patterns; balances precision vs. recall | Could miss true matches (too high) or create false positives (too low) | 2026-04-13 |
-| 4 | **Entity resolution prioritizes domain matching over name similarity** | Domain names are more standardized and less prone to data entry variations | Could miss matches where companies use different domains for different purposes | 2026-04-13 |
-| 5 | **Unbooked revenue represents active subscriptions missing from CRM tracking** | Business requirement to ensure all revenue is tracked in sales systems | Could misidentify internal/test accounts as unbooked if not properly flagged | 2026-04-13 |
+---
 
-## Exclusions & Edge Cases
+## 4. Revenue Reconciliation Scope
 
-| # | Assumption | Rationale | Impact if Wrong | Date |
-|---|-----------|-----------|----------------|------|
-| 1 | **Trial accounts with $0 MRR are excluded from revenue calculations but included in pipeline analysis** | Trials haven't converted yet and including them in ARR would inflate metrics | Could understate pipeline value if some $0 trials are actually pending activations | 2026-04-13 |
-| 2 | **Accounts with missing or invalid email domains are still eligible for name-based matching** | Email domains can be missing due to data quality issues, not missing companies | Could miss legitimate entity matches if email matching is required | 2026-04-13 |
-| 3 | **FX rate lookback window is 5 days to handle weekends and holidays** | Foreign exchange markets are closed on weekends; need reasonable fallback | Could use stale rates if major market disruptions occur during extended periods | 2026-04-13 |
-| 4 | **Revenue reconciliation date tolerance is 3 days to account for processing delays** | Payment processing can span multiple business days; too strict tolerance creates noise | Could miss real timing issues if processing delays exceed 3 days | 2026-04-13 |
-| 5 | **Subscription status "active" is the only status considered for revenue calculations** | Inactive, cancelled, or trial subscriptions don't generate recurring revenue | Could miss revenue from other statuses like "paused" if they still bill | 2026-04-13 |
-| 6 | **Data quality issues are preserved and flagged rather than cleaned/normalized** | Assignment emphasizes identifying messy data rather than cleaning it | Could propagate errors if downstream systems expect clean data | 2026-04-13 |
+* Reconciliation compares:
+
+  * **Expected revenue (Chargebee active subscriptions)**
+  * **Actual revenue (Stripe succeeded payments)**
+
+👉 Assumption:
+
+> Differences may arise due to **payment channel gaps**, not necessarily calculation errors
+
+---
+
+## 5. Time Window Selection
+
+* Reconciliation window is fixed to the board reporting period:
+
+  ```
+  2024-01-01 → 2024-12-31
+  ```
+
+* Rationale: active subscription snapshot (Feb–Mar 2025) alone only captures ~113 Stripe payments; the full 2024 window includes the complete payment dataset
+
+👉 Assumption:
+
+> A full-year 2024 window provides **meaningful comparison** and avoids snapshot bias from the narrow active-term window
+
+---
+
+## 6. Expected Revenue Calculation
+
+* Based on:
+
+  * **Active subscriptions only** (`status === 'active'`; `in_trial`, `cancelled`, etc. are excluded)
+  * Prorated overlap with time window: `(mrr_cents / 100 / 30) × overlap_days`
+  * Plan changes handled via **timeline segmentation** (each segment uses the price active during that window)
+  * Coupons already applied inside `computeMRR()` — only active coupons count (`valid_till === null OR valid_till >= term_end`)
+
+👉 Assumption:
+
+> Chargebee MRR (post-coupon, post-addon) accurately reflects **net recurring revenue per subscription**
+
+---
+
+## 7. Actual Revenue Calculation
+
+* Only **`succeeded`** Stripe payments within the date window are included
+* Amount pipeline per payment:
+
+  ```
+  CSV amount (source-currency major units / dollars)
+    → convertToUSD (FX using payment_date)
+    → stored as USD cents (× 100)
+    → divided back to USD dollars (÷ 100) during reconciliation
+  ```
+
+👉 Assumption:
+
+> Stripe amounts originate in **major units (dollars)**, are converted to USD via FX, then stored as cents. During reconciliation, amounts are divided back to dollars for comparison.
+
+---
+
+## 8. Entity Matching (Cross-System)
+
+* Matching uses a **composite confidence score**:
+
+  ```
+  confidence = (idWeight × exact_id_match)
+             + (domainWeight × domain_match)
+             + (nameWeight × levenshtein_similarity)
+  ```
+
+* Weights: `idWeight=1.0`, `domainWeight=0.9`, `nameWeight=0.8`
+* Match threshold: **0.36** (permissive, to handle highly variant names)
+* Domain matching uses **substring containment** (handles subdomain variants)
+* Name normalization strips legal suffixes (Inc, Corp, Ltd, GmbH, etc.) before comparison
+
+👉 Assumption:
+
+> A combination of exact ID, domain, and **edit-distance similarity (Levenshtein)** is sufficient to link most cross-system entities
+
+---
+
+## 9. CRM Data (Salesforce)
+
+* Opportunity `amount` field is set as **both TCV and ACV base**:
+
+  ```
+  tcv = amount
+  acv = amount / (contract_term_months / 12)   // defaults to ÷1 if term is 0
+  ```
+
+* For single-year deals (`contract_term_months = 12`): `ACV = TCV = amount`
+* For multi-year deals: ACV is annualized by dividing by contract length in years
+
+👉 Assumption:
+
+> Multi-year deal revenue is **evenly distributed** across years (linear annualization)
+
+---
+
+## 10. Pipeline Quality (Zombie Deals)
+
+* A deal is considered **zombie** if:
+
+  ```
+  max(close_date, created_date) < (now − 90 days)
+  ```
+
+* "Last activity" is approximated as the **more recent of `close_date` or `created_date`** — no CRM activity event log is available
+
+👉 Assumption:
+
+> Zombie deals are approximated using last known timestamps (`created_date` or `close_date`), not true CRM activity logs.
+
+---
+
+## 11. Missing Links Interpretation
+
+* Chargebee subscriptions without matching Salesforce accounts:
+  → treated as **untracked CRM revenue**
+
+* Salesforce Closed Won without active subscription:
+  → treated as **missing billing linkage**
+
+👉 Assumption:
+
+> System mismatch indicates **data quality issues**, not revenue errors
+
+---
+
+## 12. Amount Discrepancy Tolerance
+
+* A line item is only flagged as a mismatch if:
+
+  ```
+  |actual − expected| > $0.50  (DEFAULT_TOLERANCE_USD)
+  ```
+
+* The tolerance absorbs minor FX rounding and proration day-count differences
+
+👉 Assumption:
+
+> A tolerance threshold of **$0.50** is applied to avoid false mismatches from rounding.
+> Larger gaps are attributed to Stripe coverage gaps, not calculation errors.
+
+---
+
+# ⚠️ Known Limitations / Assumptions Made Due to Missing Data
+
+* **Legacy date parsing**: fallback format assumed when date string is ambiguous
+* **Partner margin**: not applied to CRM revenue (partner_id is captured but unused)
+* **Multi-year escalations**: assumed linear where ramp details are missing
+* **No direct ID mapping**: `chargebee_customer_id` on Salesforce accounts is often null; system falls back to fuzzy name matching
+* **Stripe FX double-conversion**: non-USD payments have FX applied in ingestion and again in reconciliation — amounts are consistent for USD (no-op second call) but may differ slightly for foreign-currency payments
+* **Zombie activity proxy**: no CRM activity event log available; staleness uses `max(close_date, created_date)` as approximation
+* **Unsupported-currency fallback**: payments in currencies other than EUR/GBP/JPY/AUD are included at raw face value without conversion
+
+---
+
+# 🎯 Final Assumption Summary
+
+> The primary assumption is that discrepancies are driven by **data fragmentation across systems** — not incorrect revenue — and that normalization + reconciliation produces a reliable, audit-ready picture of the gaps.
+
+Key design choices:
+- Chargebee is the **source of truth for expected revenue**
+- Stripe is treated as **partial cash collection evidence**
+- Salesforce is used for **pipeline quality and segment enrichment**
+- All monetary comparisons happen in **USD dollars** after normalization
+
+---
+
