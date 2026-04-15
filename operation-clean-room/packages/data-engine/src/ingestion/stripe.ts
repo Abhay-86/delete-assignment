@@ -1,3 +1,5 @@
+import { join } from 'node:path';
+import { loadCSV } from './csv-loader.js';
 import { StripePayment } from './types.js';
 
 /**
@@ -13,6 +15,22 @@ import { StripePayment } from './types.js';
  * @returns Normalized Stripe payment records
  */
 export async function loadStripePayments(dataDir: string): Promise<StripePayment[]> {
-  // TODO: Implement - load from stripe_payments.csv, normalize, and return
-  throw new Error('Not implemented');
+  const filePath = join(dataDir, 'stripe_payments.csv');
+
+  return loadCSV<StripePayment>(filePath, {
+    transform: (row: Record<string, string>) => ({
+      payment_id: row.payment_id,
+      customer_id: row.customer_id,
+      customer_name: row.customer_name,
+      amount: Number(row.amount),
+      currency: row.currency,
+      status: row.status as 'succeeded' | 'failed' | 'pending' | 'refunded' | 'disputed',
+      payment_date: row.payment_date,
+      subscription_id: row.subscription_id || null,
+      description: row.description || null,
+      failure_code: row.failure_code || null,
+      refund_id: row.refund_id || null,
+      dispute_id: row.dispute_id || null,
+    }),
+  });
 }

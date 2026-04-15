@@ -1,3 +1,5 @@
+import { join } from 'node:path';
+import { loadCSV } from './csv-loader.js';
 import { SalesforceOpportunity, SalesforceAccount } from './types.js';
 
 /**
@@ -33,6 +35,58 @@ import { SalesforceOpportunity, SalesforceAccount } from './types.js';
 export async function loadSalesforceData(
   dataDir: string,
 ): Promise<[SalesforceOpportunity[], SalesforceAccount[]]> {
-  // TODO: Implement - load from sf_opportunities.csv and sf_accounts.csv
-  throw new Error('Not implemented');
+  const opportunitiesPath = join(dataDir, 'salesforce_opportunities.csv');
+  const accountsPath = join(dataDir, 'salesforce_accounts.csv');
+
+  const opportunities = await loadCSV<SalesforceOpportunity>(
+    opportunitiesPath,
+    {
+      transform: (row: Record<string, string>) => ({
+        opportunity_id: row.opportunity_id,
+        account_id: row.account_id,
+        account_name: row.account_name,
+        opportunity_name: row.opportunity_name,
+        stage: row.stage,
+        amount: Number(row.amount),
+        currency: row.currency,
+        close_date: row.close_date,
+        created_date: row.created_date,
+        probability: Number(row.probability),
+        forecast_category: row.stage === 'Closed Won' ? 'closed' : 'pipeline',
+        type: (row.deal_type?.toLowerCase().replace(/\s+/g, '_') ||
+          'new_business') as 'new_business' | 'expansion' | 'renewal',
+        owner_name: row.owner_name,
+        owner_email: '', // Not available in source data
+        next_step: row.next_step || null,
+        tcv: Number(row.amount), // Using amount as TCV
+        acv: Number(row.amount) / (Number(row.contract_term_months) / 12 || 1), // Calculate ACV
+        contract_term_months: Number(row.contract_term_months),
+        competitor: null, // Not available in source data
+        loss_reason: null, // Not available in source data
+        partner_id: row.partner_id || null,
+      }),
+    },
+  );
+
+  const accounts = await loadCSV<SalesforceAccount>(accountsPath, {
+    transform: (row: Record<string, string>) => ({
+      account_id: row.account_id,
+      account_name: row.account_name,
+      industry: row.industry,
+      employee_count: Number(row.employee_count) || 0,
+      annual_revenue: Number(row.annual_contract_value) || 0, // Using ACV as annual revenue
+      billing_country: row.region || '', // Using region as billing country
+      billing_state: '', // Not available in source data
+      website: row.website,
+      owner_name: row.account_owner || '', // Using account_owner
+      owner_email: '', // Not available in source data
+      created_date: row.created_date,
+      segment: 'smb' as const, // Default segment, could derive from employee_count
+      parent_account_id: row.parent_account_id || null,
+      stripe_customer_id: null, // Not available in source data
+      chargebee_customer_id: null, // Not available in source data
+    }),
+  });
+
+  return [opportunities, accounts];
 }

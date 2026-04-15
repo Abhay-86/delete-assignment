@@ -1,3 +1,5 @@
+import { join } from 'node:path';
+import { loadJSONL } from './json-loader.js';
 import { ProductEvent } from './types.js';
 
 /**
@@ -32,8 +34,9 @@ import { ProductEvent } from './types.js';
  * @returns Array of product events
  */
 export async function loadProductEvents(dataDir: string): Promise<ProductEvent[]> {
-  // TODO: Implement - load from product_events.jsonl using streaming loader
-  throw new Error('Not implemented');
+  const filePath = join(dataDir, 'product_events.jsonl');
+
+  return loadJSONL<ProductEvent>(filePath);
 }
 
 /**
