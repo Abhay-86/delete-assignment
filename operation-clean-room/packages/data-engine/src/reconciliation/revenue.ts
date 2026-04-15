@@ -5,29 +5,8 @@ import { convertToUSD } from '../utils/fx.js';
 /**
  * Revenue reconciliation across billing systems.
  *
- * Compares expected revenue (from active subscriptions) against actual
- * revenue (from payments) accounting for:
- *
- * - **Prorations**: Mid-cycle upgrades/downgrades create prorated charges
- *   that don't match the subscription's stated MRR.  The reconciler must
- *   detect proration periods and adjust expected revenue accordingly.
- *
- * - **Discounts / coupons**: Active coupons reduce the invoiced amount
- *   below the plan's list price.  Both percentage and fixed-amount
- *   coupons must be accounted for, including coupon expiry dates.
- *
- * - **FX conversion**: Subscriptions may be priced in EUR, GBP, etc.
- *   but payments are recorded in the original currency.  Reconciliation
- *   must use the FX rate from the payment date (not today's rate) to
- *   convert both sides to a common currency (USD).
- *
- * - **Timing differences**: A subscription billed on the 1st of the month
- *   may have its payment processed on the 2nd or 3rd.  End-of-month
- *   boundary effects can cause payments to fall in a different calendar
- *   month than expected.
- *
- * - **Failed and retried payments**: A failed payment that is retried
- *   successfully should count as a single expected payment, not two.
+ * Compares expected revenue (subscriptions) vs actual revenue (payments),
+ * handling prorations, FX conversion, and timing differences.
  *
  * @module reconciliation/revenue
  */
@@ -38,16 +17,16 @@ export interface RevenueReconciliationOptions {
   startDate: Date;
   /** End of the reconciliation period (exclusive). */
   endDate: Date;
-  /** Tolerance for amount mismatches in USD. Defaults to 0.50. */
+  /** Tolerance for mismatches in USD. Defaults to 0.50. */
   toleranceUSD?: number;
-  /** Whether to include trial subscriptions. Defaults to false. */
+  /** Whether to include trial subscriptions. */
   includeTrials?: boolean;
 }
 
 const DEFAULT_TOLERANCE_USD = 0.50;
 
 /**
- * Calculate expected revenue from active subscriptions for a given period.
+ * Calculate expected revenue from active subscriptions.
  */
 export function calculateExpectedRevenue(
   subscriptions: ChargebeeSubscription[],
@@ -64,20 +43,18 @@ export function calculateExpectedRevenue(
     const termStart = new Date(subscription.current_term_start);
     const termEnd = new Date(subscription.current_term_end);
 
-    // Check if subscription overlaps with the analysis period
+    // Determine overlap between subscription term and analysis window
     if (termEnd < startDate || termStart > endDate) continue;
 
-    // later start date
     const overlapStart = new Date(Math.max(termStart.getTime(), startDate.getTime()));
-    // earlier end date
     const overlapEnd = new Date(Math.min(termEnd.getTime(), endDate.getTime()));
     const overlapDays = (overlapEnd.getTime() - overlapStart.getTime()) / (1000 * 60 * 60 * 24);
     
     let expectedAmount = 0;
 
-    // Handle plan changes
+    // Handle plan changes (prorated segments)
     if (subscription.plan_changes && subscription.plan_changes.length > 0) {
-      // Keep only changes that fall within the overlap window, sorted chronologically
+      // Filter and sort changes within overlap window
       const sortedChanges = subscription.plan_changes
         .filter(change => {
           const changeDate = new Date(change.change_date);
@@ -86,48 +63,74 @@ export function calculateExpectedRevenue(
         .sort((a, b) => new Date(a.change_date).getTime() - new Date(b.change_date).getTime());
 
       if (sortedChanges.length > 0) {
-        // Build timeline segments: [overlapStart → change1 → change2 → ... → overlapEnd]
+        // Build segments: overlapStart → change → ... → overlapEnd
         let segmentStart = overlapStart;
+
         for (const change of sortedChanges) {
           const segmentEnd = new Date(change.change_date);
           const segDays = (segmentEnd.getTime() - segmentStart.getTime()) / (1000 * 60 * 60 * 24);
+
           if (segDays > 0) {
-            // previous_amount is the plan price (cents) active before this change
+            // Apply previous plan price (cents → dollars → daily rate)
             expectedAmount += (change.previous_amount / 100 / 30) * segDays;
           }
+
           segmentStart = segmentEnd;
         }
-        // Final segment: last change date → overlapEnd, at the newest plan price
+
+        // Final segment uses latest plan price
         const lastChange = sortedChanges[sortedChanges.length - 1]!;
         const finalDays = (overlapEnd.getTime() - segmentStart.getTime()) / (1000 * 60 * 60 * 24);
+
         if (finalDays > 0) {
           expectedAmount += (lastChange.new_amount / 100 / 30) * finalDays;
         }
       } else {
-        // No plan changes within the overlap window — use current MRR (cents → dollars)
+        // No changes → use current MRR (cents → dollars)
         expectedAmount = (subscription.mrr / 100 / 30) * overlapDays;
       }
     } else {
-      // No plan changes at all — prorate current MRR (cents → dollars) over overlap days
-      expectedAmount = (subscription.mrr / 100 / 30) * overlapDays;
+      // No plan changes — prorate MRR over overlap period
+      const isAnnual = subscription.plan.billing_period_unit === 'year' ||
+                       subscription.plan.billing_period >= 12;
+
+      if (isAnnual) {
+        // Annual plans: approximate using calendar months
+        const monthsDiff =
+          (overlapEnd.getFullYear() - overlapStart.getFullYear()) * 12 +
+          (overlapEnd.getMonth() - overlapStart.getMonth());
+
+        const dayFraction = overlapEnd.getDate() > overlapStart.getDate()
+          ? (overlapEnd.getDate() - overlapStart.getDate()) / 30
+          : 0;
+
+        const overlapMonths = monthsDiff + dayFraction;
+        expectedAmount = (subscription.mrr / 100) * overlapMonths;
+      } else {
+        // Monthly plans: daily prorated MRR
+        expectedAmount = (subscription.mrr / 100 / 30) * overlapDays;
+      }
     }
-    // expectedAmount is now in local-currency dollars — convert to USD dollars
-    const usdAmount = convertToUSD(
+
+    // Convert local currency → USD → store as cents
+    const usdDollars = convertToUSD(
       expectedAmount,
       subscription.plan.currency,
       overlapStart,
       fxRates,
     );
 
+    const usdCents = Math.round(usdDollars * 100);
+
     const key = subscription.customer.company.toLowerCase().trim();
-    expectedRevenue.set(key, (expectedRevenue.get(key) ?? 0) + usdAmount);
+    expectedRevenue.set(key, (expectedRevenue.get(key) ?? 0) + usdCents);
   }
 
   return expectedRevenue;
 }
 
 /**
- * Calculate actual revenue from payments for a given period.
+ * Calculate actual revenue from Stripe payments.
  */
 export function calculateActualRevenue(
   payments: StripePayment[],
@@ -145,18 +148,19 @@ export function calculateActualRevenue(
     if (paymentDate < startDate || paymentDate > endDate) continue;
 
     if (payment.subscription_id || payment.customer_name) {
-      // payment.amount is in USD cents (normalized by loadStripePayments) —
-      // divide by 100 to get dollars before passing to convertToUSD.
-      const usdAmount = convertToUSD(
+      // Convert cents → dollars → FX → back to cents
+      const usdDollars = convertToUSD(
         payment.amount / 100,
         payment.currency,
         new Date(payment.payment_date),
         fxRates,
       );
 
+      const usdCents = Math.round(usdDollars * 100);
+
       const key = payment.customer_name.toLowerCase().trim();
       const existing = actualRevenue.get(key) || 0;
-      actualRevenue.set(key, existing + usdAmount);
+      actualRevenue.set(key, existing + usdCents);
     }
   }
 
@@ -164,7 +168,7 @@ export function calculateActualRevenue(
 }
 
 /**
- * Compare expected vs. actual revenue and identify discrepancies.
+ * Compare expected vs actual revenue and identify discrepancies.
  */
 export function reconcileRevenue(
   subscriptions: ChargebeeSubscription[],
@@ -177,19 +181,19 @@ export function reconcileRevenue(
   const expectedRevenueMap = calculateExpectedRevenue(subscriptions, startDate, endDate, fxRates, toleranceUSD);
   const actualRevenueMap = calculateActualRevenue(payments, startDate, endDate, fxRates, toleranceUSD);
   
-  // Calculate totals
+  // Aggregate totals
   const expectedRevenue = Array.from(expectedRevenueMap.values()).reduce((sum, val) => sum + val, 0);
   const actualRevenue = Array.from(actualRevenueMap.values()).reduce((sum, val) => sum + val, 0);
   
   const difference = actualRevenue - expectedRevenue;
   const differencePercent = expectedRevenue > 0 ? (difference / expectedRevenue) * 100 : 0;
 
-  // Calculate breakdown components
+  // Breakdown components
   let prorations = 0;
   let discounts = 0;
   let fxDifferences = 0;
 
-  // Calculate proration amount from plan changes
+  // Sum proration amounts from plan changes
   for (const subscription of subscriptions) {
     if (subscription.plan_changes && subscription.plan_changes.length > 0) {
       for (const change of subscription.plan_changes) {
@@ -201,7 +205,7 @@ export function reconcileRevenue(
     }
   }
 
-  // Create line items for reconciliation
+  // Line-level discrepancies
   const lineItems: Array<{
     customerId: string;
     customerName: string;
@@ -211,8 +215,9 @@ export function reconcileRevenue(
     reason: string;
   }> = [];
 
-  // Build a lookup from normalized company name → display name & customer ID
+  // Map normalized company → display info
   const customerLookup = new Map<string, { customerId: string; customerName: string }>();
+
   for (const sub of subscriptions) {
     const key = sub.customer.company.toLowerCase().trim();
     if (!customerLookup.has(key)) {
@@ -223,21 +228,26 @@ export function reconcileRevenue(
     }
   }
 
-  // Compare each customer's expected vs actual revenue
+  // Compare expected vs actual per customer
   for (const [customerKey, expected] of expectedRevenueMap.entries()) {
     const actual = actualRevenueMap.get(customerKey) || 0;
     const lineDifference = actual - expected;
     
     if (Math.abs(lineDifference) > toleranceUSD) {
       const info = customerLookup.get(customerKey);
+
       lineItems.push({
         customerId: info?.customerId || customerKey,
         customerName: info?.customerName || customerKey,
         expected,
         actual,
         difference: lineDifference,
-        reason: actual === 0 ? 'No payments found' : 
-               actual > expected ? 'Overpayment detected' : 'Underpayment detected',
+        reason:
+          actual === 0
+            ? 'No payments found'
+            : actual > expected
+            ? 'Overpayment detected'
+            : 'Underpayment detected',
       });
     }
   }

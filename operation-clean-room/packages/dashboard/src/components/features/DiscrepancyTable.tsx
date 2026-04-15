@@ -265,7 +265,7 @@ export function DiscrepancyTable() {
           {/* ── 1. Entity Matching ── */}
           <div className="rounded-lg border border-slate-700 bg-slate-800/40 p-4 space-y-2">
             <h3 className="text-sm font-semibold text-slate-300">
-              🧩 1 · Entity Matching — same customer across systems?
+               1 · Entity Matching — same customer across systems?
             </h3>
             <p className="text-xs text-slate-500">
               Fuzzy name + domain matching between Salesforce accounts and Chargebee subscriptions.
@@ -292,7 +292,7 @@ export function DiscrepancyTable() {
           {/* ── 2. Missing Links ── */}
           <div className="rounded-lg border border-slate-700 bg-slate-800/40 p-4 space-y-2">
             <h3 className="text-sm font-semibold text-slate-300">
-              ❌ 2 · Missing Links — entity exists in one system only
+               2 · Missing Links — entity exists in one system only
             </h3>
             <p className="text-xs text-slate-500">
               Chargebee subscriptions with no SF account · Closed Won deals with no subscription · Zombie SF deals
@@ -319,7 +319,7 @@ export function DiscrepancyTable() {
           {/* ── 3. Amount Discrepancies + Stripe Coverage Gap ── */}
           <div className="rounded-lg border border-slate-700 bg-slate-800/40 p-4 space-y-3">
             <h3 className="text-sm font-semibold text-slate-300">
-              💰 3 · Amount Discrepancies — Stripe payment coverage
+               3 · Amount Discrepancies — Stripe payment coverage
             </h3>
             <p className="text-xs text-slate-500">
               Stripe is <strong className="text-slate-400">not</strong> the payment processor for all customers.
