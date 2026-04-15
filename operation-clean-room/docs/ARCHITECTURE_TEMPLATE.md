@@ -1,243 +1,359 @@
-# Architecture Document
+Perfect — now I’ll give you a **clean, submission-ready Architecture Document (aligned with YOUR implementation + fixes + actual behavior)**, not generic.
 
-## System Overview
+---
 
-The revenue reconciliation system consists of two main components:
+# 📄 Architecture Document — Revenue Reconciliation System
 
-1. **Data Engine** (Node.js/TypeScript API) - Handles data ingestion, reconciliation logic, and business analysis
-2. **Dashboard** (Vite/React frontend) - Provides user interface for viewing reconciliation results and metrics
+## 📌 System Overview
 
-### Architecture Flow
+The system is designed to provide **audit-ready SaaS revenue metrics** by integrating multiple fragmented data sources and reconciling inconsistencies.
+
+It consists of two main components:
+
+1. **Data Engine (Backend — Node.js/TypeScript)**
+
+   * Handles ingestion, normalization, reconciliation, and metric computation
+2. **Dashboard (Frontend — React/Vite)**
+
+   * Displays reconciliation results and business insights
+
+👉 Reference base architecture: 
+
+---
+
+# 🏗️ High-Level Architecture
+
 ```
-Raw Data Sources → Data Engine (Ingestion) → Data Engine (Reconciliation) → Data Engine (Metrics) → API → Dashboard
-     ↓                    ↓                       ↓                              ↓                   ↓        ↓
-[CSV/JSON/XML]    [Normalize & Load]      [Entity Resolution]           [ARR / NRR / Churn]   [REST API]  [React UI]
-                                          [Revenue Analysis]            [Cohort Logic]
-                                          [Pipeline Quality]            [FX Normalization]
-```
-
-### Data Flow
-1. **Phase 1 (Ingestion)**: Raw files → Validated TypeScript objects → Memory storage
-2. **Phase 2 (Reconciliation)**: Cross-system analysis → Discrepancy detection → Business insights
-3. **Phase 3 (Metrics)**: Subscription data → FX-normalized ARR → NRR/churn with date-range cohort logic
-4. **Phase 4 (Presentation)**: API endpoints → JSON responses → Dashboard visualization
-
-The system prioritizes data quality identification over data cleaning, preserving messy data patterns for analysis.
-
-## Data Model
-
-### Unified Customer Model
-
-The system uses a **federated identity approach** rather than a single canonical customer ID. Each customer may exist in multiple systems with different identifiers:
-
-- **Salesforce**: `account_id` (ACC-00001, ACC-00002, etc.)
-- **Chargebee**: `customer_id` embedded in subscription records
-- **Stripe**: `customer_id` in payment records
-
-**Entity Resolution Strategy**: Customers are linked across systems using fuzzy matching on:
-1. Company name (normalized, with common variations)
-2. Domain extraction from email addresses
-3. Website URLs when available
-
-**No Single Source of Truth**: The system preserves the federated nature and reports discrepancies rather than forcing normalization.
-
-### Source Data Mapping
-
-| Source | Key Fields | Links To | Issues Found |
-|--------|-----------|----------|-------------|
-| Stripe Payments | `customer_id`, `amount`, `currency`, `payment_date` | Chargebee via entity resolution | Currency inconsistencies, missing customer metadata |
-| Chargebee Subscriptions | `subscription_id`, `customer.company`, `mrr`, `status` | Salesforce accounts via company name | Company name variations, missing email domains |
-| Legacy Invoices | `customer_name`, `amount`, `invoice_date` | Modern systems via name matching | Date format inconsistencies, poor data quality |
-| Salesforce Opportunities | `opportunity_id`, `account_id`, `amount`, `stage` | Salesforce accounts via `account_id` | 198 "Closed Won" deals with no billing subscriptions |
-| Salesforce Accounts | `account_id`, `account_name`, `website` | Chargebee via domain/name matching | Only 8 matches found out of 600 accounts (1.3% match rate) |
-| Product Events | `user_id`, `event_type`, `timestamp` | Customer records via user matching | High volume (86K+ events), requires aggregation |
-| Support Tickets | `customer_email`, `ticket_id`, `priority` | Customers via email matching | Incomplete email data affects matching |
-| NPS Surveys | `customer_email`, `score`, `feedback` | Customers via email matching | Survey response rates affect coverage |
-| Marketing Spend | `channel`, `spend_amount`, `date` | Revenue attribution (planned) | No direct customer linkage, requires attribution modeling |
-| Plan Pricing | `plan_id`, `price`, `billing_cycle` | Subscriptions via plan matching | Price changes over time require historical tracking |
-| FX Rates | `date`, `eur_usd`, `gbp_usd`, etc. | Payments via transaction date | Weekend/holiday gaps require interpolation |
-| Partner Deals | `partner_id`, `deal_value`, `commission` | Opportunities via partner attribution | Limited partner data affects revenue attribution |
-
-## Matching Strategy
-
-### Entity Resolution Approach
-
-**Primary Algorithm**: Fuzzy string matching with weighted confidence scoring
-
-1. **Company Name Matching**:
-   - Normalize company names (remove "Inc.", "LLC", etc.)
-   - Calculate Levenshtein distance for similarity scoring
-   - Handle common variations ("Corp" vs "Corporation")
-
-2. **Domain Matching**:
-   - Extract domains from email addresses and websites
-   - Exact domain matching gets highest confidence score
-   - Subdomain variations are handled appropriately
-
-3. **Composite Scoring**:
-   - Combine name similarity + domain matching
-   - Weight domain matches higher (more reliable than names)
-   - Apply threshold to distinguish matches from noise
-
-### Confidence Scoring
-
-**Confidence Score Formula**:
-```typescript
-confidence = (domain_match_weight * domain_score) + 
-             (name_match_weight * name_similarity_score)
+Raw Data Sources
+   ↓
+Ingestion Layer (Normalization)
+   ↓
+Reconciliation Engine
+   ↓
+Metrics Engine (ARR, Churn, NRR)
+   ↓
+API Layer (Express)
+   ↓
+Dashboard (React UI)
 ```
 
-**Scoring Thresholds**:
-- **High Confidence** (>0.8): Exact domain match + similar company name
-- **Medium Confidence** (0.6-0.8): Domain match OR very similar names  
-- **Low Confidence** (<0.6): Weak similarity, requires manual review
+---
 
-**Fields Contributing to Confidence**:
-- Domain exact match: +0.6 base score
-- Company name similarity: 0-0.4 based on Levenshtein distance
-- Website URL match: +0.2 bonus
-- Email domain consistency: +0.1 bonus
+# 🔄 Data Flow
 
-**Match Threshold**: 0.6 minimum confidence to be considered a valid match
-- Above 0.8: Automatic acceptance
-- 0.6-0.8: Flagged for review
-- Below 0.6: Rejected as noise
+## 1️⃣ Ingestion Layer
 
-## Metric Definitions
+**Sources:**
 
-### NRR (Net Revenue Retention)
+* Chargebee (JSON)
+* Stripe (CSV)
+* Salesforce (CSV)
+* Legacy invoices (XML)
 
-**Definition**: Percentage of ARR retained from an existing customer cohort after expansion, contraction, and churn
-**Formula**: `(startingARR + expansion - contraction - churn) / startingARR * 100`
+### Responsibilities:
 
-**Cohort Definition**: Customers active at `startDate` — i.e., `created_at <= startDate AND (cancelled_at IS NULL OR cancelled_at > startDate)`
+* Parse raw data
+* Normalize structure
+* Standardize:
 
-**Critical Design Decision**: Cohort uses explicit date-range logic on `created_at`/`cancelled_at`, **not** the `status` field. The `status` field reflects today's snapshot. A customer who churned 6 months ago has `status = 'cancelled'` today — using status for a historical NRR query would misclassify them as "never active in that cohort".
+  * Currency
+  * Dates
+  * Entity fields
 
-**Expansion/Contraction Classification**:
-- For each cohort customer: compare `endArr` (ARR at `endDate`) vs `startArr` (ARR at `startDate`)
-- `delta > $1`: expansion
-- `delta < -$1`: contraction  
-- Customer absent at `endDate` (churned during period): churn
-- **$1 threshold**: avoids classifying sub-dollar FX fluctuations on multi-currency subs as expansion/contraction
+---
 
-**Edge cases**:
-- Customers still in `non_renewing` state at `endDate` are included (still billing)
-- New customers acquired during the period are excluded (not in starting cohort)
-- Multi-currency subscriptions: both start and end ARR converted via `utils/fx.ts` using respective period dates
+## 2️⃣ Normalization Layer
 
-### Churn (Gross & Logo)
+### Key Transformations
 
-**Definition**: Revenue and customer count lost in a period from cancellations
-**Gross Churn Rate**: `(ARR of churned customers / startingARR) * 100`
-**Logo Churn Rate**: `(count of churned customers / startingCustomerCount) * 100`
+#### ✅ Company Name Normalization
 
-**Churn Detection**: `cancelled_at` falls within `[startDate, endDate]` (inclusive). Uses date field, not status snapshot — same rationale as NRR cohort logic.
+* Lowercase
+* Remove suffixes (Inc, Ltd, etc.)
+* Remove punctuation
+* Collapse whitespace
 
-**Breakdowns provided**:
-- `byReason`: grouped by `cancellation_reason` field (upgrade_downgrade, non_payment, voluntary, etc.)
-- `byPlan`: grouped by plan ID at time of cancellation
+#### ✅ Amount Normalization
 
-**Edge cases**:
-- `churn = 0` for narrow recent date windows (e.g., Feb–Apr 2026) is data-correct: all cancellations in the dataset occurred in late 2024 / mid-2025
-- Churn rate is expressed against the starting cohort ARR at `startDate`, not total current ARR
+* Chargebee → stored in cents internally → divided by 100 at computation time
+* Stripe → read as source-currency dollars → FX converted → stored as USD cents (× 100)
+* Salesforce → assumed USD dollars (no conversion needed)
 
-### ARR (Annual Recurring Revenue)
+---
 
-**Definition**: Annualized value of active recurring subscriptions, normalized to USD
-**Formula**: `sum(active_subscriptions.mrr / 100 * fx_rate_to_usd * 12)`
+## 3️⃣ Entity Resolution Layer
 
-**Key implementation detail**: Chargebee stores MRR in **cents** (smallest currency unit). Always divide by 100 before any calculation. `sub.mrr` already includes addon quantities and active coupon discounts (computed via `computeMRR()` at ingestion time — not re-derived at the metric layer).
+### Problem:
 
-**Segment breakdown**: Segment label (`enterprise`, `mid-market`, `smb`) comes from Salesforce accounts, matched to Chargebee via normalized company name. Unmatched companies fall back to `"smb"`.
+No shared customer ID across systems
 
-**Edge cases**: 
-- Trial subscriptions excluded by default (`excludeTrials=true`); configurable via query param
-- Paused and cancelled subscriptions excluded
-- Currency conversion uses subscription-level currency + date via `utils/fx.ts` (5-day weekend fallback)
+### Solution:
 
-### Revenue Reconciliation
+**Federated identity model** 
 
-**Definition**: Comparison of expected revenue (from subscriptions) vs. actual revenue (from payments)
-**Formula**: `actual_revenue - expected_revenue`, with tolerance bands
-**Edge cases**:
-- Cross-currency transactions use payment-date FX rates
-- 3-day tolerance for payment processing delays
-- Proration handling for mid-cycle changes
-- Failed payment retries counted as single expected payment
+Matching based on:
 
-### Pipeline Health Score
+* Company name (normalized)
+* Email domain
+* Website
 
-**Definition**: Composite score (0-1) indicating CRM data quality
-**Formula**: `1 - ((zombie_weight * zombie_ratio) + (mismatch_weight * mismatch_ratio) + (unbooked_weight * unbooked_ratio))`
-**Weights**: Zombie deals (30%), Stage mismatches (40%), Unbooked revenue (30%)
-**Edge cases**:
-- Score floors at 0 (cannot go negative)
-- Incomplete data sources lower confidence, don't break calculation
+### Matching Strategy:
 
-### Entity Resolution Confidence
+```
+confidence = (id_weight * exact_id_match)
+           + (domain_weight * domain_match)
+           + (name_weight * levenshtein_similarity)
+```
 
-**Definition**: Probability (0-1) that two customer records represent the same entity
-**Formula**: Weighted combination of domain matching (60%) + name similarity (40%)
-**Edge cases**:
-- Missing email domains default to name-only matching
-- Perfect domain match can achieve 1.0 confidence alone
-- Company name variations handled through normalization
+Threshold: 0.36 (permissive to handle variant names)
 
-## Assumptions
+### Output:
 
-See [ASSUMPTIONS_TEMPLATE.md](./ASSUMPTIONS_TEMPLATE.md) for the full log.
+* Matched entities
+* Unmatched entities
+* Confidence score
 
-## Known Limitations
+---
 
-**Current Implementation Gaps**:
-1. **Revenue reconciliation requires date filtering** - Currently analyzes all-time data instead of specific periods
-2. **Entity resolution match rate is low (1.3%)** - Indicates need for additional matching strategies
-3. **No real-time processing** - All analysis is batch-based with manual triggering
-4. **Limited FX rate handling** - 5-day weekend lookback covers holidays but does not interpolate for extended data gaps
-5. **Memory-only data storage** - No persistence layer for large datasets
+## 4️⃣ Reconciliation Engine
 
-**Intentionally Skipped Edge Cases**:
-1. **Subscription pause/resume cycles** - Complex proration logic deferred
-2. **Multi-currency subscription changes** - Currency conversion on plan changes
-3. **Partial refunds and chargebacks** - Payment reconciliation edge cases
-4. **Merger/acquisition scenarios** - Company name changes over time
+### Purpose:
 
-**Performance Limitations**:
-- In-memory processing limits dataset size to ~10K records per source
-- No caching layer for repeated reconciliation runs
-- Fuzzy matching algorithm is O(n²) and doesn't scale
+Compare:
 
-## Future Extensibility
+```
+Expected Revenue (Chargebee)
+vs
+Actual Revenue (Stripe)
+```
 
-### Adding a New Billing Source (e.g., Paddle)
+---
 
-1. **Create ingestion module**: `src/ingestion/paddle.ts` following existing patterns
-2. **Define data types**: Add Paddle-specific interfaces to `types.ts`
-3. **Update entity resolution**: Add Paddle customer matching logic to `matcher.ts`
-4. **Extend reconciliation**: Include Paddle data in revenue reconciliation flows
-5. **Update API routes**: Add Paddle endpoints to reconciliation routes
+### Expected Revenue Logic
 
-### Adding a New Metric
+* Based on active subscriptions
+* Handles:
 
-1. **Define calculation logic**: Create new module in `src/metrics/`
-2. **Update types**: Add metric interfaces to appropriate type files
-3. **Create API endpoint**: Add route in `src/routes/metrics.ts`
-4. **Add to dashboard**: Create React component for visualization
-5. **Document assumptions**: Update assumptions log with metric definitions
+  * Proration (overlap days)
+  * Plan changes
+  * Coupons (already in MRR)
 
-### Changing Reconciliation Schedule
+```
+expected = (MRR / 30) * overlap_days
+```
 
-**From monthly to weekly**:
-1. **Update date range logic**: Modify reconciliation API to accept week boundaries
-2. **Adjust tolerance windows**: Weekly reconciliation may need tighter tolerances
-3. **Update caching strategy**: More frequent runs require efficient data refresh
-4. **Modify dashboard**: Update UI to show weekly trends instead of monthly
+---
 
-### Adding Segmentation Dimensions
+### Actual Revenue Logic
 
-1. **Identify segmentation fields**: Company size, industry, region, etc.
-2. **Update data model**: Add segmentation fields to unified customer model
-3. **Modify aggregation logic**: Group metrics by segment in calculation modules
-4. **Create segment API**: Add endpoints for segment-specific reconciliation
-5. **Update dashboard**: Add segment filters and segment-specific views
+* Based on Stripe payments
+* Includes:
+
+  * Only `succeeded` payments
+  * FX conversion using payment date
+
+---
+
+### Output
+
+* Revenue difference
+* Coverage gap
+* Amount mismatches
+
+---
+
+## 5️⃣ Metrics Engine
+
+### Metrics Computed
+
+#### ARR
+
+```
+ARR = MRR × 12
+```
+
+#### Churn
+
+* Based on `cancelled_at`
+* Not snapshot `status`
+
+#### NRR
+
+```
+NRR = (Start + Expansion - Contraction - Churn) / Start
+```
+
+---
+
+### Key Design Decision
+
+> Use **event timestamps**, not snapshot fields
+
+---
+
+## 6️⃣ Pipeline Analysis
+
+### Inputs:
+
+* Salesforce opportunities
+
+### Logic:
+
+* Zombie deals:
+
+```
+max(close_date, created_date) < (now − 90 days) → stale
+```
+
+> No CRM activity log available — staleness is approximated from existing date fields
+
+* ACV derived from:
+
+```
+TCV / (contract_term_months / 12)
+```
+
+---
+
+## 7️⃣ API Layer
+
+### Endpoints
+
+* `/api/reconciliation/run`
+* `/api/metrics/arr`
+* `/api/metrics/nrr`
+* `/api/metrics/churn`
+* `/api/scenarios/run`
+* `/api/scenarios/presets`
+* `/api/scenarios/compare`
+
+### Behavior:
+
+* Stateless
+* On-demand computation
+* Returns JSON
+
+---
+
+## 8️⃣ Dashboard Layer
+
+### Features:
+
+* Run reconciliation manually
+* Display:
+
+  * Matching stats
+  * Missing links
+  * Coverage gap
+  * Revenue comparison
+
+---
+
+# 🧠 Key Architectural Decisions
+
+## 1. No Single Source of Truth
+
+> System preserves inconsistencies instead of forcing merge
+
+---
+
+## 2. Cents as Internal Unit, Dollars for Comparison
+
+* Chargebee MRR and Stripe payments are stored as **USD cents** internally
+* Divided by 100 only at computation/comparison time
+* Salesforce amounts remain in dollars throughout
+
+👉 Fixed by:
+
+> Standardizing the conversion boundary — cents internally, dollars at comparison
+
+---
+
+## 3. Stripe as Partial System
+
+> Stripe is treated as **partial revenue source**, not complete billing
+
+---
+
+## 4. Time-Based Logic
+
+> All metrics use:
+
+* `created_at`
+* `cancelled_at`
+
+NOT:
+
+* `status`
+
+---
+
+## 5. Batch Processing Model
+
+* No real-time sync
+* Reconciliation triggered manually
+
+---
+
+# ⚠️ Limitations
+
+## Data Limitations
+
+* No unified customer ID
+* Missing CRM ↔ billing linkage
+* Partial Stripe coverage (~26%)
+
+---
+
+## Technical Limitations
+
+* In-memory processing
+* No caching
+* O(n²) fuzzy matching
+
+---
+
+## Functional Gaps
+
+* Legacy date parsing incomplete
+* Partner margin not applied
+* Cohort analysis partial
+
+---
+
+# 🔮 Extensibility
+
+## Add new billing source
+
+* Add ingestion module
+* Plug into reconciliation
+
+## Add new metric
+
+* Create new metric service
+* Expose via API
+* Render in UI
+
+## Improve matching
+
+* Add domain-based strict linking
+* Introduce ML matching (future)
+
+---
+
+# 🎯 Final Summary
+
+> The system is designed as a **federated reconciliation engine**, prioritizing:
+
+* Accuracy over assumptions
+* Auditability over convenience
+* Insight over aggregation
+
+It exposes real-world issues:
+
+* Data fragmentation
+* CRM inconsistencies
+* Payment coverage gaps
+
+---
+
